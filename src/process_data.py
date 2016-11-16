@@ -104,7 +104,7 @@ def read_and_normalize_test_data():
     test_data, test_id = load_test()
 
     test_data = np.array(test_data, dtype=np.uint8)
-    test_data = test_data.transpose((0, 3, 1, 2))
+    test_data = test_data.reshape((-1, 3,) + IMGSIZE)
 
     test_data = test_data.astype('float32')
     test_data = test_data / 255

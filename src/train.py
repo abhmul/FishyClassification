@@ -14,7 +14,7 @@ from keras import __version__ as keras_version
 def run_cross_validation_create_models(nfolds=10, model_func=vgg_model):
     # input image dimensions
     batch_size = 64
-    nb_epoch = 43
+    nb_epoch = 100
     random_state = 51
 
     train_data, train_target, train_id = read_and_normalize_train_data()
@@ -53,7 +53,7 @@ def run_cross_validation_create_models(nfolds=10, model_func=vgg_model):
         filepath = "weights-improvement-fold%s-{epoch:02d}-{val_loss:.4f}.hdf5" % num_fold
         # checkpoint = ModelCheckpoint(filepath, monitor='val_loss', verbose=0, save_best_only=True, mode='auto')
         callbacks = [
-            EarlyStopping(monitor='val_loss', patience=3, verbose=0) # , checkpoint
+            EarlyStopping(monitor='val_loss', patience=2, verbose=0) # , checkpoint
         ]
         model.fit_generator(imgen_train, samples_per_epoch=len(X_train), nb_epoch=nb_epoch,
                             validation_data=(X_valid, Y_valid), callbacks=callbacks)

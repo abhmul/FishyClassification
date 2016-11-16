@@ -12,44 +12,6 @@ from keras.preprocessing.image import NumpyArrayIterator
 from keras import __version__ as keras_version
 
 
-class ImageDataGenerator2(ImageDataGenerator):
-    def flow(self, X, y=None, batch_size=32, shuffle=True, seed=None,
-             save_to_dir=None, save_prefix='', save_format='jpeg'):
-        return NumpyArrayIterator2(
-            X, y, self,
-            batch_size=batch_size, shuffle=shuffle, seed=seed,
-            dim_ordering=self.dim_ordering,
-            save_to_dir=save_to_dir, save_prefix=save_prefix, save_format=save_format)
-
-
-class NumpyArrayIterator2(NumpyArrayIterator):
-    def next(self):
-        # for python 2.x.
-        # Keeps under lock only the mechanism which advances
-        # the indexing of each batch
-        # see http://anandology.com/blog/using-iterators-and-generators/
-        with self.lock:
-            self.index_array, current_index, current_batch_size = next(self.index_generator)
-        # The transformation of images is not under thread lock so it can be done in parallel
-        batch_x = np.zeros(tuple([current_batch_size] + list(self.X.shape)[1:]))
-        for i, j in enumerate(self.index_array):
-            x = self.X[j]
-            x = self.image_data_generator.random_transform(x.astype('float32'))
-            x = self.image_data_generator.standardize(x)
-            batch_x[i] = x
-        if self.save_to_dir:
-            for i in range(current_batch_size):
-                img = array_to_img(batch_x[i], self.dim_ordering, scale=True)
-                fname = '{prefix}_{index}_{hash}.{format}'.format(prefix=self.save_prefix,
-                                                                  index=current_index + i,
-                                                                  hash=np.random.randint(1e4),
-                                                                  format=self.save_format)
-                img.save(os.path.join(self.save_to_dir, fname))
-        if self.y is None:
-            return batch_x
-        batch_y = self.y[self.index_array]
-        return batch_x, batch_y
-
 def run_cross_validation_create_models(nfolds=10):
     # input image dimensions
     batch_size = 64
@@ -70,7 +32,7 @@ def run_cross_validation_create_models(nfolds=10):
         X_valid = train_data[test_index]
         Y_valid = train_target[test_index]
 
-        imgen = ImageDataGenerator2(
+        imgen = ImageDataGenerator(
             # rescale=1./255,
             rotation_range=20,
             # width_shift_range=0.2,
@@ -80,7 +42,7 @@ def run_cross_validation_create_models(nfolds=10):
             horizontal_flip=True,
             vertical_flip=True,
             fill_mode='nearest')
-        imgen_train = imgen.flow(X_train, Y_train)
+        imgen_train = imgen.flow(X_train, Y_train, batch_size=batch_size)
 
         num_fold += 1
         print('Start KFold number {} from {}'.format(num_fold, nfolds))
@@ -90,7 +52,7 @@ def run_cross_validation_create_models(nfolds=10):
         callbacks = [
             EarlyStopping(monitor='val_loss', patience=3, verbose=0),
         ]
-        model.fit_generator(imgen_train, batch_size=batch_size, samples_per_epoch=10000, nb_epoch=nb_epoch,
+        model.fit_generator(imgen_train, samples_per_epoch=10000, nb_epoch=nb_epoch,
                             validation_data=(X_valid, Y_valid))
 
         predictions_valid = model.predict(X_valid.astype('float32'), batch_size=batch_size, verbose=2)

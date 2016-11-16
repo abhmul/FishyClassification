@@ -4,7 +4,7 @@ from keras.optimizers import SGD
 
 def create_model():
     model = Sequential()
-    model.add(ZeroPadding2D((1, 1), input_shape=(3, 32, 32), dim_ordering='th'))
+    model.add(ZeroPadding2D((1, 1), input_shape=(3, 96, 96), dim_ordering='th'))
     model.add(Convolution2D(32, 3, 3, activation='relu', dim_ordering='th'))
     model.add(ZeroPadding2D((1, 1), dim_ordering='th'))
     model.add(Convolution2D(32, 3, 3, activation='relu', dim_ordering='th'))
@@ -24,6 +24,6 @@ def create_model():
     model.add(Dense(8, activation='softmax'))
 
     sgd = SGD(lr=1e-2, decay=1e-6, momentum=0.9, nesterov=True)
-    model.compile(optimizer='rmsprop', loss='categorical_crossentropy')
+    model.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
 
     return model

@@ -34,8 +34,8 @@ def load_train():
     start_time = time.time()
 
     print('Read train images')
-    # folders = ['ALB', 'BET', 'DOL', 'LAG', 'NoF', 'OTHER', 'SHARK', 'YFT']
-    folders = ['NoF']
+    folders = ['ALB', 'BET', 'DOL', 'LAG', 'NoF', 'OTHER', 'SHARK', 'YFT']
+    # folders = ['NoF']
     for fld in folders:
         index = folders.index(fld)
         print('Load folder {} (Index: {})'.format(fld, index))

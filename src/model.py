@@ -7,15 +7,15 @@ from process_data import IMGSIZE
 def create_model():
     model = Sequential()
     model.add(ZeroPadding2D((1, 1), input_shape=(3, IMGSIZE[0], IMGSIZE[1]), dim_ordering='th'))
-    model.add(Convolution2D(4, 3, 3, activation='relu', dim_ordering='th'))
+    model.add(Convolution2D(8, 3, 3, activation='relu', dim_ordering='th'))
     model.add(ZeroPadding2D((1, 1), dim_ordering='th'))
-    model.add(Convolution2D(4, 3, 3, activation='relu', dim_ordering='th'))
+    model.add(Convolution2D(8, 3, 3, activation='relu', dim_ordering='th'))
     model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2), dim_ordering='th'))
 
     model.add(ZeroPadding2D((1, 1), dim_ordering='th'))
-    model.add(Convolution2D(8, 3, 3, activation='relu', dim_ordering='th'))
+    model.add(Convolution2D(16, 3, 3, activation='relu', dim_ordering='th'))
     model.add(ZeroPadding2D((1, 1), dim_ordering='th'))
-    model.add(Convolution2D(8, 3, 3, activation='relu', dim_ordering='th'))
+    model.add(Convolution2D(16, 3, 3, activation='relu', dim_ordering='th'))
     model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2), dim_ordering='th'))
 
     model.add(Flatten())

@@ -14,7 +14,7 @@ from keras import __version__ as keras_version
 def run_cross_validation_create_models(nfolds=10):
     # input image dimensions
     batch_size = 64
-    nb_epoch = 100
+    nb_epoch = 55
     random_state = 51
 
     train_data, train_target, train_id = read_and_normalize_train_data()
@@ -49,7 +49,7 @@ def run_cross_validation_create_models(nfolds=10):
         print('Split valid: ', len(X_valid), len(Y_valid))
 
         filepath = "weights-improvement-fold%s-{epoch:02d}-{val_acc:.4f}.hdf5" % num_fold
-        checkpoint = ModelCheckpoint(filepath, monitor='val_loss', verbose=1, save_best_only=True, mode='max')
+        checkpoint = ModelCheckpoint(filepath, monitor='val_loss', verbose=1, save_best_only=True, mode='auto')
         callbacks = [
             EarlyStopping(monitor='val_loss', patience=3, verbose=1), checkpoint
         ]

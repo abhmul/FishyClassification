@@ -24,7 +24,7 @@ def get_im_cv2(path):
     resized = img.resize((96, 96))
     return img_to_array(resized)
 
-############################# ZFTurbo's code######################################
+############################# ZFTurbo's code######################################p
 
 def load_train():
     X_train = []

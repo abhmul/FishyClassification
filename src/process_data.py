@@ -88,6 +88,10 @@ def read_and_normalize_train_data():
     print('Convert to float...')
     train_data = train_data.astype('float32')
     train_data = train_data / 255
+
+    print('Normalizing the data')
+    train_data -= np.mean(train_data, axis=0)
+    train_data /= (np.std(train_data, axis=0) + 1e-7)
     train_target = np_utils.to_categorical(train_target, 8)
 
     print('Train shape:', train_data.shape)
@@ -104,6 +108,9 @@ def read_and_normalize_test_data():
 
     test_data = test_data.astype('float32')
     test_data = test_data / 255
+
+    test_data -= np.mean(test_data, axis=0)
+    test_data /= (np.std(test_data, axis=0) + 1e-7)
 
     print('Test shape:', test_data.shape)
     print(test_data.shape[0], 'test samples')

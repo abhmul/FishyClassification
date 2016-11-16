@@ -13,7 +13,7 @@ import time
 import warnings
 warnings.filterwarnings("ignore")
 
-from Image import open
+from PIL.Image import open
 from keras.utils import np_utils
 from keras import __version__ as keras_version
 

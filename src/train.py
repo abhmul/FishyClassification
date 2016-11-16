@@ -33,10 +33,10 @@ def run_cross_validation_create_models(nfolds=10):
 
         imgen = ImageDataGenerator(
             # rescale=1./255,
-            rotation_range=20,
+            rotation_range=10,
             # width_shift_range=0.2,
             # height_shift_range=0.2,
-            shear_range=0.2,
+            # shear_range=0.2,
             zoom_range=0.2,
             horizontal_flip=True,
             vertical_flip=True,

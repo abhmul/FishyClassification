@@ -13,16 +13,16 @@ import time
 import warnings
 warnings.filterwarnings("ignore")
 
-from PIL.Image import open
+from PIL.Image import open, BILINEAR
 from keras.utils import np_utils
 from keras import __version__ as keras_version
 from keras.preprocessing.image import img_to_array
 
-IMGSIZE = (64, 64)
+IMGSIZE = (32, 32)
 
 def get_im_cv2(path):
     img = open(path)
-    resized = img.resize(IMGSIZE)
+    resized = img.resize(IMGSIZE, resample=BILINEAR)
     return img_to_array(resized)
 
 ############################# ZFTurbo's code######################################p

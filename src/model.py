@@ -37,7 +37,7 @@ def vgg_model():
 
     # build the VGG16 network
     model = Sequential()
-    model.add(ZeroPadding2D((1, 1), input_shape=(3, 150, 150), dim_ordering='th'))
+    model.add(ZeroPadding2D((1, 1), input_shape=(3, IMGSIZE[0], IMGSIZE[1]), dim_ordering='th'))
 
     model.add(Convolution2D(64, 3, 3, activation='relu', name='conv1_1', dim_ordering='th'))
     model.add(ZeroPadding2D((1, 1), dim_ordering='th'))
@@ -108,7 +108,7 @@ def vgg_model():
     # compile the model with a SGD/momentum optimizer
     # and a very slow learning rate.
     model.compile(loss='categorical_crossentropy',
-                  optimizer=SGD(lr=1e-4, momentum=0.9),
+                  optimizer=SGD(lr=1e-3, momentum=0.9, nesterov=True),
                   metrics=['accuracy'])
 
     return model

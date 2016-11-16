@@ -18,7 +18,7 @@ from keras.utils import np_utils
 from keras import __version__ as keras_version
 from keras.preprocessing.image import img_to_array
 
-IMGSIZE = (150, 150)
+IMGSIZE = (224, 224)
 
 def get_im_cv2(path):
     img = open(path)

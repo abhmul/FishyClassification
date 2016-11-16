@@ -34,6 +34,8 @@ def run_cross_validation_create_models(nfolds=10, model_func=vgg_model):
         imgen = ImageDataGenerator(
             # rescale=1./255,
             rotation_range=20,
+            featurewise_center=True,
+            featurewise_std_normalization=True,
             # width_shift_range=0.2,
             # height_shift_range=0.2,
             shear_range=0.2,

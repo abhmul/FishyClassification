@@ -53,7 +53,7 @@ def run_cross_validation_create_models(nfolds=10):
             EarlyStopping(monitor='val_loss', patience=3, verbose=0),
         ]
         model.fit_generator(imgen_train, samples_per_epoch=10000, nb_epoch=nb_epoch,
-                            validation_data=(X_valid, Y_valid))
+                            validation_data=(X_valid, Y_valid), callbacks=callbacks)
 
         predictions_valid = model.predict(X_valid.astype('float32'), batch_size=batch_size, verbose=2)
         score = log_loss(Y_valid, predictions_valid)

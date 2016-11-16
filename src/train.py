@@ -70,6 +70,7 @@ def run_cross_validation_create_models(nfolds=10):
     print("Log_loss train independent avg: ", score)
 
     info_string = 'loss_' + str(score) + '_folds_' + str(nfolds) + '_ep_' + str(nb_epoch)
+
     return info_string, models
 
 if __name__ == '__main__':

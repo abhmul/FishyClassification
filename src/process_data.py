@@ -134,7 +134,7 @@ def get_validation_predictions(train_data, predictions_valid):
 
 
 def run_cross_validation_process_test(info_string, models):
-    batch_size = 16
+    batch_size = 64
     num_fold = 0
     yfull_test = []
     test_id = []

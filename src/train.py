@@ -2,12 +2,11 @@ import numpy as np
 import os
 
 from model import create_model
-from keras.callbacks import EarlyStopping
+from keras.callbacks import EarlyStopping, ModelCheckpoint
 from sklearn.metrics import log_loss
 from process_data import read_and_normalize_train_data, run_cross_validation_process_test
 from sklearn.cross_validation import KFold
 from keras.preprocessing.image import ImageDataGenerator, img_to_array, array_to_img
-from keras.preprocessing.image import NumpyArrayIterator
 
 from keras import __version__ as keras_version
 
@@ -49,8 +48,10 @@ def run_cross_validation_create_models(nfolds=10):
         print('Split train: ', len(X_train), len(Y_train))
         print('Split valid: ', len(X_valid), len(Y_valid))
 
+        filepath = "weights-improvement-fold%s-{epoch:02d}-{val_acc:.4f}.hdf5" % num_fold
+        checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
         callbacks = [
-            EarlyStopping(monitor='val_loss', patience=3, verbose=0),
+            EarlyStopping(monitor='val_loss', patience=1, verbose=1), checkpoint
         ]
         model.fit_generator(imgen_train, samples_per_epoch=len(X_train), nb_epoch=nb_epoch,
                             validation_data=(X_valid, Y_valid), callbacks=callbacks)

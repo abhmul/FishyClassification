@@ -18,10 +18,11 @@ from keras.utils import np_utils
 from keras import __version__ as keras_version
 from keras.preprocessing.image import img_to_array
 
+IMGSIZE = (32, 32)
 
 def get_im_cv2(path):
     img = open(path)
-    resized = img.resize((96, 96))
+    resized = img.resize(IMGSIZE)
     return img_to_array(resized)
 
 ############################# ZFTurbo's code######################################p
@@ -81,7 +82,7 @@ def read_and_normalize_train_data():
     train_target = np.array(train_target, dtype=np.uint8)
 
     print('Reshape...')
-    train_data = train_data.reshape(-1, 3, 96, 96)
+    train_data = train_data.reshape((-1, 3,) + IMGSIZE)
 
     print('Convert to float...')
     train_data = train_data.astype('float32')

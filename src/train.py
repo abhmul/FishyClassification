@@ -1,7 +1,7 @@
 import numpy as np
 import os
 
-from model import create_model
+from model import create_model, vgg_model
 from keras.callbacks import EarlyStopping, ModelCheckpoint
 from sklearn.metrics import log_loss
 from process_data import read_and_normalize_train_data, run_cross_validation_process_test
@@ -11,7 +11,7 @@ from keras.preprocessing.image import ImageDataGenerator, img_to_array, array_to
 from keras import __version__ as keras_version
 
 
-def run_cross_validation_create_models(nfolds=10):
+def run_cross_validation_create_models(nfolds=10, model_func=vgg_model):
     # input image dimensions
     batch_size = 64
     nb_epoch = 55
@@ -25,7 +25,7 @@ def run_cross_validation_create_models(nfolds=10):
     sum_score = 0
     models = []
     for train_index, test_index in kf:
-        model = create_model()
+        model = model_func()
         X_train = train_data[train_index]
         Y_train = train_target[train_index]
         X_valid = train_data[test_index]
@@ -33,13 +33,13 @@ def run_cross_validation_create_models(nfolds=10):
 
         imgen = ImageDataGenerator(
             # rescale=1./255,
-            rotation_range=10,
+            rotation_range=20,
             # width_shift_range=0.2,
             # height_shift_range=0.2,
-            # shear_range=0.2,
+            shear_range=0.2,
             zoom_range=0.2,
             horizontal_flip=True,
-            vertical_flip=True,
+            # vertical_flip=True,
             fill_mode='nearest')
         imgen_train = imgen.flow(X_train, Y_train, batch_size=batch_size)
 

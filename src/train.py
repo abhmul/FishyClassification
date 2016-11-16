@@ -11,10 +11,10 @@ from keras.preprocessing.image import ImageDataGenerator, img_to_array, array_to
 from keras import __version__ as keras_version
 
 
-def run_cross_validation_create_models(nfolds=10, model_func=vgg_model):
+def run_cross_validation_create_models(nfolds=10, model_func=create_model):
     # input image dimensions
-    batch_size = 64
-    nb_epoch = 100
+    batch_size = 16
+    nb_epoch = 30
     random_state = 51
 
     train_data, train_target, train_id = read_and_normalize_train_data()
@@ -31,19 +31,19 @@ def run_cross_validation_create_models(nfolds=10, model_func=vgg_model):
         X_valid = train_data[test_index]
         Y_valid = train_target[test_index]
 
-        imgen = ImageDataGenerator(
+        # imgen = ImageDataGenerator(
             # rescale=1./1,
-            rotation_range=20,
+            # rotation_range=20,
             # featurewise_center=True,
             # featurewise_std_normalization=True,
             # width_shift_range=0.2,
             # height_shift_range=0.2,
             # shear_range=0.2,
             # zoom_range=0.2,
-            horizontal_flip=True,
+            # horizontal_flip=True,
             # vertical_flip=True,
-            fill_mode='nearest')
-        imgen_train = imgen.flow(X_train, Y_train, batch_size=batch_size)
+            # fill_mode='nearest')
+        # imgen_train = imgen.flow(X_train, Y_train, batch_size=batch_size)
 
         num_fold += 1
         print('Start KFold number {} from {}'.format(num_fold, nfolds))
@@ -55,8 +55,10 @@ def run_cross_validation_create_models(nfolds=10, model_func=vgg_model):
         callbacks = [
             EarlyStopping(monitor='val_loss', patience=2, verbose=0) # , checkpoint
         ]
-        model.fit_generator(imgen_train, samples_per_epoch=len(X_train), nb_epoch=nb_epoch,
-                            validation_data=(X_valid, Y_valid), callbacks=callbacks)
+        # model.fit_generator(imgen_train, samples_per_epoch=len(X_train), nb_epoch=nb_epoch,
+        #                     validation_data=(X_valid, Y_valid), callbacks=callbacks)
+
+        model.fit(X_train, Y_train, nb_epoch=nb_epoch, validation_data=(X_valid, Y_valid))
 
         predictions_valid = model.predict(X_valid.astype('float32'), batch_size=batch_size, verbose=2)
         score = log_loss(Y_valid, predictions_valid)

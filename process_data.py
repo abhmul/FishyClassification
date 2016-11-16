@@ -14,16 +14,8 @@ import time
 import warnings
 warnings.filterwarnings("ignore")
 
-from sklearn.cross_validation import KFold
-from keras.models import Sequential
-from keras.layers.core import Dense, Dropout, Flatten
-from keras.layers.convolutional import Convolution2D, MaxPooling2D, ZeroPadding2D
-from keras.optimizers import SGD
-from keras.callbacks import EarlyStopping
 from keras.utils import np_utils
-from sklearn.metrics import log_lossT
 from keras import __version__ as keras_version
-
 
 
 def get_im_cv2(path):
@@ -31,6 +23,7 @@ def get_im_cv2(path):
     resized = cv2.resize(img, (96, 96), cv2.INTER_LINEAR)
     return resized
 
+############################# ZFTurbo's code######################################
 
 def load_train():
     X_train = []
@@ -162,6 +155,6 @@ def run_cross_validation_process_test(info_string, models):
 
 if __name__ == '__main__':
     print('Keras version: {}'.format(keras_version))
-    num_folds = 3
-    info_string, models = run_cross_validation_create_models(num_folds)
-    run_cross_validation_process_test(info_string, models)
+    # num_folds = 3
+    # info_string, models = run_cross_validation_create_models(num_folds)
+    # run_cross_validation_process_test(info_string, models)

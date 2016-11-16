@@ -51,7 +51,7 @@ def run_cross_validation_create_models(nfolds=10):
         filepath = "weights-improvement-fold%s-{epoch:02d}-{val_acc:.4f}.hdf5" % num_fold
         checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
         callbacks = [
-            EarlyStopping(monitor='val_loss', patience=1, verbose=1), checkpoint
+            EarlyStopping(monitor='val_loss', patience=3, verbose=1), checkpoint
         ]
         model.fit_generator(imgen_train, samples_per_epoch=len(X_train), nb_epoch=nb_epoch,
                             validation_data=(X_valid, Y_valid), callbacks=callbacks)

@@ -37,7 +37,7 @@ def vgg_model():
 
     # build the VGG16 network
     model = Sequential()
-    model.add(ZeroPadding2D((1, 1), input_shape=(3, 224, 224)))
+    model.add(ZeroPadding2D((1, 1), input_shape=(3, 150, 150)))
 
     model.add(Convolution2D(64, 3, 3, activation='relu', name='conv1_1'))
     model.add(ZeroPadding2D((1, 1)))

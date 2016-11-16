@@ -48,7 +48,7 @@ def run_cross_validation_create_models(nfolds=10):
         print('Split train: ', len(X_train), len(Y_train))
         print('Split valid: ', len(X_valid), len(Y_valid))
 
-        filepath = "weights-improvement-fold%s-{epoch:02d}-{val_acc:.4f}.hdf5" % num_fold
+        filepath = "weights-improvement-fold%s-{epoch:02d}-{val_loss:.4f}.hdf5" % num_fold
         checkpoint = ModelCheckpoint(filepath, monitor='val_loss', verbose=1, save_best_only=True, mode='auto')
         callbacks = [
             EarlyStopping(monitor='val_loss', patience=3, verbose=1), checkpoint

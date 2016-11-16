@@ -32,7 +32,7 @@ def run_cross_validation_create_models(nfolds=10, model_func=vgg_model):
         Y_valid = train_target[test_index]
 
         imgen = ImageDataGenerator(
-            # rescale=1./255,
+            rescale=1./1,
             rotation_range=20,
             featurewise_center=True,
             featurewise_std_normalization=True,

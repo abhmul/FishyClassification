@@ -19,7 +19,7 @@ def create_model():
     model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2), dim_ordering='th'))
 
     model.add(Flatten())
-    model.add(Dense(32, activation='relu'))
+    model.add(Dense(64, activation='relu'))
     model.add(Dropout(0.5))
     model.add(Dense(32, activation='relu'))
     model.add(Dropout(0.5))

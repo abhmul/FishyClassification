@@ -14,7 +14,7 @@ from keras import __version__ as keras_version
 def run_cross_validation_create_models(nfolds=10, model_func=create_model):
     # input image dimensions
     batch_size = 16
-    nb_epoch = 70
+    nb_epoch = 30
     random_state = 51
 
     train_data, train_target, train_id = read_and_normalize_train_data()

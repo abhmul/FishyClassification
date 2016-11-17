@@ -26,11 +26,11 @@ def create_model():
     # model.add(BatchNormalization())
 
     model.add(Flatten())
-    model.add(Dense(32, activation='relu', W_regularizer=l2(1e-3)))
+    model.add(Dense(32, activation='relu', W_regularizer=l2(2e-3)))
     model.add(Dropout(0.5))
-    model.add(Dense(32, activation='relu', W_regularizer=l2(1e-3)))
+    model.add(Dense(32, activation='relu', W_regularizer=l2(2e-3)))
     model.add(Dropout(0.5))
-    model.add(Dense(8, activation='softmax', W_regularizer=l2(1e-3)))
+    model.add(Dense(8, activation='softmax', W_regularizer=l2(2e-3)))
 
     sgd = SGD(lr=1e-2, decay=1e-6, momentum=0.9, nesterov=True)
     model.compile(optimizer=sgd, loss='categorical_crossentropy', metrics=['accuracy'])

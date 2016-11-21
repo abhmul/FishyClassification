@@ -1,70 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd2cf362-6c47-4af9-8770-2ea517313f65" name="Default" comment="Increased epochs">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_00165.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_00325.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_00348.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_00352.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_00565.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_00644.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_00678.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_00689.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_00733.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_00734.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_00770.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_00918.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_00951.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_00983.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01042.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01055.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01153.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01185.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01232.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01311.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01360.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01397.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01397_2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01397_3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01397_4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01470.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01471.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01474.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01531.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01596.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01608.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01615.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01628.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01757.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01776.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01812.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01844.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_01850.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_02100.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_02210.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_02267.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_02333.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_02341.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_02378.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_02432.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_02440.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_02474.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_02475.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_02529.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_02599.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_02654.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_02752.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_02772.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_02798.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_02910.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_02926.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_02936.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_02937.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_02953.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_03259.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_03296.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_03409.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/DOL/cropped/img_03546.jpg" />
+    <list default="true" id="dd2cf362-6c47-4af9-8770-2ea517313f65" name="Default" comment="Cropped 12 images of sharks">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00010.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00012.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00015.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00019.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00020.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00029.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00032.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00037.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00038.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00039.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00041.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00043.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00045.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00055.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00057.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00074.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00085.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00090.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00097.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00121.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00134.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00154.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00163.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_05373.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_05375.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="FishyClassification.iws" />
@@ -204,6 +166,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -258,7 +222,55 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="DOL" />
+              <option name="myItemId" value="SHARK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FishyClassification" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FishyClassification" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="input" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="train" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ALB" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FishyClassification" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FishyClassification" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="input" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="train" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ALB" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Cropped" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -278,8 +290,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -798,21 +808,49 @@
       <option name="project" value="LOCAL" />
       <updated>1479454839174</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Added 63 cropped images of DOL">
+      <created>1479506810205</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1479506810205</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Finished 95 croppings of DOL">
+      <created>1479508887961</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1479508887961</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Cropped 12 images of sharks">
+      <created>1479509535573</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1479509535573</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Cropped all of Shark">
+      <created>1479771211173</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1479771211173</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1055" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38247862" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38675213" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.50213444" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3295099" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.49786553" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3295099" sideWeight="0.49786553" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -837,10 +875,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="git ignore" />
-    <MESSAGE value="fixed dim for vgg" />
-    <MESSAGE value="Gave dim orderings" />
-    <MESSAGE value="Gave all dim orderings" />
     <MESSAGE value="changed epochs and callbacks" />
     <MESSAGE value="fixed dim ordering" />
     <MESSAGE value="changed to categorical" />
@@ -862,7 +896,11 @@
     <MESSAGE value="increased reg" />
     <MESSAGE value="Increased epochs" />
     <MESSAGE value="Added 99 cropped images to LAG" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added 99 cropped images to LAG" />
+    <MESSAGE value="Added 63 cropped images of DOL" />
+    <MESSAGE value="Finished 95 croppings of DOL" />
+    <MESSAGE value="Cropped 12 images of sharks" />
+    <MESSAGE value="Cropped all of Shark" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cropped all of Shark" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

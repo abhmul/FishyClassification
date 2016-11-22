@@ -1,5 +1,6 @@
 import os
 
+
 def get_all_label_folders():
     train_folder_path = "../input/train";
     label_folders = []
@@ -12,7 +13,7 @@ def get_all_label_folders():
 
 
 def get_all_cropped_folders():
-    label_folders = get_all_cropped_folders()
+    label_folders = get_all_label_folders()
     cropped_folders = []
     
     for label_folder_path in label_folders:
@@ -22,10 +23,20 @@ def get_all_cropped_folders():
     
     return cropped_folders
 
+
+def get_all_cropped_files():
+    cropped_files = []
+    for cropped_folder in get_all_cropped_folders():
+        for cropped_file in os.listdir(cropped_folder):
+            cropped_files.append(cropped_folder + "/" + cropped_file)
+    
+    return cropped_files
+
+
 def get_all_no_fish_files():
     label_folders = get_all_label_folders()
     no_fish_folder_path = [l for l in label_folders if l.lower().endswith("nof")][0]
     no_fish_files = [no_fish_folder_path + "/" + f for f in os.listdir(no_fish_folder_path)]
     return no_fish_files
-    
-print(get_all_no_fish_files())
+
+

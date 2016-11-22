@@ -18,7 +18,7 @@ def get_all_cropped_folders():
     
     for label_folder_path in label_folders:
         for cropped_folder in os.listdir(label_folder_path):
-            if cropped_folder.lower() == "cropped":
+            if cropped_folder.lower() == "DOL_cropped":
                 cropped_folders.append(label_folder_path + "/" + cropped_folder)
     
     return cropped_folders

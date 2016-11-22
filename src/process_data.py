@@ -92,6 +92,7 @@ def read_and_normalize_train_data():
     print('Normalizing the data')
     train_data -= np.mean(train_data, axis=0)
     train_data /= (np.std(train_data, axis=0) + 1e-7)
+    
     train_target = np_utils.to_categorical(train_target, 8)
 
     print('Train shape:', train_data.shape)

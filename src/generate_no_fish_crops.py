@@ -30,7 +30,7 @@ def generate_no_fish_crops(num_crops):
         cropped_img = random_img.crop(box=crop_rectangle)
         filename, ext = os.path.basename(random_file).split(".")
         
-        CROPPED_FOLDER = "../input/train/NoF_CROPPED"
+        CROPPED_FOLDER = "../input/train/NoF_cropped"
         cropped_img.save(CROPPED_FOLDER + "/" + filename + "_" + str(crop_rectangle) + "." + ext)
 
 

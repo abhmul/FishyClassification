@@ -4,7 +4,7 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 import os
 from PIL import Image
 
-# the cropped img dimensions
+# the DOL_cropped img dimensions
 x = []
 y = []
 
@@ -15,7 +15,7 @@ cropped_folders = []
 for label_folder in os.listdir(train_folder_path):
     label_folder_path = train_folder_path + "/" + label_folder
     for cropped_folder in os.listdir(label_folder_path):
-        if cropped_folder.lower() == "cropped":
+        if cropped_folder.lower() == "DOL_cropped":
             cropped_folders.append(label_folder_path + "/" + cropped_folder)
 
 for cropped_folder in cropped_folders:

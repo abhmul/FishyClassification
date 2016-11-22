@@ -3,13 +3,14 @@ from keras.layers import ZeroPadding2D, Convolution2D, MaxPooling2D, Flatten, De
 from keras.regularizers import l2
 from keras.optimizers import SGD
 from GLOBALS import INPUT_IMGSIZE as IMGSIZE
+from GLOBALS import CHANNELS
 import os
 import h5py
 
 
 def create_model():
     model = Sequential()
-    model.add(ZeroPadding2D((1, 1), input_shape=(3, IMGSIZE[0], IMGSIZE[1]), dim_ordering='th'))
+    model.add(ZeroPadding2D((1, 1), input_shape=(CHANNELS, IMGSIZE[0], IMGSIZE[1]), dim_ordering='th'))
     model.add(Convolution2D(4, 3, 3, activation='relu', dim_ordering='th'))
     # model.add(BatchNormalization())
     model.add(ZeroPadding2D((1, 1), dim_ordering='th'))
@@ -33,16 +34,32 @@ def create_model():
     model.add(Dense(8, activation='softmax', W_regularizer=l2(1e-2)))
 
     # sgd = SGD(lr=1e-2, decay=1e-6, momentum=0.9, nesterov=True)
-    model.compile(optimizer=rmsprop, loss='categorical_crossentropy', metrics=['accuracy'])
+    model.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
 
     return model
+
+def simple_model():
+    model = Sequential()
+
+    model.add(Convolution2D(8, 3, 3, input_shape=(CHANNELS, IMGSIZE[0], IMGSIZE[1]), activation='relu', dim_ordering='th'))
+    model.add(Flatten())
+    model.add(Dense(200, activation='relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(32, activation='relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(8, activation='softmax'))
+
+    model.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
+
+    return model
+
 
 def vgg_model():
     weights_path = '../model_weights/vgg16_weights.h5'
 
     # build the VGG16 network
     model = Sequential()
-    model.add(ZeroPadding2D((1, 1), input_shape=(3, IMGSIZE[0], IMGSIZE[1]), dim_ordering='th'))
+    model.add(ZeroPadding2D((1, 1), input_shape=(CHANNELS, IMGSIZE[0], IMGSIZE[1]), dim_ordering='th'))
 
     model.add(Convolution2D(64, 3, 3, activation='relu', name='conv1_1', dim_ordering='th'))
     model.add(ZeroPadding2D((1, 1), dim_ordering='th'))
@@ -118,3 +135,7 @@ def vgg_model():
 
     return model
 
+
+model_dict = {'vgg': vgg_model,
+              'simple': simple_model,
+              'conv': create_model}

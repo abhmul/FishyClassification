@@ -4,7 +4,7 @@ import os
 from model import create_model, vgg_model
 from keras.callbacks import EarlyStopping, ModelCheckpoint
 from sklearn.metrics import log_loss
-from process_data import read_and_normalize_train_data, run_cross_validation_process_test
+from process_data_DEPRECATED import read_and_normalize_train_data, run_cross_validation_process_test
 from sklearn.cross_validation import KFold
 from keras.preprocessing.image import ImageDataGenerator, img_to_array, array_to_img
 

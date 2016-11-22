@@ -60,5 +60,3 @@ imgen = ImageDataGenerator(
             vertical_flip=True,
             fill_mode='nearest')
 
-model = Sequential()
-model.pred

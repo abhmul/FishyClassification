@@ -13,7 +13,7 @@ from keras import __version__ as keras_version
 
 def run_cross_validation_create_models(nfolds=10, model_func=create_model):
     # input image dimensions
-    batch_size = 16
+    batch_size = 32
     nb_epoch = 33
     random_state = 51
 

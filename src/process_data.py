@@ -18,7 +18,7 @@ from keras.utils import np_utils
 from keras import __version__ as keras_version
 from keras.preprocessing.image import img_to_array
 
-IMGSIZE = (32, 32)
+from GLOBALS import IMGSIZE, FOLDERS
 
 def get_im_cv2(path):
     img = open(path)
@@ -34,10 +34,9 @@ def load_train():
     start_time = time.time()
 
     print('Read train images')
-    folders = ['ALB', 'BET', 'DOL', 'LAG', 'NoF', 'OTHER', 'SHARK', 'YFT']
+    folders = FOLDERS
     # folders = ['NoF']
-    for fld in folders:
-        index = folders.index(fld)
+    for index, fld in enumerate(folders):
         print('Load folder {} (Index: {})'.format(fld, index))
         path = os.path.join('..', 'input', 'train', fld, '*.jpg')
         files = glob.glob(path)

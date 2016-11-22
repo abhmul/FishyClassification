@@ -9,14 +9,8 @@ x = []
 y = []
 
 # Load data
-train_folder_path = "../input/train";
+train_folder_path = "../input/train/cropped_train";
 cropped_folders = []
-
-for label_folder in os.listdir(train_folder_path):
-    label_folder_path = train_folder_path + "/" + label_folder
-    for cropped_folder in os.listdir(label_folder_path):
-        if cropped_folder.lower() == "DOL_cropped":
-            cropped_folders.append(label_folder_path + "/" + cropped_folder)
 
 for cropped_folder in cropped_folders:
     for cropped_file in os.listdir(cropped_folder):
@@ -29,7 +23,7 @@ for cropped_folder in cropped_folders:
 x = np.array(x)
 y = np.array(y)
 
-heatmap, xedges, yedges = np.histogram2d(x, y, bins=25)
+heatmap, xedges, yedges = np.histogram2d(x, y, bins=50)
 extent = [xedges[0], xedges[-1], yedges[0], yedges[-1]]
 
 plt.clf()

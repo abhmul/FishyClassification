@@ -1,32 +1,638 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd2cf362-6c47-4af9-8770-2ea517313f65" name="Default" comment="Cropped 12 images of sharks">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00010.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00012.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00015.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00019.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00020.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00029.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00032.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00037.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00038.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00039.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00041.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00043.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00045.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00055.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00057.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00074.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00085.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00090.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00097.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00121.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00134.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00154.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_00163.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_05373.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/ALB/Cropped/img_05375.jpg" />
+    <list default="true" id="dd2cf362-6c47-4af9-8770-2ea517313f65" name="Default" comment="Delete workspace">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00008_(13, 486, 414, 691).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00008_(690, 274, 939, 498).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00011_(633, 185, 761, 429).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00011_(635, 335, 780, 414).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00028_(652, 326, 840, 453).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00076_(633, 203, 905, 538).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00094_(1094, 111, 1288, 613).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00094_(200, 845, 562, 970).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00094_(718, 233, 1189, 634).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00099_(407, 394, 628, 590).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00105_(110, 175, 492, 345).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00105_(38, 121, 99, 292).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00105_(427, 528, 610, 694).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00105_(55, 294, 450, 670).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00122_(768, 561, 1064, 703).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00131_(615, 27, 931, 342).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00131_(845, 307, 1104, 514).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00146_(1136, 12, 1197, 141).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00146_(458, 149, 888, 317).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00210_(779, 514, 1082, 641).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00243_(27, 26, 351, 323).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00243_(3, 477, 503, 617).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00251_(202, 752, 446, 928).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00251_(228, 681, 561, 810).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00251_(728, 100, 929, 202).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00266_(338, 344, 521, 441).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00303_(278, 66, 393, 260).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00303_(499, 508, 746, 670).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00306_(403, 105, 601, 490).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00306_(441, 412, 805, 618).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00306_(762, 1, 1191, 129).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00315_(19, 172, 463, 581).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00315_(241, 215, 488, 687).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00326_(1225, 438, 1524, 595).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00326_(1423, 774, 1588, 848).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00326_(453, 722, 851, 886).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00326_(696, 229, 1008, 600).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00339_(1103, 234, 1169, 349).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00339_(298, 203, 708, 390).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00339_(88, 69, 331, 417).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00360_(141, 176, 327, 426).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00367_(299, 99, 705, 209).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00377_(684, 331, 1193, 522).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00387_(129, 407, 420, 520).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00400_(210, 464, 536, 587).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00400_(220, 508, 675, 654).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00406_(1145, 643, 1457, 849).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00406_(652, 440, 928, 640).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00413_(1148, 49, 1195, 147).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00413_(130, 59, 542, 260).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00413_(841, 202, 1270, 592).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00419_(503, 32, 1103, 275).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00428_(784, 441, 899, 635).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00428_(921, 380, 1066, 598).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00481_(271, 134, 313, 281).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00481_(617, 250, 1090, 505).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00494_(355, 424, 808, 606).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00494_(668, 373, 892, 508).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00504_(674, 581, 898, 706).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00512_(207, 582, 420, 686).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00585_(484, 302, 643, 476).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00585_(656, 594, 984, 719).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00585_(691, 253, 1016, 400).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00586_(1059, 120, 1258, 371).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00586_(120, 257, 538, 675).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00586_(267, 13, 564, 165).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00586_(567, 303, 1227, 541).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00586_(581, 405, 909, 581).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00615_(869, 39, 1167, 149).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00645_(610, 273, 750, 423).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00645_(936, 254, 1099, 471).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00673_(182, 275, 279, 392).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00681_(129, 442, 337, 597).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00681_(419, 136, 802, 344).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00720_(44, 253, 157, 433).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00720_(628, 85, 835, 247).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00725_(443, 320, 979, 493).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00725_(647, 356, 992, 652).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00748_(566, 36, 757, 228).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00766_(359, 262, 816, 488).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00766_(415, 504, 607, 606).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00766_(744, 638, 909, 712).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00766_(847, 168, 973, 380).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00766_(858, 38, 1010, 260).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00818_(404, 510, 464, 664).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00818_(620, 454, 717, 659).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00818_(733, 152, 935, 246).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00818_(879, 445, 949, 580).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00819_(1004, 254, 1217, 358).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00819_(330, 327, 742, 602).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00826_(461, 111, 581, 359).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00826_(575, 267, 1037, 670).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00847_(1031, 233, 1192, 318).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00847_(1062, 367, 1146, 549).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00847_(394, 245, 781, 569).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00849_(802, 104, 1026, 211).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00904_(588, 14, 783, 197).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00910_(255, 184, 598, 282).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00910_(324, 302, 691, 522).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00910_(694, 102, 1146, 273).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_00926_(450, 233, 619, 324).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01013_(397, 13, 539, 102).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01013_(688, 310, 1131, 712).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01013_(836, 100, 1005, 191).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01017_(179, 409, 609, 577).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01017_(378, 72, 504, 267).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01020_(195, 590, 260, 715).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01020_(57, 218, 500, 620).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01020_(635, 244, 762, 373).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01039_(447, 546, 674, 677).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01039_(737, 292, 1273, 362).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01094_(541, 327, 945, 587).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01094_(600, 499, 928, 585).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01097_(756, 186, 1019, 378).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01120_(465, 260, 745, 434).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01120_(566, 377, 989, 553).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01135_(718, 123, 911, 250).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01151_(533, 223, 925, 628).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01155_(247, 393, 496, 617).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01155_(443, 390, 551, 592).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01165_(217, 249, 316, 390).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01303_(892, 23, 1206, 301).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01305_(678, 281, 1021, 440).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01383_(34, 80, 419, 465).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01383_(56, 267, 383, 404).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01421_(250, 508, 539, 570).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01421_(307, 466, 605, 620).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01421_(345, 271, 535, 468).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01421_(563, 316, 797, 497).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01421_(798, 443, 884, 590).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01424_(48, 186, 438, 386).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01459_(113, 302, 562, 705).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01461_(213, 51, 665, 446).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01463_(213, 31, 387, 132).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01475_(711, 117, 829, 310).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01497_(275, 462, 732, 629).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01497_(407, 307, 696, 617).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01504_(871, 293, 1136, 555).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01525_(152, 64, 383, 263).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01525_(578, 270, 734, 359).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01560_(565, 243, 977, 490).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01579_(951, 519, 1097, 619).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01583_(159, 255, 376, 343).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01588_(1073, 67, 1274, 324).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01626_(377, 595, 731, 713).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01626_(48, 177, 387, 390).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01626_(987, 3, 1090, 123).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01667_(619, 481, 1143, 699).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01667_(654, 345, 981, 657).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01677_(684, 554, 924, 653).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01701_(362, 521, 579, 695).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01710_(320, 56, 846, 256).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01710_(95, 300, 192, 509).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01714_(401, 501, 788, 625).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01714_(419, 277, 663, 374).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01714_(527, 142, 1026, 481).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01714_(60, 109, 230, 227).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01737_(136, 617, 303, 717).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01737_(321, 570, 570, 632).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01737_(668, 196, 1114, 413).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01775_(16, 193, 153, 324).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01775_(76, 186, 612, 359).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01787_(75, 208, 453, 403).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01892_(693, 606, 800, 677).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01906_(111, 79, 566, 225).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01906_(932, 539, 1159, 725).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01922_(73, 287, 172, 428).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01925_(1028, 564, 1242, 685).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01925_(846, 157, 1165, 366).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01927_(526, 448, 700, 641).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_01927_(949, 409, 1112, 626).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02013_(365, 305, 818, 445).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02015_(314, 403, 544, 601).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02015_(363, 132, 502, 288).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02015_(882, 154, 1047, 243).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02044_(278, 16, 606, 192).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02044_(515, 237, 966, 480).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02044_(516, 393, 816, 549).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02044_(654, 93, 969, 245).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02044_(762, 326, 921, 500).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02102_(333, 115, 714, 367).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02102_(542, 400, 635, 539).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02102_(829, 185, 1277, 363).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02105_(244, 523, 866, 702).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02105_(272, 432, 586, 551).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02105_(942, 581, 1176, 712).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02164_(475, 95, 689, 216).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02232_(1232, 618, 1450, 715).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02232_(24, 232, 117, 392).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02232_(478, 656, 912, 848).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02232_(880, 39, 1113, 346).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02301_(261, 352, 541, 539).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02301_(44, 537, 476, 720).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02301_(740, 502, 807, 628).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02302_(492, 446, 663, 694).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02316_(563, 558, 966, 707).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02323_(432, 243, 784, 525).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02345_(282, 83, 716, 226).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02345_(672, 2, 1088, 159).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02357_(272, 332, 679, 540).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02366_(682, 308, 949, 610).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02366_(971, 126, 1276, 566).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02381_(491, 291, 842, 434).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02381_(852, 9, 1183, 365).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02394_(778, 334, 1142, 540).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02431_(34, 154, 181, 371).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02431_(470, 19, 1120, 264).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02439_(212, 475, 279, 601).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02439_(297, 389, 644, 622).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02439_(311, 351, 591, 538).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02460_(487, 13, 773, 160).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02461_(975, 258, 1022, 356).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02461_(979, 32, 1223, 114).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02524_(677, 259, 972, 472).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02534_(138, 69, 554, 226).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02548_(223, 24, 512, 334).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02548_(970, 4, 1252, 198).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02564_(102, 199, 405, 386).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02621_(875, 344, 1218, 442).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02650_(20, 305, 73, 422).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02650_(231, 335, 536, 625).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02653_(122, 4, 305, 493).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02653_(484, 477, 913, 605).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02731_(342, 281, 420, 389).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02751_(196, 184, 352, 273).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02786_(423, 298, 894, 540).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02805_(1302, 139, 1729, 543).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02805_(669, 281, 954, 486).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02805_(791, 66, 1262, 467).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02822_(487, 315, 996, 506).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02843_(517, 124, 717, 231).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02843_(646, 207, 1098, 378).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02870_(879, 230, 1235, 358).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02873_(557, 337, 885, 469).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02879_(641, 6, 1072, 260).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02879_(871, 286, 1064, 413).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02893_(1001, 361, 1265, 441).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02893_(1022, 639, 1193, 714).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02908_(192, 524, 520, 610).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02930_(184, 328, 881, 566).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02930_(265, 334, 644, 642).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02970_(350, 92, 689, 318).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_02997_(184, 500, 574, 766).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03000_(1077, 261, 1254, 491).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03000_(597, 224, 988, 445).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03000_(618, 418, 1028, 580).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03000_(86, 466, 281, 590).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03002_(323, 339, 694, 684).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03009_(104, 375, 456, 657).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03009_(609, 120, 937, 248).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03009_(678, 47, 1067, 155).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03025_(605, 409, 998, 577).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03025_(639, 239, 765, 434).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03025_(763, 382, 870, 630).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03029_(393, 370, 892, 545).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03029_(949, 67, 1189, 167).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03048_(247, 304, 368, 403).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03048_(506, 213, 940, 405).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03048_(515, 272, 988, 527).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03048_(726, 41, 1254, 336).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03059_(765, 374, 998, 681).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03174_(1000, 418, 1177, 491).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03186_(224, 519, 489, 630).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03186_(762, 415, 969, 577).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03187_(130, 104, 285, 195).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03187_(19, 150, 200, 412).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03187_(211, 220, 379, 298).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03194_(1141, 102, 1376, 499).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03194_(778, 207, 1233, 603).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03206_(873, 287, 1180, 517).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03240_(745, 182, 1071, 296).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03257_(471, 584, 799, 670).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03257_(882, 60, 1147, 171).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03302_(215, 142, 379, 636).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03302_(503, 35, 672, 284).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03302_(63, 30, 631, 161).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03330_(297, 148, 747, 390).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03331_(717, 311, 796, 427).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03336_(368, 498, 742, 666).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03336_(540, 734, 1158, 970).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03337_(392, 326, 516, 642).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03359_(16, 46, 688, 246).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03386_(187, 32, 284, 149).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03386_(280, 139, 458, 227).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03386_(877, 453, 976, 723).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03423_(909, 69, 1045, 172).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03434_(188, 158, 275, 265).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03434_(719, 82, 926, 244).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03489_(19, 486, 427, 631).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03506_(288, 446, 528, 657).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03519_(347, 129, 732, 357).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03536_(422, 112, 967, 182).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03582_(391, 38, 773, 271).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03582_(40, 472, 384, 694).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03582_(456, 294, 787, 650).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03583_(128, 638, 343, 845).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03640_(1234, 1, 1389, 298).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03643_(351, 404, 741, 604).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03643_(576, 68, 886, 193).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03672_(925, 266, 1082, 355).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03757_(282, 293, 591, 515).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03765_(574, 368, 1196, 547).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03765_(797, 275, 1005, 430).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03768_(1606, 350, 1659, 453).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03783_(944, 96, 1193, 320).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03789_(1074, 243, 1275, 345).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03826_(24, 268, 642, 504).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03826_(282, 100, 523, 588).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03826_(60, 261, 584, 581).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03849_(234, 55, 617, 343).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03849_(618, 459, 773, 550).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03850_(556, 754, 730, 840).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03883_(235, 136, 723, 289).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03887_(612, 25, 719, 96).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03887_(653, 511, 848, 694).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03893_(40, 255, 225, 379).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03893_(680, 279, 1040, 479).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03916_(1050, 77, 1117, 203).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03916_(452, 297, 632, 443).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03916_(615, 269, 1042, 673).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03933_(377, 150, 616, 298).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03933_(463, 112, 718, 434).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03949_(684, 73, 989, 363).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03955_(775, 459, 976, 716).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03972_(115, 24, 286, 125).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03972_(172, 328, 684, 544).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_03972_(501, 227, 988, 534).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04009_(55, 321, 187, 397).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04009_(934, 159, 1248, 482).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04045_(383, 386, 953, 617).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04045_(785, 168, 1124, 288).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04052_(239, 213, 479, 302).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04052_(866, 144, 1343, 400).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04063_(525, 124, 630, 264).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04071_(941, 410, 1159, 507).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04106_(217, 636, 577, 836).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04106_(745, 239, 979, 341).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04106_(803, 231, 1302, 570).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04139_(1277, 182, 1361, 352).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04139_(380, 768, 740, 968).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04139_(643, 112, 703, 266).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04139_(826, 260, 1193, 553).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04151_(269, 466, 512, 690).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04162_(277, 51, 689, 326).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04166_(114, 214, 306, 393).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04166_(238, 595, 436, 688).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04168_(16, 246, 387, 591).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04168_(442, 295, 946, 513).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04168_(737, 503, 1144, 711).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04178_(457, 470, 756, 688).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04178_(952, 221, 1059, 292).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04182_(1033, 403, 1140, 474).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04182_(876, 509, 1075, 573).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04188_(374, 453, 822, 631).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04188_(4, 468, 500, 645).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04188_(529, 325, 876, 558).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04188_(727, 297, 1024, 449).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04197_(416, 134, 571, 377).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04216_(898, 75, 1165, 377).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04228_(307, 284, 507, 539).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04228_(675, 124, 987, 330).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04351_(1036, 92, 1206, 210).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04365_(729, 135, 1020, 258).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04383_(102, 223, 297, 406).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04383_(765, 380, 1095, 671).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04395_(472, 207, 528, 333).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04430_(602, 516, 1053, 691).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04457_(433, 331, 942, 634).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04457_(655, 21, 898, 138).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04457_(93, 410, 325, 536).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04462_(223, 19, 310, 163).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04462_(453, 452, 661, 623).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04462_(538, 319, 630, 425).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04475_(339, 90, 649, 392).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04475_(499, 572, 1067, 703).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04493_(918, 255, 1109, 345).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04501_(421, 143, 832, 301).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04506_(823, 575, 1216, 743).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04509_(56, 508, 601, 578).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04509_(908, 485, 984, 674).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04590_(424, 270, 748, 419).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04616_(556, 145, 765, 299).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04616_(652, 77, 980, 273).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04616_(911, 571, 1131, 621).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04621_(797, 181, 1214, 399).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04645_(109, 572, 412, 699).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04645_(196, 231, 379, 397).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04645_(500, 379, 565, 504).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04645_(846, 186, 958, 468).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04674_(164, 408, 682, 637).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04686_(1168, 117, 1271, 237).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04703_(381, 395, 488, 466).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04703_(488, 300, 664, 460).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04703_(571, 269, 836, 531).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04703_(664, 382, 959, 595).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04770_(621, 332, 1133, 548).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04785_(666, 174, 1056, 440).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04793_(172, 526, 236, 690).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04828_(527, 97, 744, 271).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04840_(558, 155, 840, 349).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04840_(982, 14, 1190, 231).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04842_(20, 535, 556, 605).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04842_(548, 361, 847, 698).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04842_(843, 124, 1241, 288).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04842_(983, 343, 1154, 597).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04866_(260, 34, 957, 272).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04866_(868, 528, 1083, 677).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04886_(718, 277, 875, 366).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04889_(311, 306, 701, 506).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04906_(919, 219, 1003, 389).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04916_(202, 87, 376, 309).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04956_(397, 100, 574, 167).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04956_(525, 57, 899, 225).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04971_(180, 275, 487, 505).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04971_(283, 243, 529, 331).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_04971_(702, 63, 1026, 276).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05050_(668, 169, 1214, 490).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05073_(296, 317, 530, 419).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05073_(296, 617, 479, 714).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05073_(58, 15, 305, 334).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05073_(580, 362, 944, 610).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05073_(761, 603, 932, 678).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05115_(258, 274, 722, 446).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05115_(962, 276, 1074, 574).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05178_(149, 121, 326, 194).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05178_(289, 381, 460, 554).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05178_(703, 47, 1139, 312).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05190_(1044, 258, 1276, 384).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05190_(66, 288, 608, 489).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05254_(119, 108, 365, 211).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05254_(186, 285, 618, 468).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05254_(347, 324, 694, 557).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05254_(938, 92, 1117, 262).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05256_(377, 307, 544, 408).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05319_(868, 402, 965, 519).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05352_(411, 516, 565, 677).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05352_(604, 176, 985, 428).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05455_(459, 442, 703, 618).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05455_(707, 336, 956, 398).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05456_(612, 623, 752, 773).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05466_(527, 198, 741, 324).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05466_(721, 518, 941, 669).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05503_(731, 442, 1118, 648).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05503_(866, 79, 1129, 271).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05534_(334, 497, 399, 622).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05534_(993, 13, 1158, 108).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05542_(733, 178, 846, 358).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05594_(237, 68, 694, 294).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05636_(111, 370, 371, 470).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05636_(921, 42, 1210, 104).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05716_(580, 161, 845, 591).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05716_(609, 257, 1025, 411).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05733_(104, 569, 460, 702).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05733_(138, 191, 355, 365).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05733_(260, 191, 654, 584).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05800_(1082, 272, 1397, 468).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05800_(790, 215, 1088, 509).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05814_(283, 185, 448, 280).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05865_(350, 129, 653, 256).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05865_(591, 226, 1042, 469).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05865_(737, 626, 866, 681).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05880_(869, 58, 1083, 179).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05891_(1026, 54, 1204, 177).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05891_(694, 262, 871, 492).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05928_(1179, 7, 1554, 405).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05928_(1312, 556, 1509, 671).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05928_(507, 402, 878, 747).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05936_(791, 403, 1033, 458).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05957_(764, 525, 851, 669).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05993_(271, 88, 954, 328).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_05998_(461, 434, 838, 582).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06007_(239, 219, 474, 616).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06031_(283, 284, 738, 560).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06047_(513, 435, 663, 654).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06047_(526, 112, 955, 285).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06050_(299, 646, 844, 716).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06050_(341, 9, 869, 304).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06051_(1527, 239, 1679, 461).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06081_(117, 6, 210, 166).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06081_(645, 445, 962, 614).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06116_(328, 241, 732, 501).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06130_(180, 434, 780, 677).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06130_(220, 267, 605, 445).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06130_(290, 132, 950, 370).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06130_(386, 197, 541, 395).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06172_(53, 208, 120, 341).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06178_(183, 328, 243, 482).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06179_(559, 523, 948, 631).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06212_(384, 554, 452, 709).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06212_(826, 277, 1165, 407).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06240_(259, 304, 657, 462).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06240_(339, 251, 425, 398).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06248_(585, 36, 731, 136).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06256_(554, 375, 694, 525).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06264_(151, 402, 341, 599).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06264_(905, 117, 1000, 332).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06266_(181, 83, 470, 203).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06266_(760, 499, 1014, 594).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06322_(113, 7, 420, 185).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06322_(510, 212, 630, 298).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06329_(153, 168, 531, 363).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06366_(1048, 63, 1218, 172).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06366_(373, 92, 580, 254).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06366_(669, 357, 1066, 517).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06375_(576, 229, 711, 516).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06402_(288, 203, 645, 601).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06451_(658, 151, 983, 455).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06451_(909, 88, 1283, 264).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06476_(530, 384, 891, 505).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06476_(561, 228, 716, 525).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06478_(380, 539, 785, 758).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06494_(134, 414, 378, 485).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06495_(532, 229, 1036, 447).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06495_(645, 248, 1097, 643).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06499_(347, 451, 581, 632).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06572_(1020, 188, 1117, 393).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06572_(182, 44, 352, 153).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06572_(680, 579, 857, 652).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06572_(856, 309, 1014, 385).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06596_(0, 341, 70, 452).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06596_(614, 150, 1203, 473).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06601_(651, 376, 758, 447).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06610_(20, 14, 310, 160).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06675_(112, 395, 283, 496).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06675_(196, 457, 543, 668).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06675_(436, 317, 935, 633).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06750_(349, 574, 454, 714).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06750_(668, 19, 772, 120).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06792_(530, 8, 618, 191).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06792_(566, 74, 903, 315).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06792_(578, 285, 811, 542).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06792_(699, 520, 894, 644).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06792_(789, 269, 867, 435).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06792_(916, 498, 1216, 654).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06801_(124, 307, 652, 602).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06801_(139, 209, 539, 378).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06803_(1285, 290, 1453, 368).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06816_(17, 94, 175, 249).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06816_(29, 374, 198, 623).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06816_(496, 97, 878, 386).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06839_(110, 34, 225, 228).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06839_(140, 311, 590, 553).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06839_(281, 283, 424, 573).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06839_(383, 532, 804, 688).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06871_(272, 456, 706, 599).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06874_(530, 30, 835, 124).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06874_(833, 312, 1220, 538).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06889_(371, 465, 474, 585).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06910_(1041, 283, 1201, 374).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06910_(383, 99, 670, 209).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06940_(427, 320, 736, 621).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06953_(506, 161, 661, 404).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06969_(395, 408, 568, 587).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_06969_(4, 277, 477, 532).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07058_(331, 126, 830, 301).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07058_(542, 465, 967, 708).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07058_(956, 174, 1220, 254).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07102_(459, 280, 624, 372).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07102_(520, 501, 1047, 698).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07102_(606, 169, 771, 261).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07115_(819, 196, 1052, 503).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07123_(107, 335, 433, 458).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07123_(32, 13, 266, 115).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07123_(569, 54, 1105, 124).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07123_(683, 294, 1074, 702).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07123_(847, 99, 1173, 222).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07132_(813, 574, 1095, 644).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07132_(922, 295, 1135, 459).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07198_(157, 575, 312, 666).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07198_(91, 454, 438, 687).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07258_(726, 177, 1009, 514).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07258_(924, 248, 1036, 530).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07268_(418, 101, 804, 336).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07268_(618, 35, 763, 253).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07274_(1042, 476, 1213, 649).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07351_(155, 157, 536, 489).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07351_(500, 332, 744, 429).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07351_(595, 432, 854, 616).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07351_(659, 106, 1100, 294).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07351_(714, 52, 883, 301).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07353_(846, 344, 1156, 646).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07362_(1066, 5, 1211, 223).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07364_(691, 165, 1015, 378).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07364_(838, 464, 1089, 557).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07379_(788, 364, 872, 534).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07408_(280, 64, 641, 283).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07408_(571, 503, 883, 709).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07408_(585, 375, 799, 501).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07408_(609, 602, 849, 698).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07408_(94, 356, 473, 664).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07411_(258, 227, 468, 321).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07411_(413, 134, 634, 646).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07464_(321, 119, 647, 233).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07496_(1031, 399, 1620, 722).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07496_(127, 616, 608, 858).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07496_(620, 554, 1103, 892).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07500_(306, 149, 565, 333).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07500_(535, 38, 688, 120).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07512_(217, 253, 493, 453).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07512_(93, 135, 318, 235).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07544_(456, 284, 920, 456).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07544_(860, 441, 955, 656).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07597_(131, 113, 814, 353).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07597_(506, 551, 746, 662).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07597_(702, 324, 1083, 559).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07598_(316, 347, 844, 642).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07598_(476, 428, 933, 595).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07598_(695, 465, 912, 713).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07598_(946, 38, 1226, 212).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07631_(167, 286, 438, 459).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07631_(690, 252, 1152, 655).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07673_(1074, 158, 1265, 350).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07673_(799, 230, 1186, 436).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07674_(32, 185, 93, 314).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07674_(636, 284, 988, 590).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07711_(480, 308, 857, 537).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07758_(238, 467, 520, 661).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07758_(428, 122, 802, 298).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07808_(1004, 163, 1160, 252).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07808_(212, 520, 664, 691).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07808_(382, 444, 880, 678).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07837_(140, 77, 882, 271).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07847_(846, 277, 1077, 356).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07861_(736, 193, 950, 314).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07881_(404, 324, 713, 546).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07881_(847, 53, 1230, 261).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07886_(650, 195, 880, 393).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07902_(368, 188, 872, 487).jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/train/NoF_CROPPED/img_07918_(574, 349, 796, 441).jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/FishyClassification.iml" afterPath="$PROJECT_DIR$/.idea/FishyClassification.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="FishyClassification.iws" />
@@ -40,8 +646,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/FishyClassification$train.coverage" NAME="train Coverage Results" MODIFIED="1479299641251" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/FishyClassification$model.coverage" NAME="model Coverage Results" MODIFIED="1479299591463" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/FishyClassification$cropped_img_heatmap.coverage" NAME="cropped_img_heatmap Coverage Results" MODIFIED="1479778060279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/FishyClassification$cropped_img_scatter.coverage" NAME="cropped_img_scatter Coverage Results" MODIFIED="1479777652645" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/FishyClassification$FileUtils.coverage" NAME="FileUtils Coverage Results" MODIFIED="1479779523118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/FishyClassification$generate_no_fish_crops.coverage" NAME="generate_no_fish_crops Coverage Results" MODIFIED="1479781061300" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -55,8 +663,8 @@
       <file leaf-file-name="model.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="28" column="64" selection-start-line="28" selection-start-column="64" selection-end-line="28" selection-end-column="64" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -64,31 +672,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="process_data.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/process_data.py">
+      <file leaf-file-name="cropped_img_scatter.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cropped_img_scatter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+            <state relative-caret-position="66">
+              <caret line="2" column="55" selection-start-line="2" selection-start-column="55" selection-end-line="4" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Image.py" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/lib/python2.7/dist-packages/PIL/Image.py">
+      <file leaf-file-name="cropped_img_heatmap.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cropped_img_heatmap.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23292">
-              <caret line="1298" column="8" selection-start-line="1298" selection-start-column="8" selection-end-line="1298" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="train.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/train.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+            <state relative-caret-position="660">
+              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="26" selection-end-column="24" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -96,27 +694,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="image.py" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/lib/python2.7/dist-packages/keras/preprocessing/image.py">
+      <file leaf-file-name="FileUtils.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/FileUtils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7038">
-              <caret line="402" column="26" selection-start-line="402" selection-start-column="26" selection-end-line="402" selection-end-column="26" />
+            <state relative-caret-position="957">
+              <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="callbacks.py" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/lib/python2.7/dist-packages/keras/callbacks.py">
+      <file leaf-file-name="generate_no_fish_crops.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/generate_no_fish_crops.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5238">
-              <caret line="302" column="26" selection-start-line="302" selection-start-column="26" selection-end-line="302" selection-end-column="26" />
-              <folding />
+            <state relative-caret-position="330">
+              <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+              <folding>
+                <element signature="e#0#16#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="UPDATE_TYPE" value="MERGE" />
@@ -125,9 +732,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/process_data.py" />
+        <option value="$PROJECT_DIR$/src/image_processcing.py" />
         <option value="$PROJECT_DIR$/src/model.py" />
-        <option value="$PROJECT_DIR$/src/train.py" />
+        <option value="$PROJECT_DIR$/src/cropped_img_scatter.py" />
+        <option value="$PROJECT_DIR$/src/cropped_img_heatmap.py" />
+        <option value="$PROJECT_DIR$/src/generate_no_fish_crops.py" />
+        <option value="$PROJECT_DIR$/src/FileUtils.py" />
       </list>
     </option>
   </component>
@@ -138,8 +748,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1920" />
-    <option name="height" value="1055" />
+    <option name="x" value="5987" />
+    <option name="y" value="-13" />
+    <option name="width" value="3386" />
+    <option name="height" value="2046" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -166,8 +778,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -196,6 +806,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FishyClassification" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FishyClassification" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="input" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -222,55 +846,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="SHARK" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FishyClassification" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FishyClassification" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="input" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="train" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ALB" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FishyClassification" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FishyClassification" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="input" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="train" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ALB" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Cropped" />
+              <option name="myItemId" value="NoF_CROPPED" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -290,14 +866,300 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
-  <component name="RunManager" selected="Python.train">
-    <configuration default="false" name="model" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Tian\Documents\GitHub\FishyClassification\input\train\BET\CROPPED" />
+    </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_00063.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05376.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05382.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05383.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05384.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05390.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05396.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05397.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05408.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05419.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05442.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05443.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05453.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05465.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05472.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05480.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05481.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05482.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05491.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05494.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05500.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05501.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05507.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05510.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05511.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05512.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05515.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05518.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05523.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05533.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05550.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05553.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05554.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05556.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05559.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05560.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05562.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05566.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05570.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05575.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05576.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05583.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05588.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05597.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05600.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05604.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05605.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05610.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05618.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05621.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05637.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05641.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05648.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05663.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05674.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05675.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05677.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05681.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05684.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05690.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05694.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05703.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05707.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05709.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05710.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05713.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05725.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05727.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05734.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05745.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05757.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05758.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05759.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05763.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05777.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05778.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05801.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/ALB/Cropped/img_05803.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00063.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00126.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00127.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00226.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00261.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00262.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00267.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00305.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00332.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00359.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00368.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00397.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00412.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00453.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00472.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00485.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00574.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00589.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00631.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00639.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00670.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00691.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00698.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00721.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00781.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00802.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00814.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00821.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00848.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00851.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00862.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00886.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_00908.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01019.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01044.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01080.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01175.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01327.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01349.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01356.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01400.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01418.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01423.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01425.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01428.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01451.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01452.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01483.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01522.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01526.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01534.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01559.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01639.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01648.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01656.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01664.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01678.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01692.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01697.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01807.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01814.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01866.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01871.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01879.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01957.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_01993.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02031.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02084.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02099.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02160.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02177.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02198.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02202.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02331.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02360.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02377.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02395.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02407.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02413.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02419.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02511.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02528.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02541.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02543.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02595.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02680.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02691.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02715.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02745.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02760.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/input/train/OTHER/Cropped/img_02773.jpg</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
+  </component>
+  <component name="RunManager" selected="Python.generate_no_fish_crops">
+    <configuration default="false" name="cropped_img_scatter" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -310,12 +1172,12 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="FishyClassification" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/model.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/cropped_img_scatter.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="train" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="cropped_img_heatmap" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -328,7 +1190,43 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="FishyClassification" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/train.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/cropped_img_heatmap.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="FileUtils" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="FishyClassification" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/FileUtils.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="generate_no_fish_crops" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="FishyClassification" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/generate_no_fish_crops.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -541,14 +1439,18 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="2">
-      <item index="0" class="java.lang.String" itemvalue="Python.model" />
-      <item index="1" class="java.lang.String" itemvalue="Python.train" />
+    <list size="4">
+      <item index="0" class="java.lang.String" itemvalue="Python.cropped_img_scatter" />
+      <item index="1" class="java.lang.String" itemvalue="Python.cropped_img_heatmap" />
+      <item index="2" class="java.lang.String" itemvalue="Python.FileUtils" />
+      <item index="3" class="java.lang.String" itemvalue="Python.generate_no_fish_crops" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Python.train" />
-        <item index="1" class="java.lang.String" itemvalue="Python.model" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Python.generate_no_fish_crops" />
+        <item index="1" class="java.lang.String" itemvalue="Python.FileUtils" />
+        <item index="2" class="java.lang.String" itemvalue="Python.cropped_img_heatmap" />
+        <item index="3" class="java.lang.String" itemvalue="Python.cropped_img_scatter" />
       </list>
     </recent_temporary>
   </component>
@@ -612,255 +1514,82 @@
       <option name="project" value="LOCAL" />
       <updated>1479292987802</updated>
     </task>
-    <task id="LOCAL-00008" summary="fixed dim for vgg">
-      <created>1479298899000</created>
+    <task id="LOCAL-00008" summary="Delete workspace">
+      <created>1479293024678</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1479298899000</updated>
+      <updated>1479293024678</updated>
     </task>
-    <task id="LOCAL-00009" summary="fixed dim for vgg">
-      <created>1479299761291</created>
+    <task id="LOCAL-00009" summary="Delete workspace">
+      <created>1479293976911</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1479299761291</updated>
+      <updated>1479293976911</updated>
     </task>
-    <task id="LOCAL-00010" summary="Gave dim orderings">
-      <created>1479300870441</created>
+    <task id="LOCAL-00010" summary="Delete workspace">
+      <created>1479771124546</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1479300870441</updated>
+      <updated>1479771124546</updated>
     </task>
-    <task id="LOCAL-00011" summary="Gave all dim orderings">
-      <created>1479301130144</created>
+    <task id="LOCAL-00011" summary="YFT Cropped">
+      <created>1479774604141</created>
       <option name="number" value="00011" />
       <option name="presentableId" value="LOCAL-00011" />
       <option name="project" value="LOCAL" />
-      <updated>1479301130144</updated>
+      <updated>1479774604141</updated>
     </task>
-    <task id="LOCAL-00012" summary="changed epochs and callbacks">
-      <created>1479302153066</created>
+    <task id="LOCAL-00012" summary="image scripts">
+      <created>1479779045146</created>
       <option name="number" value="00012" />
       <option name="presentableId" value="LOCAL-00012" />
       <option name="project" value="LOCAL" />
-      <updated>1479302153066</updated>
+      <updated>1479779045146</updated>
     </task>
-    <task id="LOCAL-00013" summary="fixed dim ordering">
-      <created>1479302346609</created>
+    <task id="LOCAL-00013" summary="NoF cropped">
+      <created>1479781954196</created>
       <option name="number" value="00013" />
       <option name="presentableId" value="LOCAL-00013" />
       <option name="project" value="LOCAL" />
-      <updated>1479302346609</updated>
+      <updated>1479781954196</updated>
     </task>
-    <task id="LOCAL-00014" summary="changed to categorical">
-      <created>1479303588615</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1479303588615</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Changed number of epochs">
-      <created>1479308558968</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1479308558968</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Using larger pics and input normalization">
-      <created>1479332804522</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1479332804523</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Not using zoom or shear">
-      <created>1479332834518</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1479332834518</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Decreased size of dense layer">
-      <created>1479332939926</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1479332939926</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Trying to fix bug">
-      <created>1479333121116</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1479333121116</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Trying to fix bug">
-      <created>1479333150451</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1479333150451</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Hardcoded featurewise normalization">
-      <created>1479333829987</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1479333829987</updated>
-    </task>
-    <task id="LOCAL-00022" summary="took out of test mode">
-      <created>1479333935152</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1479333935152</updated>
-    </task>
-    <task id="LOCAL-00023" summary="took out of test mode">
-      <created>1479333994751</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1479333994751</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Try zfturbo's model again">
-      <created>1479334792437</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1479334792437</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Fixed a bug with test data shape">
-      <created>1479335716651</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1479335716651</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Try increasing image size">
-      <created>1479336460788</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1479336460788</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Added batchnormalization">
-      <created>1479337646486</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1479337646486</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Removed batch normalization and added l2 reg">
-      <created>1479345805453</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1479345805453</updated>
-    </task>
-    <task id="LOCAL-00029" summary="increased reg">
-      <created>1479346278133</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1479346278133</updated>
-    </task>
-    <task id="LOCAL-00030" summary="lowered reg a bit">
-      <created>1479346723429</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1479346723429</updated>
-    </task>
-    <task id="LOCAL-00031" summary="increased epoch count">
-      <created>1479346986006</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1479346986006</updated>
-    </task>
-    <task id="LOCAL-00032" summary="decreased reg">
-      <created>1479347312511</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1479347312511</updated>
-    </task>
-    <task id="LOCAL-00033" summary="increased reg">
-      <created>1479350154283</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1479350154283</updated>
-    </task>
-    <task id="LOCAL-00034" summary="Increased epochs">
-      <created>1479350865791</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1479350865791</updated>
-    </task>
-    <task id="LOCAL-00035" summary="Added 99 cropped images to LAG">
-      <created>1479454839174</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1479454839174</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Added 63 cropped images of DOL">
-      <created>1479506810205</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1479506810205</updated>
-    </task>
-    <task id="LOCAL-00037" summary="Finished 95 croppings of DOL">
-      <created>1479508887961</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1479508887961</updated>
-    </task>
-    <task id="LOCAL-00038" summary="Cropped 12 images of sharks">
-      <created>1479509535573</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1479509535573</updated>
-    </task>
-    <task id="LOCAL-00039" summary="Cropped all of Shark">
-      <created>1479771211173</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1479771211173</updated>
-    </task>
-    <option name="localTasksCounter" value="40" />
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1055" extended-state="0" />
-    <editor active="false" />
+    <frame x="5987" y="-13" width="3386" height="2046" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38675213" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.50213444" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35055012" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978094" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32811627" sideWeight="0.5051956" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32811627" sideWeight="0.4948044" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978094" sideWeight="0.4958791" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31134713" sideWeight="0.49755502" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3295099" sideWeight="0.49786553" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3295099" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -875,253 +1604,116 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="changed epochs and callbacks" />
-    <MESSAGE value="fixed dim ordering" />
-    <MESSAGE value="changed to categorical" />
-    <MESSAGE value="Changed number of epochs" />
-    <MESSAGE value="Using larger pics and input normalization" />
-    <MESSAGE value="Not using zoom or shear" />
-    <MESSAGE value="Decreased size of dense layer" />
-    <MESSAGE value="Trying to fix bug" />
-    <MESSAGE value="Hardcoded featurewise normalization" />
-    <MESSAGE value="took out of test mode" />
-    <MESSAGE value="Try zfturbo's model again" />
-    <MESSAGE value="Fixed a bug with test data shape" />
-    <MESSAGE value="Try increasing image size" />
-    <MESSAGE value="Added batchnormalization" />
-    <MESSAGE value="Removed batch normalization and added l2 reg" />
-    <MESSAGE value="lowered reg a bit" />
-    <MESSAGE value="increased epoch count" />
-    <MESSAGE value="decreased reg" />
-    <MESSAGE value="increased reg" />
-    <MESSAGE value="Increased epochs" />
-    <MESSAGE value="Added 99 cropped images to LAG" />
-    <MESSAGE value="Added 63 cropped images of DOL" />
-    <MESSAGE value="Finished 95 croppings of DOL" />
-    <MESSAGE value="Cropped 12 images of sharks" />
-    <MESSAGE value="Cropped all of Shark" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cropped all of Shark" />
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
+    <MESSAGE value="test commit" />
+    <MESSAGE value="stuff was changed" />
+    <MESSAGE value="Changed nb_samples to train data size" />
+    <MESSAGE value="Created test folder" />
+    <MESSAGE value="git ignore" />
+    <MESSAGE value="Delete workspace" />
+    <MESSAGE value="YFT Cropped" />
+    <MESSAGE value="image scripts" />
+    <MESSAGE value="NoF cropped" />
+    <option name="LAST_COMMIT_MESSAGE" value="NoF cropped" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/src/train.py</url>
-          <line>6</line>
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="1" />
-    </breakpoint-manager>
+    <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/process_data.py">
+    <entry file="file://$PROJECT_DIR$/src/model.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/process_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="957">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="50" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/process_data.py" />
-    <entry file="file://$PROJECT_DIR$/process_data.py" />
-    <entry file="file://$PROJECT_DIR$/input/train/ALB/img_00003.jpg">
+    <entry file="file://C:/Program Files/Anaconda3/envs/DataSci/Lib/site-packages/keras/preprocessing/image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4323">
+          <caret line="142" column="4" selection-start-line="142" selection-start-column="4" selection-end-line="142" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/process_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="957">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="50" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/envs/DataSci/Lib/site-packages/keras/preprocessing/image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4686">
+          <caret line="142" column="4" selection-start-line="142" selection-start-column="4" selection-end-line="142" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="8" column="59" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="59" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/process_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/image_processcing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/DataSci/Lib/site-packages/matplotlib/backends/backend_gtk.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20955">
+          <caret line="640" column="8" selection-start-line="640" selection-start-column="8" selection-end-line="640" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/train/ALB/img_00015.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/keras/callbacks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4">
-          <caret line="302" column="26" selection-start-line="302" selection-start-column="26" selection-end-line="302" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore" />
-    <entry file="file:///usr/lib/python2.7/dist-packages/PIL/Image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="1298" column="8" selection-start-line="1298" selection-start-column="8" selection-end-line="1298" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="908">
-          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/process_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="32" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/process_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/process_data.py" />
-    <entry file="file://$PROJECT_DIR$/process_data.py" />
-    <entry file="file://$PROJECT_DIR$/input/train/ALB/img_00003.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="32" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/keras/callbacks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4">
-          <caret line="302" column="26" selection-start-line="302" selection-start-column="26" selection-end-line="302" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/process_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-78">
-          <caret line="35" column="45" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="52" column="56" selection-start-line="52" selection-start-column="56" selection-end-line="52" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="14" column="32" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/process_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1155">
-          <caret line="35" column="45" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="32" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/process_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/process_data.py" />
-    <entry file="file://$PROJECT_DIR$/process_data.py" />
-    <entry file="file://$PROJECT_DIR$/input/train/ALB/img_00003.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/keras/callbacks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4">
-          <caret line="302" column="26" selection-start-line="302" selection-start-column="26" selection-end-line="302" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/process_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="50" column="68" selection-start-line="50" selection-start-column="68" selection-end-line="50" selection-end-column="68" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="2277">
+          <caret line="79" column="30" selection-start-line="79" selection-start-column="30" selection-end-line="79" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -1147,9 +1739,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2607">
           <caret line="79" column="30" selection-start-line="79" selection-start-column="30" selection-end-line="79" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1175,9 +1764,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1206,70 +1792,138 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore" />
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/keras/layers/core.py">
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/keras/callbacks.py" />
+    <entry file="file://$PROJECT_DIR$/src/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6858">
-          <caret line="395" column="32" selection-start-line="395" selection-start-column="32" selection-end-line="395" selection-end-column="32" />
+        <state relative-caret-position="2277">
+          <caret line="79" column="30" selection-start-line="79" selection-start-column="30" selection-end-line="79" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/keras/engine/topology.py">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="393" column="24" selection-start-line="393" selection-start-column="21" selection-end-line="393" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/keras/callbacks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5238">
-          <caret line="302" column="26" selection-start-line="302" selection-start-column="26" selection-end-line="302" selection-end-column="26" />
+        <state relative-caret-position="473">
+          <caret line="94" column="19" selection-start-line="94" selection-start-column="19" selection-end-line="94" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/lib/python2.7/dist-packages/PIL/Image.py">
+    <entry file="file://$PROJECT_DIR$/src/submission_loss_loss_0.666276164026_folds_3_ep_30_folds_3_2016-11-16-09-42.csv" />
+    <entry file="file://$PROJECT_DIR$/out.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/train/ALB/img_00015.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://C:/DataSci/Lib/site-packages/matplotlib/backends/backend_gtk.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23292">
-          <caret line="1298" column="8" selection-start-line="1298" selection-start-column="8" selection-end-line="1298" selection-end-column="8" />
-          <folding />
+        <state relative-caret-position="20955">
+          <caret line="640" column="8" selection-start-line="640" selection-start-column="8" selection-end-line="640" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/keras/preprocessing/image.py">
+    <entry file="file://$PROJECT_DIR$/src/image_processcing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7038">
-          <caret line="402" column="26" selection-start-line="402" selection-start-column="26" selection-end-line="402" selection-end-column="26" />
+        <state relative-caret-position="-66">
+          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/submission_loss_loss_1.11739376994_folds_3_ep_55_folds_3_2016-11-16-11-00.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/train/BET/CROPPED/img_00363.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/envs/DataSci/Lib/site-packages/keras/preprocessing/image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3992">
+          <caret line="133" column="13" selection-start-line="133" selection-start-column="13" selection-end-line="133" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/process_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+        <state relative-caret-position="561">
+          <caret line="30" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="37" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="28" column="64" selection-start-line="28" selection-start-column="64" selection-end-line="28" selection-end-column="64" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/train.py">
+    <entry file="file://$PROJECT_DIR$/src/cropped_img_scatter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+        <state relative-caret-position="66">
+          <caret line="2" column="55" selection-start-line="2" selection-start-column="55" selection-end-line="4" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cropped_img_heatmap.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="26" selection-end-column="24" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/train/NoF_CROPPED/img_07121_(651, 119, 1224, 289).jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/train/NoF_CROPPED/img_02751_(267, 388, 320, 473).jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/train/NoF_CROPPED/img_00094_(1094, 111, 1288, 613).jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/train/NoF_CROPPED/img_00011_(633, 185, 761, 429).jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/generate_no_fish_crops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FileUtils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="957">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

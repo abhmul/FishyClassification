@@ -1,6 +1,8 @@
 import numpy as np
 from scipy.ndimage import zoom
 
+from sklearn.metrics import log_loss
+
 from keras.models import Sequential
 from keras.preprocessing.image import ImageDataGenerator
 
@@ -30,22 +32,51 @@ def batch_generator(X, y, batch_size, shuffle, img_size=INPUT_IMGSIZE):
         np.random.shuffle(sample_index)
     while True:
         batch_index = sample_index[batch_size*counter:batch_size*(counter+1)]
-        X_batch = X[batch_index,:].toarray()
+        X_batch = X[batch_index,:]
         y_batch = y[batch_index]
         counter += 1
-        for window in window_gen(X_batch):
-            yield zoom(window, (1, 1,) + img_size),  y_batch
+        yield X_batch,  y_batch
         if (counter == number_of_batches):
             if shuffle:
                 np.random.shuffle(sample_index)
             counter = 0
 
-def validate_model(X, y, batch_size, model, img_size=INPUT_IMGSIZE):
+def softmax(arr):
 
+    return NotImplementedError
+
+def normalize_multiclass(arr):
+
+    return arr / np.sum(arr)
+
+
+def score_image_minimax(predictions, nof_ind = 0, normalize_func=normalize_multiclass):
+
+    # predictions are WINDOWS x 32 x 8
+    nof_min = np.min(predictions[:, :, nof_ind:nof_ind+1], axis=0)
+
+    fish_max = np.max(predictions[:, :, 1:], axis=0)
+
+    return normalize_func(np.stack([nof_min, fish_max], axis=0))
+
+
+def predict_window(X, model, img_size=INPUT_IMGSIZE):
 
     predictions = []
     for window in window_gen(X):
         predictions.append(model.predict_on_batch(zoom(window, (1, 1,) + img_size)))
+    return np.stack(predictions)
+
+def validate_model(model, X, y, batch_size, shuffle=True, metric=log_loss):
+
+    num_preds = X.shape[0]
+    score_sum = 0
+    for x_batch, y_batch in batch_generator(X, y, batch_size, shuffle):
+        predictions = predict_window(x_batch, model)
+        probs = score_image_minimax(predictions)
+        score_sum += metric(y_batch, probs, eps=1e-9) # Using Kaggle's eps
+    return score_sum / num_preds
+
 
 imgen = ImageDataGenerator(
             rescale=1./255,

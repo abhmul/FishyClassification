@@ -26,6 +26,7 @@ def window_gen(X, sliding_window_ratio=SLIDING_WINDOW_RATIO, window_min_ratio=WI
         for window in slide_window(X, window_size):
             yield window
 
+
 def batch_generator(X, y, batch_size, shuffle, img_size=INPUT_IMGSIZE):
     #chenglong code for fiting from generator (https://www.kaggle.com/c/talkingdata-mobile-user-demographics/forums/t/22567/neural-network-for-sparse-matrices)
     number_of_batches = np.ceil(X.shape[0]/batch_size)
@@ -76,6 +77,7 @@ def predict_window(X, model, img_size=INPUT_IMGSIZE):
         predictions.append(model.predict_on_batch(zoom(window, (1, 1,) + img_size)))
         num_windows = i
     return np.stack(predictions), num_windows
+
 
 def validate_model(model, X, y, batch_size, shuffle=True, metric=log_loss):
 

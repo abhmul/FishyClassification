@@ -6,7 +6,10 @@ from sklearn.metrics import log_loss
 from keras.models import Sequential
 from keras.preprocessing.image import ImageDataGenerator
 
+import unittest
+
 from GLOBALS import INPUT_IMGSIZE, SLIDING_WINDOW_RATIO, WINDOW_MIN_RATIO, XSTRIDE, YSTRIDE
+
 
 def slide_window(X, window_size, xstride=XSTRIDE, ystride=YSTRIDE):
 
@@ -41,31 +44,38 @@ def batch_generator(X, y, batch_size, shuffle, img_size=INPUT_IMGSIZE):
                 np.random.shuffle(sample_index)
             counter = 0
 
+
 def softmax(arr):
 
     return NotImplementedError
 
-def normalize_multiclass(arr):
 
-    return arr / np.sum(arr)
+def normalize_multiclass(arr, axis=0):
+
+    return arr / np.sum(arr, axis=axis).reshape(1, -1).T
 
 
-def score_image_minimax(predictions, nof_ind = 0, normalize_func=normalize_multiclass):
+def score_image_minimax(predictions, normalize_func=normalize_multiclass, eps=1e-9, testing=False):
+
+    if testing:
+        assert(predictions.shape[1:] == (32, 8))
 
     # predictions are WINDOWS x 32 x 8
-    nof_min = np.min(predictions[:, :, nof_ind:nof_ind+1], axis=0)
+    nof_min = np.min(predictions[:, :, 0:1], axis=0)  # 32 x 1
 
-    fish_max = np.max(predictions[:, :, 1:], axis=0)
+    fish_max = np.max(predictions[:, :, 1:], axis=0)  # 32 x 7
 
-    return normalize_func(np.stack([nof_min, fish_max], axis=0))
+    return normalize_func(np.hstack([nof_min, fish_max]).clip(eps), axis=1)  # 32 x 8
 
 
 def predict_window(X, model, img_size=INPUT_IMGSIZE):
 
     predictions = []
-    for window in window_gen(X):
+    num_windows = 0
+    for i, window in enumerate(window_gen(X)):
         predictions.append(model.predict_on_batch(zoom(window, (1, 1,) + img_size)))
-    return np.stack(predictions)
+        num_windows = i
+    return np.stack(predictions), num_windows
 
 def validate_model(model, X, y, batch_size, shuffle=True, metric=log_loss):
 
@@ -90,4 +100,45 @@ imgen = ImageDataGenerator(
             horizontal_flip=True,
             vertical_flip=True,
             fill_mode='nearest')
+
+
+class TestWindowMethods(unittest.TestCase):
+
+    def test_normalize_multiclass(self):
+
+        a = np.array([[1,2,3,4],
+                      [.5, .5, .5, .5],
+                      [.25, .25, .25, .25],
+                      [0, 0, 0, 0]])
+
+        exp = np.array([[.1, .2, .3, .4],
+                      [.25, .25, .25, .25],
+                      [.25, .25, .25, .25],
+                      [.25, .25, .25, .25]])
+
+        np.testing.assert_almost_equal(normalize_multiclass(a.clip(1e-9), axis=1), exp)
+
+    def test_score_minimax(self):
+
+        a = np.array([[[.9, .2, .6, .4],
+                      [.5, .5, .5, .5],
+                      [.25, .25, .25, .25],
+                      [0, 0, 0, 0]],
+                      [[.3, .7, .3, .1],
+                       [.2, .9, 1, 0],
+                       [.2, .25, .3, .35],
+                       [0, 0, 0, .1]]])
+
+        exp = np.array([[.3, .7, .6, .4],
+                      [.2, .9, 1, .5],
+                      [.2, .25, .3, .35],
+                      [0, 0, 0, 0.1]])
+        exp.clip(1e-9)
+
+        np.testing.assert_almost_equal(score_image_minimax(a), normalize_multiclass(exp, axis=1))
+
+
+
+if __name__ == '__main__':
+    unittest.main()
 

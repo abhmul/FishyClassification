@@ -7,7 +7,7 @@ import fish8 as f8
 from model import model_dict
 from window_processing import validate_model
 from GLOBALS import MODEL, ROTATION, SHEAR, ZOOM, HORIZONTAL, VERTICAL, FILL_MODE, NUM_EPOCHS, PATH_TRAIN_CROPPED
-from GLOBALS import INPUT_IMGSIZE, MODE, PLOT
+from GLOBALS import INPUT_IMGSIZE, MODE, PLOT, SAMPLES
 
 print(keras.__version__)
 
@@ -39,10 +39,10 @@ for i in xrange(epochs):
     # Fit the model
     print('Training the model...')
     history = model.fit_generator(tr_imgen.flow_from_directory(PATH_TRAIN_CROPPED, target_size=INPUT_IMGSIZE, color_mode=MODE),
-                                  samples_per_epoch=1224, nb_epoch=1)
+                                  samples_per_epoch=SAMPLES, nb_epoch=1)
 
     stats['loss'] = history.history['loss']
-    stats['accuracy'] = history.history['accuracy']
+    stats['acc'] = history.history['acc']
 
     # Run the cross validation
     print('Validating the Model...')

@@ -1,5 +1,6 @@
 # Loading data
-FOLDERS = ['NoF', 'ALB', 'BET', 'DOL', 'LAG', 'OTHER', 'SHARK', 'YFT']
+# FOLDERS = ['NoF', 'ALB', 'BET', 'DOL', 'LAG', 'OTHER', 'SHARK', 'YFT']
+FOLDERS = ['NoF']
 IMGSIZE = (512, 512)
 
 # Paths
@@ -30,6 +31,7 @@ FILL_MODE = 'nearest'
 
 # Training
 NUM_EPOCHS = 100
+SAMPLES = 256  # 1224
 
 # Plotting
 PLOT = True

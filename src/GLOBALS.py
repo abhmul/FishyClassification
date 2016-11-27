@@ -20,6 +20,17 @@ else:
 # Model
 MODEL = 'vgg'
 
+# Augmentation
+ROTATION = .4
+ZOOM = .3
+SHEAR = .3
+HORIZONTAL = True
+VERTICAL = True
+FILL_MODE = 'nearest'
+
+# Training
+NUM_EPOCHS = 100
+
 # Plotting
 PLOT = True
 

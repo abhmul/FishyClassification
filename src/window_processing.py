@@ -1,3 +1,5 @@
+import progressbar
+
 import numpy as np
 from scipy.ndimage import zoom
 
@@ -79,29 +81,21 @@ def predict_window(X, model, img_size=INPUT_IMGSIZE):
     return np.stack(predictions), num_windows
 
 
-def validate_model(model, X, y, batch_size, shuffle=True, metric=log_loss):
+def validate_model(model, X, y, batch_size=32, shuffle=True, metric=log_loss, verbose=1):
 
     num_preds = X.shape[0]
     score_sum = 0
+    bar = progressbar.ProgressBar(maxval=num_preds, widgets=[progressbar.Bar('=', '[', ']'), ' ',
+                                                      progressbar.Percentage()]) if verbose else None
+    i = 0
     for x_batch, y_batch in batch_generator(X, y, batch_size, shuffle):
         predictions = predict_window(x_batch, model)
         probs = score_image_minimax(predictions)
-        score_sum += metric(y_batch, probs, eps=1e-9) # Using Kaggle's eps
+        if verbose:
+            i += x_batch.shape[0]
+            bar.update(i)
+        score_sum += metric(y_batch, probs, eps=1e-9)  # Using Kaggle's eps
     return score_sum / num_preds
-
-
-imgen = ImageDataGenerator(
-            rescale=1./255,
-            rotation_range=180,
-            featurewise_center=True,
-            featurewise_std_normalization=True,
-            width_shift_range=0.4,
-            height_shift_range=0.4,
-            shear_range=0.3,
-            zoom_range=0.4,
-            horizontal_flip=True,
-            vertical_flip=True,
-            fill_mode='nearest')
 
 
 class TestWindowMethods(unittest.TestCase):

@@ -31,6 +31,7 @@ InceptionV3_notop = InceptionV3(include_top=False, weights='imagenet',
 # Note that the preprocessing of InceptionV3 is:
 # (x / 255 - 0.5) x 2
 
+raw_input()
 print('Adding Average Pooling Layer and Softmax Output Layer ...')
 output = InceptionV3_notop.get_layer(index = -1).output  # Shape: (8, 8, 2048)
 # output = AveragePooling2D((8, 8), strides=(8, 8), name='avg_pool')(output)
@@ -41,15 +42,18 @@ output = Dense(8, activation='softmax', name='predictions')(output)
 InceptionV3_model = Model(InceptionV3_notop.input, output)
 #InceptionV3_model.summary()
 
+raw_input()
 print('Creating optimizer and compiling')
 optimizer = SGD(lr = learning_rate, momentum = 0.9, decay = 0.0, nesterov = True)
 InceptionV3_model.compile(loss='categorical_crossentropy', optimizer = optimizer, metrics = ['accuracy'])
 
+raw_input()
 print('Initializing Checkpointer')
 # autosave best Model
 best_model_file = "../weights.h5"
 best_model = ModelCheckpoint(best_model_file, monitor='val_acc', verbose = 1, save_best_only = True)
 
+raw_input()
 print('Initializing Augmenters')
 # this is the augmentation configuration we will use for training
 train_datagen = ImageDataGenerator(
@@ -61,6 +65,7 @@ train_datagen = ImageDataGenerator(
         height_shift_range=0.1,
         horizontal_flip=True)
 
+raw_input()
 print('Creating Generators')
 # this is the augmentation configuration we will use for validation:
 # only rescaling
@@ -86,6 +91,7 @@ validation_generator = val_datagen.flow_from_directory(
         classes = FishNames,
         class_mode = 'categorical')
 
+raw_input()
 print('Training Model...')
 InceptionV3_model.fit_generator(
         train_generator,

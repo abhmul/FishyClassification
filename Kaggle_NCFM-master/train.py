@@ -1,19 +1,13 @@
-import keras
-import theano
 import logging
 
 from keras.applications.inception_v3 import InceptionV3
-import os
-from keras.layers import Flatten, Dense, AveragePooling2D, MaxPooling2D
+from keras.layers import Flatten, Dense, MaxPooling2D, AveragePooling2D
 from keras.models import Model
 from keras.optimizers import RMSprop, SGD
 from keras.callbacks import ModelCheckpoint
 from keras.preprocessing.image import ImageDataGenerator
 
-print(keras.__version__)
-print(theano.__version__)
-
-logging.basicConfig(filename='example.log',level=logging.DEBUG)
+logging.basicConfig(filename='example.log', level=logging.DEBUG)
 
 learning_rate = 0.0001
 img_width = 299
@@ -30,80 +24,75 @@ FishNames = ['ALB', 'BET', 'DOL', 'LAG', 'NoF', 'OTHER', 'SHARK', 'YFT']
 
 print('Loading InceptionV3 Weights ...')
 InceptionV3_notop = InceptionV3(include_top=False, weights='imagenet',
-                    input_tensor=None, input_shape=(3, 299, 299))
+                                input_tensor=None, input_shape=(299, 299, 3))
 # Note that the preprocessing of InceptionV3 is:
 # (x / 255 - 0.5) x 2
 
 
 print('Adding Average Pooling Layer and Softmax Output Layer ...')
-output = InceptionV3_notop.get_layer(index = -1).output  # Shape: (8, 8, 2048)
-# output = AveragePooling2D((8, 8), strides=(8, 8), name='avg_pool')(output)
-output = MaxPooling2D((8, 8), strides=(8, 8), name='avg_pool')(output)
+output = InceptionV3_notop.get_layer(index=-1).output  # Shape: (8, 8, 2048)
+output = AveragePooling2D((8, 8), strides=(8, 8), name='avg_pool')(output)
 output = Flatten(name='flatten')(output)
 output = Dense(8, activation='softmax', name='predictions')(output)
 
 InceptionV3_model = Model(InceptionV3_notop.input, output)
-#InceptionV3_model.summary()
+# InceptionV3_model.summary()
 
 
 print('Creating optimizer and compiling')
-optimizer = SGD(lr = learning_rate, momentum = 0.9, decay = 0.0, nesterov = True)
-InceptionV3_model.compile(loss='categorical_crossentropy', optimizer = optimizer, metrics = ['accuracy'])
-
+optimizer = SGD(lr=learning_rate, momentum=0.9, decay=0.0, nesterov=True)
+InceptionV3_model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=['accuracy'])
 
 print('Initializing Checkpointer')
 # autosave best Model
 best_model_file = "../weights.h5"
-best_model = ModelCheckpoint(best_model_file, monitor='val_acc', verbose = 1, save_best_only = True)
-
+best_model = ModelCheckpoint(best_model_file, monitor='val_acc', verbose=1, save_best_only=True)
 
 print('Initializing Augmenters')
 # this is the augmentation configuration we will use for training
 train_datagen = ImageDataGenerator(
-        rescale=1./255,
-        shear_range=0.1,
-        zoom_range=0.1,
-        rotation_range=10.,
-        width_shift_range=0.1,
-        height_shift_range=0.1,
-        horizontal_flip=True)
-
+    rescale=1. / 255,
+    shear_range=0.1,
+    zoom_range=0.1,
+    rotation_range=10.,
+    width_shift_range=0.1,
+    height_shift_range=0.1,
+    horizontal_flip=True)
 
 print('Creating Generators')
 # this is the augmentation configuration we will use for validation:
 # only rescaling
-val_datagen = ImageDataGenerator(rescale=1./255)
+val_datagen = ImageDataGenerator(rescale=1. / 255)
 
 train_generator = train_datagen.flow_from_directory(
-        train_data_dir,
-        target_size = (img_width, img_height),
-        batch_size = batch_size,
-        shuffle = True,
-        # save_to_dir = '/Users/pengpai/Desktop/python/DeepLearning/Kaggle/NCFM/data/visualization',
-        # save_prefix = 'aug',
-        classes = FishNames,
-        class_mode = 'categorical')
+    train_data_dir,
+    target_size=(img_width, img_height),
+    batch_size=batch_size,
+    shuffle=True,
+    # save_to_dir = '/Users/pengpai/Desktop/python/DeepLearning/Kaggle/NCFM/data/visualization',
+    # save_prefix = 'aug',
+    classes=FishNames,
+    class_mode='categorical')
 
 validation_generator = val_datagen.flow_from_directory(
-        val_data_dir,
-        target_size=(img_width, img_height),
-        batch_size=batch_size,
-        shuffle = True,
-        #save_to_dir = '/Users/pengpai/Desktop/python/DeepLearning/Kaggle/NCFM/data/visulization',
-        #save_prefix = 'aug',
-        classes = FishNames,
-        class_mode = 'categorical')
+    val_data_dir,
+    target_size=(img_width, img_height),
+    batch_size=batch_size,
+    shuffle=True,
+    # save_to_dir = '/Users/pengpai/Desktop/python/DeepLearning/Kaggle/NCFM/data/visulization',
+    # save_prefix = 'aug',
+    classes=FishNames,
+    class_mode='categorical')
 
 print('Training Model...')
 try:
-	InceptionV3_model.fit_generator(
-		train_generator,
-		samples_per_epoch = nbr_train_samples,
-		nb_epoch = nbr_epochs,
-		validation_data = validation_generator,
-		nb_val_samples = nbr_validation_samples,
-		verbose=1) #,
-		# callbacks = [best_model])
-except Exception as e:     # most generic exception you can catch
-	logging.exception("message")
-
+    InceptionV3_model.fit_generator(
+        train_generator,
+        samples_per_epoch=nbr_train_samples,
+        nb_epoch=nbr_epochs,
+        validation_data=validation_generator,
+        nb_val_samples=nbr_validation_samples,
+        verbose=1,
+        callbacks=[best_model])
+except Exception as e:  # most generic exception you can catch
+    logging.exception("message")

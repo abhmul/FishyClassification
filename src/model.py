@@ -1,12 +1,13 @@
+
+
 from keras.models import Sequential
-from keras.layers import ZeroPadding2D, Convolution2D, MaxPooling2D, Flatten, Dense, Dropout, BatchNormalization
+from keras.layers import ZeroPadding2D, Convolution2D, MaxPooling2D, Flatten, Dense, Dropout, BatchNormalization, Reshape
 from keras.regularizers import l2
 from keras.optimizers import SGD
 from GLOBALS import INPUT_IMGSIZE as IMGSIZE
 from GLOBALS import CHANNELS
 import os
 import h5py
-
 
 def create_model():
     model = Sequential()
@@ -54,7 +55,7 @@ def simple_model():
     return model
 
 
-def vgg_model():
+def vgg_model(fcn=False):
     weights_path = '../model_weights/vgg16_weights.h5'
 
     # build the VGG16 network
@@ -94,7 +95,7 @@ def vgg_model():
     model.add(Convolution2D(512, 3, 3, activation='relu', name='conv5_2', dim_ordering='th'))
     model.add(ZeroPadding2D((1, 1), dim_ordering='th'))
     model.add(Convolution2D(512, 3, 3, activation='relu', name='conv5_3', dim_ordering='th'))
-    model.add(MaxPooling2D((2, 2), strides=(2, 2), dim_ordering='th'))
+    model.add(MaxPooling2D((2, 2), strides=(2, 2), dim_ordering='th'))  # Divide dims by 32
 
     # load the weights of the VGG16 networks
     # (trained on ImageNet, won the ILSVRC competition in 2014)
@@ -134,6 +135,8 @@ def vgg_model():
                   metrics=['accuracy'])
 
     return model
+
+
 
 
 model_dict = {'vgg': vgg_model,

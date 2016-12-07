@@ -27,13 +27,13 @@ FishNames = ['ALB', 'BET', 'DOL', 'LAG', 'NoF', 'OTHER', 'SHARK', 'YFT']
 
 print('Loading InceptionV3 Weights ...')
 InceptionV3_notop = InceptionV3(include_top=False, weights='imagenet',
-                    input_tensor=None, input_shape=(3, 299, 299))
+                    input_tensor=None, input_shape=(3, 299, 299), dim_ordering='th')
 # Note that the preprocessing of InceptionV3 is:
 # (x / 255 - 0.5) x 2
 
 print('Adding Average Pooling Layer and Softmax Output Layer ...')
 output = InceptionV3_notop.get_layer(index = -1).output  # Shape: (8, 8, 2048)
-output = AveragePooling2D((8, 8), strides=(8, 8), name='avg_pool')(output)
+output = AveragePooling2D((8, 8), strides=(8, 8), name='avg_pool', dim_ordering='th')(output)
 output = Flatten(name='flatten')(output)
 output = Dense(8, activation='softmax', name='predictions')(output)
 

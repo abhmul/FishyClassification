@@ -3,7 +3,7 @@ import theano
 
 from keras.applications.inception_v3 import InceptionV3
 import os
-from keras.layers import Flatten, Dense, AveragePooling2D
+from keras.layers import Flatten, Dense, AveragePooling2D, MaxPooling2D
 from keras.models import Model
 from keras.optimizers import RMSprop, SGD
 from keras.callbacks import ModelCheckpoint
@@ -33,7 +33,8 @@ InceptionV3_notop = InceptionV3(include_top=False, weights='imagenet',
 
 print('Adding Average Pooling Layer and Softmax Output Layer ...')
 output = InceptionV3_notop.get_layer(index = -1).output  # Shape: (8, 8, 2048)
-output = AveragePooling2D((8, 8), strides=(8, 8), name='avg_pool')(output)
+# output = AveragePooling2D((8, 8), strides=(8, 8), name='avg_pool')(output)
+output = MaxPooling2D((8, 8), strides=(8, 8), name='avg_pool')(output)
 output = Flatten(name='flatten')(output)
 output = Dense(8, activation='softmax', name='predictions')(output)
 

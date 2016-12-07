@@ -1,5 +1,6 @@
 import keras
 import theano
+import logging
 
 from keras.applications.inception_v3 import InceptionV3
 import os
@@ -102,5 +103,5 @@ try:
 		verbose=1) #,
 		# callbacks = [best_model])
 except Exception as e:     # most generic exception you can catch
-	print(e)
+	logging.exception("message")
 

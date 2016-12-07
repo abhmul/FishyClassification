@@ -13,6 +13,8 @@ from keras.preprocessing.image import ImageDataGenerator
 print(keras.__version__)
 print(theano.__version__)
 
+logging.basicConfig(filename='example.log',level=logging.DEBUG)
+
 learning_rate = 0.0001
 img_width = 299
 img_height = 299

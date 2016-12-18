@@ -134,8 +134,6 @@ def merge_several_folds_mean(data, nfolds):
     return a.tolist()
 
 
-
-
 def get_validation_predictions(train_data, predictions_valid):
     pv = []
     for i in range(len(train_data)):

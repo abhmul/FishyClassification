@@ -1,6 +1,8 @@
 import os
 
 
+print "Hello"
+
 def get_all_label_folders():
     train_folder_path = "../input/train";
     label_folders = []

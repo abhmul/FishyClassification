@@ -1,6 +1,8 @@
 import os
 
 
+print "Hello"
+
 def get_all_label_folders():
     train_folder_path = "../input/train";
     label_folders = []
@@ -38,5 +40,3 @@ def get_all_no_fish_files():
     no_fish_folder_path = [l for l in label_folders if l.lower().endswith("nof")][0]
     no_fish_files = [no_fish_folder_path + "/" + f for f in os.listdir(no_fish_folder_path)]
     return no_fish_files
-
-

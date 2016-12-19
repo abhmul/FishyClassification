@@ -128,8 +128,9 @@ class KFoldFromDir(object):
                 class_mode='categorical')
 
             # autosave best Model
-            best_model_file = model_name + '_fold{}.h5'
-            best_model = ModelCheckpoint(best_model_file, monitor='val_loss', verbose=1, save_best_only=True)
+            best_model_file = model_name + '_weights_fold{}.h5'
+            best_model = ModelCheckpoint(best_model_file, monitor='val_loss', verbose=1, save_best_only=True,
+                                         save_weights_only=True)
 
             model = model_func()
             print('Training Model...')

@@ -7,7 +7,7 @@ import shutil
 import numpy as np
 
 from keras.applications.inception_v3 import InceptionV3
-from keras.layers import Flatten, Dense, MaxPooling2D, AveragePooling2D
+from keras.layers import Flatten, Dense, MaxPooling2D, AveragePooling2D, Convolution2D
 from keras.models import Model
 from keras.optimizers import RMSprop, SGD
 from keras.preprocessing.image import ImageDataGenerator
@@ -32,23 +32,30 @@ nfolds = 10
 FishNames = ['ALB', 'BET', 'DOL', 'LAG', 'NoF', 'OTHER', 'SHARK', 'YFT']
 
 
-def inception_model():
+def inception_model(input_shape, fcn=True, test=False):
+
+    new_input_shape = (None, None, input_shape[2]) if fcn else input_shape
 
     print('Loading InceptionV3 Weights ...')
     InceptionV3_notop = InceptionV3(include_top=False, weights='imagenet',
-                                    input_tensor=None, input_shape=(299, 299, 3))
+                                    input_tensor=None, input_shape=new_input_shape)
     # Note that the preprocessing of InceptionV3 is:
     # (x / 255 - 0.5) x 2
 
     print('Adding Average Pooling Layer and Softmax Output Layer ...')
     output = InceptionV3_notop.get_layer(index=-1).output  # Shape: (8, 8, 2048)
-    output = AveragePooling2D((8, 8), strides=(8, 8), name='avg_pool')(output)
-    output = Flatten(name='flatten')(output)
-    output = Dense(8, activation='softmax', name='predictions')(output)
+    output = AveragePooling2D((8, 8), strides=(8, 8), name='avg_pool')(output)  # Shape: (1, 1, 2048)
+    if fcn:
+        activation = 'sigmoid' if test else 'softmax'
+        output = Convolution2D(8, 1, 1, activation=activation)(output)
+        if not test:
+            output = Flatten(name='flatten')(output)
+    else:
+        output = Flatten(name='flatten')(output)
+        output = Dense(8, activation='softmax', name='predictions')(output)
 
     InceptionV3_model = Model(InceptionV3_notop.input, output)
     # InceptionV3_model.summary()
-
 
     print('Creating optimizer and compiling')
     optimizer = SGD(lr=learning_rate, momentum=0.9, decay=0.0, nesterov=True)
@@ -72,7 +79,7 @@ train_datagen = ImageDataGenerator(
 val_datagen = ImageDataGenerator(rescale=1. / 255)
 
 kf = KFoldFromDir(nfolds, FishNames, root=root, total_data=total_data, train_data=train_data, val_data=val_data)
-kf.fit(inception_model, train_datagen, val_datagen, '../fishyInception',
+kf.fit(lambda: inception_model((img_width, img_height, 3)), train_datagen, val_datagen, '../fishyInception',
        nbr_epochs=nbr_epochs,
        img_width=img_width,
        img_height=img_height,

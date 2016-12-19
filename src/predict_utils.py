@@ -47,16 +47,16 @@ def predict_fcn(model_list, gen, nbr_test_samples, data_dir, neg_class=-1):
     for i in range(nbr_test_samples):
         sample = next(test_generator)
         activations = model.predict_on_batch(sample)  # Shape is (1, ?, ?, 8)
-        activations = activations.reshape((-1, activations.shape[-1]))
-        if neg_class != -1:
+        if not i:
+            nbr_classes = activations.shape[-1]
+            predictions = np.zeros((nbr_test_samples, nbr_classes))
+        activations = activations.reshape((-1, nbr_classes))
+        if neg_class == -1:
             prediction = np.max(activations, axis=0)
         else:
             prediction = np.concatenate((np.max(activations[:neg_class], axis=0),
                                         np.min(activations[neg_class:neg_class+1], axis=0),
                                         np.max(activations[neg_class+1:], axis=0)))
-        if not i:
-            nbr_classes = prediction.shape[0]
-            predictions = np.zeros((nbr_test_samples, nbr_classes))
 
         predictions[i] = prediction
 

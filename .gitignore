@@ -93,4 +93,5 @@ ENV/
 .gitignore
 .idea/inspectionProfiles/
 .idea/workspace.xml
+.idea/misc.xml
 .idea/

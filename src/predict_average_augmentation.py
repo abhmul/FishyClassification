@@ -2,8 +2,9 @@ from keras.models import load_model
 import os
 from keras.preprocessing.image import ImageDataGenerator
 from functools import partial
+import logging
 
-from predict_utils import predict_augment, predict_kfold
+from predict_utils import predict_augment, predict_kfold, predict_normal
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
@@ -14,10 +15,8 @@ nbr_test_samples = 1000
 nbr_augmentation = 5
 nfolds = 5
 
-root_path = '../'
-test_data_dir = os.path.join(root_path, 'input/test/')
-
-FishNames = ['ALB', 'BET', 'DOL', 'LAG', 'NoF', 'OTHER', 'SHARK', 'YFT']
+root_path = '../input'
+test_data_dir = os.path.join(root_path, 'test')
 
 # test data generator for prediction
 test_datagen = ImageDataGenerator(
@@ -28,30 +27,31 @@ test_datagen = ImageDataGenerator(
         height_shift_range=0.1,
         horizontal_flip=True)
 
-predict = partial(predict_augment, gen=test_datagen, nbr_augmentation=nbr_augmentation,
-                  nbr_test_samples=nbr_test_samples, nbr_classes=len(FishNames), img_width=img_width,
-                  img_height=img_height, test_data_dir=test_data_dir, batch_size=batch_size)
+# Make the predictor
+predict = partial(predict_normal, gen=test_datagen,
+                  nbr_test_samples=nbr_test_samples, img_width=img_width,
+                  img_height=img_height, data_dir=test_data_dir, batch_size=batch_size)
+predict = partial(predict_augment, predictor=predict, nbr_aug=nbr_augmentation)
+predict = partial(predict_kfold, predictor=predict)
 
-print('Running {} folds'.format(nfolds))
+logging.info('Running {} folds'.format(nfolds))
 InceptionV3_models = []
 for i in xrange(nfolds):
-    print('Loading model and weights from training process fold {}/{} ...'.format(i+1, nfolds))
+    logging.info('Loading model and weights from training process fold {}/{} ...'.format(i+1, nfolds))
     weights_path = os.path.join(root_path, 'inception_weights_fold{}.h5'.format(i))
     InceptionV3_models.append(load_model(weights_path))
 
-predictions, test_image_list = predict_kfold(InceptionV3_models, None, nbr_test_samples, len(FishNames),
-                                             img_width, img_height,
-                                             test_data_dir, batch_size=batch_size,predictor=predict)
+predictions, test_image_list = predict(InceptionV3_models)
 
-print('Begin to write submission file ..')
+logging.info('Begin to write submission file ..')
 f_submit = open(os.path.join(root_path, 'submit.csv'), 'w')
 f_submit.write('image,ALB,BET,DOL,LAG,NoF,OTHER,SHARK,YFT\n')
 for i, image_name in enumerate(test_image_list):
     pred = ['%.6f' % p for p in predictions[i, :]]
     if i % 100 == 0:
-        print('{} / {}'.format(i, nbr_test_samples))
+        logging.info('{} / {}'.format(i, nbr_test_samples))
     f_submit.write('%s,%s\n' % (os.path.basename(image_name), ','.join(pred)))
 
 f_submit.close()
 
-print('Submission file successfully generated!')
+logging.info('Submission file successfully generated!')

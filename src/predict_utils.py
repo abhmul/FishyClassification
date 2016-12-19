@@ -8,6 +8,7 @@ def normalize_multiclass(arr, axis=1):
     sums = np.tile(sums.transpose(), (1, 3))
     return arr / sums
 
+
 # Standard Predictors
 def predict_normal(model_list, gen, nbr_test_samples, img_width, img_height, data_dir, batch_size=32):
 

@@ -74,6 +74,7 @@ train_datagen = ImageDataGenerator(
     height_shift_range=0.1,
     horizontal_flip=True)
 
+
 # this is the augmentation configuration we will use for validation:
 # only rescaling
 val_datagen = ImageDataGenerator(rescale=1. / 255)

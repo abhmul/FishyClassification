@@ -185,7 +185,7 @@ class TestKFoldMethods(tst.TestCase):
         def remove_stuff():
             kf.remove_past_splits()
             data_dirs = set(os.listdir(root))
-            # Check if remove splits actually recreated the dirs
+            # Check if remove splits actually recreated the dirs1
             self.assertTrue(train_data in data_dirs)
             self.assertTrue(val_data in data_dirs)
 
@@ -193,7 +193,7 @@ class TestKFoldMethods(tst.TestCase):
             self.assertTrue(len(os.listdir(kf.train_data_dir)) == 0)
             self.assertTrue(len(os.listdir(kf.val_data_dir)) == 0)
 
-        if len(os.listdir(kf.train_data_dir)) == 0:
+        if len(os.listdir(kf.train_data_dir)) == 0 and len(os.listdir(kf.val_data_dir)) == 0:
             copy_stuff()
             remove_stuff()
         else:

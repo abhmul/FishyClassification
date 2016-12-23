@@ -2,10 +2,9 @@ from __future__  import print_function
 
 import shutil
 import os
+import unittest as tst
 
 import numpy as np
-
-from keras.callbacks import ModelCheckpoint
 
 
 class KFoldFromDir(object):
@@ -69,8 +68,8 @@ class KFoldFromDir(object):
         os.mkdir(self.train_data_dir)
         os.mkdir(self.val_data_dir)
 
-    def fit(self, model_func, train_datagen, val_datagen, model_name, nbr_epochs=25,
-            img_width=299, img_height=299, batch_size=32, callbacks=[]):
+    def fit(self, train_datagen, val_datagen,
+            img_width=299, img_height=299, batch_size=32):
 
         for i in range(self.nfolds):
             # Clean the current split
@@ -111,9 +110,14 @@ class KFoldFromDir(object):
                                                               self.val_data_dir,
                                                               split_type='validation')
 
+            if img_height is None and img_width is None:
+                target_size = None
+            else:
+                target_size = (img_width, img_height)
+
             train_generator = train_datagen.flow_from_directory(
                 self.train_data_dir,
-                target_size=(img_width, img_height),
+                target_size=target_size,
                 batch_size=batch_size,
                 shuffle=True,
                 classes=self.class_labels,
@@ -121,27 +125,82 @@ class KFoldFromDir(object):
 
             validation_generator = val_datagen.flow_from_directory(
                 self.val_data_dir,
-                target_size=(img_width, img_height),
+                target_size=target_size,
                 batch_size=batch_size,
                 shuffle=True,
                 classes=self.class_labels,
                 class_mode='categorical')
 
-            # autosave best Model
-            best_model_file = model_name + '_weights_fold{}.h5'
-            best_model = ModelCheckpoint(best_model_file, monitor='val_loss', verbose=1, save_best_only=True,
-                                         save_weights_only=True)
-
-            model = model_func()
-            print('Training Model...')
-            model.fit_generator(
-                train_generator,
-                samples_per_epoch=nbr_train_samples,
-                nb_epoch=nbr_epochs,
-                validation_data=validation_generator,
-                nb_val_samples=nbr_validation_samples,
-                verbose=1,
-                callbacks=[best_model] + callbacks)
+            yield (train_generator, validation_generator), (nbr_train_samples, nbr_validation_samples)
 
 
 
+class TestKFoldMethods(tst.TestCase):
+
+    def testInit(self):
+        kf = KFoldFromDir(10, ['a', 'b'], root='../input',
+                          total_data='train',
+                          train_data='train_split',
+                          val_data='val_split')
+        self.assertEqual(10, kf.nfolds)
+        self.assertEqual(['a', 'b'], kf.class_labels)
+        self.assertEqual('../input', kf.root)
+        self.assertEqual('../input/train', kf.total_data_dir)
+        self.assertEqual('../input/train_split', kf.train_data_dir)
+        self.assertEqual('../input/val_split', kf.val_data_dir)
+
+    def testRemoveCreate(self):
+        nfolds = 10
+        FishNames = ['ALB', 'BET', 'DOL', 'LAG', 'NoF', 'OTHER', 'SHARK', 'YFT']
+        root = '../input'
+        total_data = 'train'
+        train_data = 'train_split'
+        val_data = 'val_split'
+
+        kf = KFoldFromDir(nfolds, FishNames, root=root,
+                          total_data=total_data,
+                          train_data=train_data,
+                          val_data=val_data)
+
+        def copy_stuff():
+
+            for class_label in FishNames:
+                total_images = np.array(os.listdir(os.path.join(kf.total_data_dir, class_label)))
+                train_inds = np.array([i for i in range(len(total_images)) if i % 5 == 0])
+                val_inds = np.array([i for i in range(len(total_images)) if i % 5 == 1])
+                train_images = total_images[train_inds]
+                val_images = total_images[val_inds]
+
+                nbr_train = kf.make_split_dir(class_label, train_images, kf.total_data_dir, kf.train_data_dir,
+                                              split_type='train')
+                nbr_val = kf.make_split_dir(class_label, val_images, kf.total_data_dir, kf.val_data_dir,
+                                            split_type='val')
+
+                self.assertEqual(len(train_inds), nbr_train)
+                self.assertEqual(len(val_inds), nbr_val)
+
+                self.assertEqual(os.listdir(os.path.join(root, train_data, class_label)), list(train_images))
+                self.assertEqual(os.listdir(os.path.join(root, val_data, class_label)), list(val_images))
+
+        def remove_stuff():
+            kf.remove_past_splits()
+            data_dirs = set(os.listdir(root))
+            # Check if remove splits actually recreated the dirs
+            self.assertTrue(train_data in data_dirs)
+            self.assertTrue(val_data in data_dirs)
+
+            # Make sure the dirs are empty
+            self.assertTrue(len(os.listdir(kf.train_data_dir)) == 0)
+            self.assertTrue(len(os.listdir(kf.val_data_dir)) == 0)
+
+        if len(os.listdir(kf.train_data_dir)) == 0:
+            copy_stuff()
+            remove_stuff()
+        else:
+            remove_stuff()
+            copy_stuff()
+
+
+
+if __name__ == '__main__':
+    tst.main()

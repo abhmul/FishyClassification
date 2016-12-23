@@ -11,6 +11,7 @@ from keras.layers import Flatten, Dense, MaxPooling2D, AveragePooling2D, Convolu
 from keras.models import Model
 from keras.optimizers import RMSprop, SGD
 from keras.preprocessing.image import ImageDataGenerator
+from keras.callbacks import ModelCheckpoint
 
 from kfold_utils import KFoldFromDir
 
@@ -32,13 +33,11 @@ nfolds = 10
 FishNames = ['ALB', 'BET', 'DOL', 'LAG', 'NoF', 'OTHER', 'SHARK', 'YFT']
 
 
-def inception_model(input_shape, fcn=True, test=False):
-
-    new_input_shape = (None, None, input_shape[2]) if fcn else input_shape
+def inception_model(input_shape=(None, None, 3), fcn=True, test=False):
 
     print('Loading InceptionV3 Weights ...')
     InceptionV3_notop = InceptionV3(include_top=False, weights='imagenet',
-                                    input_tensor=None, input_shape=new_input_shape)
+                                    input_tensor=None, input_shape=input_shape)
     # Note that the preprocessing of InceptionV3 is:
     # (x / 255 - 0.5) x 2
 
@@ -74,13 +73,30 @@ train_datagen = ImageDataGenerator(
     height_shift_range=0.1,
     horizontal_flip=True)
 
+
 # this is the augmentation configuration we will use for validation:
 # only rescaling
 val_datagen = ImageDataGenerator(rescale=1. / 255)
 
 kf = KFoldFromDir(nfolds, FishNames, root=root, total_data=total_data, train_data=train_data, val_data=val_data)
-kf.fit(lambda: inception_model((img_width, img_height, 3)), train_datagen, val_datagen, '../fishyInception',
-       nbr_epochs=nbr_epochs,
-       img_width=img_width,
-       img_height=img_height,
-       batch_size=batch_size)
+
+for (train_generator, validation_generator), (nbr_train_samples, nbr_validation_samples) in kf.fit(train_datagen,
+                                                                                                   val_datagen,
+                                                                                                   img_width=img_width,
+                                                                                                   img_height=img_height):
+
+    # autosave best Model
+    best_model_file = '../fishyInception_weights_fold{}.h5'
+    best_model = ModelCheckpoint(best_model_file, monitor='val_loss', verbose=1, save_best_only=True,
+                                 save_weights_only=True)
+
+    model = inception_model((img_width, img_height, 3))
+    print('Training Model...')
+    model.fit_generator(
+        train_generator,
+        samples_per_epoch=nbr_train_samples,
+        nb_epoch=nbr_epochs,
+        validation_data=validation_generator,
+        nb_val_samples=nbr_validation_samples,
+        verbose=1,
+        callbacks=[best_model])

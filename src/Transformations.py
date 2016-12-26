@@ -27,10 +27,52 @@ class Transform(object):
     def transform_matrix_offset_center(matrix, x, y):
         o_x = float(x) / 2 + 0.5
         o_y = float(y) / 2 + 0.5
-        offset_matrix = np.array([[1, 0, o_x], [0, 1, o_y], [0, 0, 1]])
-        reset_matrix = np.array([[1, 0, -o_x], [0, 1, -o_y], [0, 0, 1]])
+        offset_matrix = np.array([[1, 0, o_x],
+                                  [0, 1, o_y],
+                                  [0, 0, 1]])
+        reset_matrix = np.array([[1, 0, -o_x],
+                                 [0, 1, -o_y],
+                                 [0, 0, 1]])
         transform_matrix = np.dot(np.dot(offset_matrix, matrix), reset_matrix)
         return transform_matrix
+
+
+class ResizeRelative(Transform):
+    def __init__(self, sx, sy, row_index=1, col_index=2, channel_index=0,
+                 fill_mode='nearest', cval=0., **kwargs):
+        self.sx = sx
+        self.sy = sy
+        self.row_index = row_index
+        self.col_index = col_index
+        self.channel_index = channel_index
+        self.fill_mode = fill_mode
+        self.cval = cval
+
+    def apply(self, x, **kwargs):
+        h, w = x.shape[self.row_index], x.shape[self.col_index]
+        resize_matrix = np.array([[self.sx, 0, 0],
+                                  [0, self.sy, 0],
+                                  [0, 0, 1]])
+        transform_matrix = self.transform_matrix_offset_center(resize_matrix, h, w)
+        x = self.apply_transform_mat(x, transform_matrix, self.channel_index, self.fill_mode, self.cval)
+        return x
+
+
+class ResizeAbsolute(Transform):
+    def __init__(self, w, h, row_index=1, col_index=2, channel_index=0,
+                    fill_mode='nearest', cval=0., **kwargs):
+        self.w = float(w)
+        self.h = float(h)
+        self.row_index = row_index
+        self.col_index = col_index
+        self.channel_index = channel_index
+        self.fill_mode = fill_mode
+        self.cval = cval
+
+    def apply(self, x, **kwargs):
+        sx = self.w / x.shape[self.col_index]
+        sy = self.h / x.shape[self.row_index]
+        return ResizeRelative(sx, sy, **vars(self)).apply(x)
 
 
 class Rotate(Transform):

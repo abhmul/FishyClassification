@@ -2,8 +2,6 @@ from abc import ABCMeta, abstractmethod
 import numpy as np
 import scipy.ndimage as ndi
 
-from keras import backend as K
-
 
 class Transform(object):
     __metaclass__ = ABCMeta
@@ -200,7 +198,7 @@ class RandomChannelShift(Transform):
         x = np.rollaxis(x, 0, self.channel_index + 1)
         return x
 
-# TODO - make output size = crop size (only problem when crop size > image size)
+
 class Crop(Transform):
     def __init__(self, y1, y2, x1, x2, row_index=1, col_index=2, **kwargs):
         self.row_index = row_index

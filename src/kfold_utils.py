@@ -134,7 +134,6 @@ class KFoldFromDir(object):
             yield (train_generator, validation_generator), (nbr_train_samples, nbr_validation_samples)
 
 
-
 class TestKFoldMethods(tst.TestCase):
 
     def testInit(self):

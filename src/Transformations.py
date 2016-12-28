@@ -1,6 +1,7 @@
 from abc import ABCMeta, abstractmethod
 import numpy as np
 import scipy.ndimage as ndi
+import unittest as tst
 
 
 class Transform(object):
@@ -16,7 +17,7 @@ class Transform(object):
         x = np.rollaxis(x, channel_index, 0)
         final_affine_matrix = transform_matrix[:2, :2]
         final_offset = transform_matrix[:2, 2]
-        channel_images = [ndi.interpolation.affine_transform(x_channel, final_affine_matrix,
+        channel_images = [ndi.affine_transform(x_channel, final_affine_matrix,
                                                              final_offset, order=0, mode=fill_mode, cval=cval) for
                           x_channel in x]
         x = np.stack(channel_images, axis=0)
@@ -38,23 +39,23 @@ class Transform(object):
 
 
 class ResizeRelative(Transform):
-    def __init__(self, sx, sy, row_index=1, col_index=2, channel_index=0,
+    def __init__(self, sx, sy, row_index=1, col_index=2, channel_index=0, interp=3,
                  fill_mode='nearest', cval=0., **kwargs):
         self.sx = sx
         self.sy = sy
         self.row_index = row_index
         self.col_index = col_index
         self.channel_index = channel_index
+        self.interp = interp
         self.fill_mode = fill_mode
         self.cval = cval
 
     def apply(self, x, **kwargs):
-        h, w = x.shape[self.row_index], x.shape[self.col_index]
-        resize_matrix = np.array([[self.sx, 0, 0],
-                                  [0, self.sy, 0],
-                                  [0, 0, 1]])
-        transform_matrix = self.transform_matrix_offset_center(resize_matrix, h, w)
-        x = self.apply_transform_mat(x, transform_matrix, self.channel_index, self.fill_mode, self.cval)
+        x = np.rollaxis(x, self.channel_index, 0)
+        channel_images = [ndi.zoom(x_channel, (self.sy, self.sx), x_channel.dtype,
+                                   order=self.interp, mode=self.fill_mode, cval=self.cval) for x_channel in x]
+        x = np.stack(channel_images, axis=0)
+        x = np.rollaxis(x, 0, self.channel_index + 1)
         return x
 
 
@@ -79,6 +80,7 @@ class Rotate(Transform):
     def __init__(self, theta, row_index=1, col_index=2, channel_index=0,
                     fill_mode='nearest', cval=0., **kwargs):
         self.theta = theta
+        self.rad = np.pi / 180 * self.theta
         self.row_index = row_index
         self.col_index = col_index
         self.channel_index = channel_index
@@ -86,8 +88,8 @@ class Rotate(Transform):
         self.cval = cval
 
     def apply(self, x, **kwargs):
-        rotation_matrix = np.array([[np.cos(self.theta), -np.sin(self.theta), 0],
-                                    [np.sin(self.theta), np.cos(self.theta), 0],
+        rotation_matrix = np.array([[np.cos(self.rad), -np.sin(self.rad), 0],
+                                    [np.sin(self.rad), np.cos(self.rad), 0],
                                     [0, 0, 1]])
 
         h, w = x.shape[self.row_index], x.shape[self.col_index]
@@ -107,7 +109,7 @@ class RandomRotation(Transform):
         self.cval = cval
 
     def apply(self, x, **kwargs):
-        theta = np.pi / 180 * np.random.uniform(-self.rg, self.rg)
+        theta = np.random.uniform(-self.rg, self.rg)
         return Rotate(theta, **vars(self))
 
 
@@ -126,7 +128,6 @@ class Shift(Transform):
         translation_matrix = np.array([[1, 0, self.tx],
                                        [0, 1, self.ty],
                                        [0, 0, 1]])
-
         transform_matrix = translation_matrix  # no need to do offset
         x = self.apply_transform_mat(x, transform_matrix, self.channel_index, self.fill_mode, self.cval)
         return x
@@ -326,3 +327,73 @@ class ROICrop(ROI):
     def apply(self, x, filename=None, index=None, **kwargs):
         x_offset, y_offset, w, h = self._load_bounding_box(filename=filename, index=index)
         return Crop(y_offset, y_offset+h, x_offset, x_offset+h, **vars(self))
+
+
+class TestTransforms(tst.TestCase):
+
+    def testResizeRelative(self):
+        # test that scale of 1 does nothing
+        sx, sy = 1., 1.
+        resizer = ResizeRelative(sx, sy)
+        test_arr = np.linspace(0.0, 1.0, 64 ** 2).reshape((1, 64, 64))
+        np.testing.assert_array_almost_equal(resizer.apply(test_arr), test_arr)
+
+        # test that we can decrease, increase, and do both to the size
+        zooms = ((1.5, 2.), (.75, .5), (4., .125))
+        test_arr = np.linspace(0.0, 1.0, 64 ** 2).reshape((1, 64, 64))
+        for sx, sy in zooms:
+            resizer = ResizeRelative(sx, sy)
+            self.assertEqual(resizer.apply(test_arr).shape, (1, int(round(sy * 64)), int(round(sx * 64))))
+
+    def testResizeAbsolute(self):
+        # test that the same size does nothing
+        h, w = 64, 64
+        resizer = ResizeAbsolute(w, h)
+        test_arr = np.linspace(0.0, 1.0, 64 ** 2).reshape((1, 64, 64))
+        np.testing.assert_array_almost_equal(resizer.apply(test_arr), test_arr)
+
+        # test that we can decrease, increase, and do both to the size
+        sizes = ((31, 51), (253, 191), (17, 412))
+        test_arr = np.linspace(0.0, 1.0, 64 ** 2).reshape((1, 64, 64))
+        for h, w in sizes:
+            resizer = ResizeAbsolute(w, h)
+            self.assertEqual(resizer.apply(test_arr).shape, (1, h, w))
+
+    def testRotate(self):
+        # Check it doesn't change the shape
+        rotater = Rotate(20)
+        test_arr = np.linspace(0.0, 1.0, 64 * 128).reshape((1, 64, 128))
+        self.assertEqual(rotater.apply(test_arr).shape, test_arr.shape)
+
+        # Check a 360 degree rotation doesn't change the matrix
+        rotater = Rotate(360)
+        test_arr = np.linspace(0.0, 1.0, 64 * 128).reshape((1, 64, 128))
+        np.testing.assert_array_almost_equal(rotater.apply(test_arr), test_arr)
+
+    def testShift(self):
+        # Check it shifted properly
+        shifts = ((-2, 0), (0, -2), (-1, -1))
+        test_arr = np.linspace(0.0, 1.0, 4 * 4).reshape((1, 4, 4))
+        for tx, ty in shifts:
+            shifter = Shift(tx, ty)
+            np.testing.assert_array_almost_equal(shifter.apply(test_arr)[:, 0-tx:, 0-ty:], test_arr[:, :4+tx, :4+ty])
+
+    def testCrop(self):
+        # Check if we can crop properly
+        crops = ((0, 25, 0, 129), (0, 65, 14, 19), (36, 54, 100, 111))
+        test_arr = np.linspace(0.0, 1.0, 64 * 128).reshape((1, 64, 128))
+        for y1, y2, x1, x2 in crops:
+            cropper = Crop(y1, y2, x1, x2)
+            np.testing.assert_array_almost_equal(cropper.apply(test_arr),
+                                                 test_arr[:, y1:y2, x1:x2])
+
+        # Check if it still works when we change the channel index
+        test_arr = np.linspace(0.0, 1.0, 64 * 128).reshape((64, 128, 1))
+        for y1, y2, x1, x2 in crops:
+            cropper = Crop(y1, y2, x1, x2, row_index=0, col_index=1, channel_index=3)
+            np.testing.assert_array_almost_equal(cropper.apply(test_arr),
+                                                 test_arr[y1:y2, x1:x2])
+
+
+if __name__ == '__main__':
+    tst.main()

@@ -318,15 +318,15 @@ class ROICenter(ROI):
     def apply(self, x, filename=None, index=None, **kwargs):
         x_offset, y_offset, w, h = self._load_bounding_box(filename=filename, index=index)
         centerh, centerw = x.shape[self.row_index] // 2, x.shape[self.col_index] // 2
-        tx = centerw - (x_offset + w // 2)
-        ty = centerh - (y_offset + h // 2)
+        ty = (x_offset + w // 2) - centerw
+        tx = (y_offset + h // 2) - centerh
         return Shift(tx, ty, **vars(self)).apply(x)
 
 
 class ROICrop(ROI):
     def apply(self, x, filename=None, index=None, **kwargs):
         x_offset, y_offset, w, h = self._load_bounding_box(filename=filename, index=index)
-        return Crop(y_offset, y_offset+h, x_offset, x_offset+h, **vars(self))
+        return Crop(y_offset, y_offset+h, x_offset, x_offset+w, **vars(self)).apply(x)
 
 
 class TestTransforms(tst.TestCase):
@@ -393,6 +393,32 @@ class TestTransforms(tst.TestCase):
             cropper = Crop(y1, y2, x1, x2, row_index=0, col_index=1, channel_index=3)
             np.testing.assert_array_almost_equal(cropper.apply(test_arr),
                                                  test_arr[y1:y2, x1:x2])
+
+    def testCenterCrop(self):
+        crop_size = (64, 32)
+        test_arr = np.linspace(0.0, 1.0, 64 * 128).reshape((1, 64, 128))
+        cropper = CenterCrop(crop_size)
+        startx = test_arr.shape[2] // 2 - (crop_size[1] // 2)
+        starty = test_arr.shape[1] // 2 - (crop_size[0] // 2)
+        np.testing.assert_array_almost_equal(cropper.apply(test_arr),
+                                             test_arr[:, starty:starty+crop_size[0],
+                                             startx:startx+crop_size[1]])
+
+    def testROICenter(self):
+        test_arr = np.linspace(0.0, 1.0, 64 * 128).reshape((1, 64, 128))
+        x, y, w, h = (14, 42, 50, 10)
+        bounding_boxes = {'1': (x, y, w, h)}
+        roi = ROICenter(bounding_boxes)
+        roi_centx, roi_centy = x + w // 2, y + h // 2
+        self.assertAlmostEqual(roi.apply(test_arr, filename='1')[0, 64//2, 128//2], test_arr[0, roi_centy, roi_centx])
+
+    def testROICrop(self):
+        test_arr = np.linspace(0.0, 1.0, 64 * 128).reshape((1, 64, 128))
+        x, y, w, h = (14, 42, 50, 10)
+        bounding_boxes = {'1': (x, y, w, h)}
+        roi = ROICrop(bounding_boxes)
+        np.testing.assert_array_almost_equal(roi.apply(test_arr, filename='1'),
+                               test_arr[:, y:y+h, x:x+w])
 
 
 if __name__ == '__main__':

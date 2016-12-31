@@ -147,6 +147,6 @@ for nbr_pos_train, nbr_pos_val, nbr_neg_train, nbr_neg_val in kfold.fit(nfolds):
 
     model = inception_model(input_shape=train_gen.out_shape, fcn=True, test=False, learning_rate=learning_rate)
 
-    model.fit_generator(train_gen, samples_per_epoch=train_gen.samples, nb_epochs=nbr_epochs,
+    model.fit_generator(train_gen, samples_per_epoch=train_gen.samples, nb_epoch=nbr_epochs,
                         verbose=1, callbacks=[best_model], validation_data=val_gen,
                         nb_val_samples=val_gen.samples)

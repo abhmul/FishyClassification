@@ -81,9 +81,9 @@ class TrainFCNGen(object):
         w = target_size[1]
 
         out_shape = [0, 0, 0]
-        out_shape[pos_imgen.row_index] = h
-        out_shape[pos_imgen.col_index] = w
-        out_shape[pos_imgen.channel_index] = channels
+        out_shape[pos_imgen.row_index-1] = h
+        out_shape[pos_imgen.col_index-1] = w
+        out_shape[pos_imgen.channel_index-1] = channels
         self.out_shape = tuple(out_shape)
 
         self.pos_dir = os.path.join(directory, 'POS')

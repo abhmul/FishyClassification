@@ -39,270 +39,235 @@ class Transform(object):
 
 
 class ResizeRelative(Transform):
-    def __init__(self, sx, sy, row_index=1, col_index=2, channel_index=0, interp=3,
+    def __init__(self, sx, sy, interp=3,
                  fill_mode='nearest', cval=0., **kwargs):
         self.sx = sx
         self.sy = sy
-        self.row_index = row_index
-        self.col_index = col_index
-        self.channel_index = channel_index
         self.interp = interp
         self.fill_mode = fill_mode
         self.cval = cval
 
-    def apply(self, x, **kwargs):
-        x = np.rollaxis(x, self.channel_index, 0)
+    def apply(self, x, channel_index=0, **kwargs):
+        x = np.rollaxis(x, channel_index, 0)
         channel_images = [ndi.zoom(x_channel, (self.sy, self.sx), x_channel.dtype,
                                    order=self.interp, mode=self.fill_mode, cval=self.cval) for x_channel in x]
         x = np.stack(channel_images, axis=0)
-        x = np.rollaxis(x, 0, self.channel_index + 1)
+        x = np.rollaxis(x, 0, channel_index + 1)
         return x
 
 
 class ResizeAbsolute(Transform):
-    def __init__(self, w, h, row_index=1, col_index=2, channel_index=0,
+    def __init__(self, w, h,
                     fill_mode='nearest', cval=0., **kwargs):
         self.w = float(w)
         self.h = float(h)
-        self.row_index = row_index
-        self.col_index = col_index
-        self.channel_index = channel_index
         self.fill_mode = fill_mode
         self.cval = cval
 
-    def apply(self, x, **kwargs):
-        sx = self.w / x.shape[self.col_index]
-        sy = self.h / x.shape[self.row_index]
-        return ResizeRelative(sx, sy, **vars(self)).apply(x)
+    def apply(self, x, row_index=1, col_index=2, channel_index=0, **kwargs):
+        sx = self.w / x.shape[col_index]
+        sy = self.h / x.shape[row_index]
+        return ResizeRelative(sx, sy, **vars(self)).apply(x, channel_index=channel_index)
 
 
 class Rotate(Transform):
-    def __init__(self, theta, row_index=1, col_index=2, channel_index=0,
+    def __init__(self, theta,
                     fill_mode='nearest', cval=0., **kwargs):
         self.theta = theta
         self.rad = np.pi / 180 * self.theta
-        self.row_index = row_index
-        self.col_index = col_index
-        self.channel_index = channel_index
         self.fill_mode = fill_mode
         self.cval = cval
 
-    def apply(self, x, **kwargs):
+    def apply(self, x, row_index=1, col_index=2, channel_index=0, **kwargs):
         rotation_matrix = np.array([[np.cos(self.rad), -np.sin(self.rad), 0],
                                     [np.sin(self.rad), np.cos(self.rad), 0],
                                     [0, 0, 1]])
 
-        h, w = x.shape[self.row_index], x.shape[self.col_index]
+        h, w = x.shape[row_index], x.shape[col_index]
         transform_matrix = self.transform_matrix_offset_center(rotation_matrix, h, w)
-        x = self.apply_transform_mat(x, transform_matrix, self.channel_index, self.fill_mode, self.cval)
+        x = self.apply_transform_mat(x, transform_matrix, channel_index, self.fill_mode, self.cval)
         return x
 
 
 class RandomRotation(Transform):
-    def __init__(self, rg, row_index=1, col_index=2, channel_index=0,
+    def __init__(self, rg,
                     fill_mode='nearest', cval=0., **kwargs):
         self.rg = rg
-        self.row_index = row_index
-        self.col_index = col_index
-        self.channel_index = channel_index
         self.fill_mode = fill_mode
         self.cval = cval
 
-    def apply(self, x, **kwargs):
+    def apply(self, x, row_index=1, col_index=2, channel_index=0, **kwargs):
         theta = np.random.uniform(-self.rg, self.rg)
-        return Rotate(theta, **vars(self))
+        return Rotate(theta, **vars(self)).apply(x, row_index=row_index,
+                                                 col_index=col_index,
+                                                 channel_index=channel_index,
+                                                 **kwargs)
 
 
 class Shift(Transform):
-    def __init__(self, tx, ty, row_index=1, col_index=2, channel_index=0,
+    def __init__(self, tx, ty,
                  fill_mode='nearest', cval=0., **kwargs):
         self.tx = tx
         self.ty = ty
-        self.row_index = row_index
-        self.col_index = col_index
-        self.channel_index = channel_index
         self.fill_mode = fill_mode
         self.cval = cval
 
-    def apply(self, x, **kwargs):
+    def apply(self, x, channel_index=0, **kwargs):
         translation_matrix = np.array([[1, 0, self.tx],
                                        [0, 1, self.ty],
                                        [0, 0, 1]])
         transform_matrix = translation_matrix  # no need to do offset
-        x = self.apply_transform_mat(x, transform_matrix, self.channel_index, self.fill_mode, self.cval)
+        x = self.apply_transform_mat(x, transform_matrix, channel_index, self.fill_mode, self.cval)
         return x
 
 
 class RandomShift(Transform):
-    def __init__(self, wrg, hrg, row_index=1, col_index=2, channel_index=0,
+    def __init__(self, wrg, hrg,
                  fill_mode='nearest', cval=0., **kwargs):
         self.wrg = wrg
         self.hrg = hrg
-        self.row_index = row_index
-        self.col_index = col_index
-        self.channel_index = channel_index
         self.fill_mode = fill_mode
         self.cval = cval
 
-    def apply(self, x, **kwargs):
-        h, w = x.shape[self.row_index], x.shape[self.col_index]
+    def apply(self, x, row_index=1, col_index=2, channel_index=0, **kwargs):
+        h, w = x.shape[row_index], x.shape[col_index]
         tx = np.random.uniform(-self.hrg, self.hrg) * h
         ty = np.random.uniform(-self.wrg, self.wrg) * w
-        return Shift(tx, ty, **vars(self)).apply(x)
+        return Shift(tx, ty, **vars(self)).apply(x, row_index=row_index, col_index=col_index,
+                                                 channel_index=channel_index)
 
 
 class Shear(Transform):
-    def __init__(self, shear, row_index=1, col_index=2, channel_index=0,
+    def __init__(self, shear,
                  fill_mode='nearest', cval=0., **kwargs):
         self.shear = shear
-        self.row_index = row_index
-        self.col_index = col_index
-        self.channel_index = channel_index
         self.fill_mode = fill_mode
         self.cval = cval
 
-    def apply(self, x, **kwargs):
+    def apply(self, x, row_index=1, col_index=2, channel_index=0, **kwargs):
         shear_matrix = np.array([[1, -np.sin(self.shear), 0],
                                  [0, np.cos(self.shear), 0],
                                  [0, 0, 1]])
 
-        h, w = x.shape[self.row_index], x.shape[self.col_index]
+        h, w = x.shape[row_index], x.shape[col_index]
         transform_matrix = self.transform_matrix_offset_center(shear_matrix, h, w)
-        x = self.apply_transform_mat(x, transform_matrix, self.channel_index, self.fill_mode, self.cval)
+        x = self.apply_transform_mat(x, transform_matrix, channel_index, self.fill_mode, self.cval)
         return x
 
 
 class RandomShear(Transform):
-    def __init__(self, intensity, row_index=1, col_index=2, channel_index=0,
+    def __init__(self, intensity,
                  fill_mode='nearest', cval=0., **kwargs):
         self.intensity = intensity
-        self.row_index = row_index
-        self.col_index = col_index
-        self.channel_index = channel_index
         self.fill_mode = fill_mode
         self.cval = cval
 
-    def apply(self, x, **kwargs):
+    def apply(self, x, row_index=1, col_index=2, channel_index=0, **kwargs):
         shear = np.random.uniform(-self.intensity, self.intensity)
-        return Shear(shear, **vars(self)).apply(x)
+        return Shear(shear, **vars(self)).apply(x, row_index=row_index, col_index=col_index,
+                                                channel_index=channel_index)
 
 
 class Zoom(Transform):
-    def __init__(self, zx, zy, row_index=1, col_index=2, channel_index=0,
+    def __init__(self, zx, zy,
                 fill_mode='nearest', cval=0., **kwargs):
         self.zx = zx
         self.zy = zy
-        self.row_index = row_index
-        self.col_index = col_index
-        self.channel_index = channel_index
         self.fill_mode = fill_mode
         self.cval = cval
 
-    def apply(self, x, **kwargs):
+    def apply(self, x, row_index=1, col_index=2, channel_index=0, **kwargs):
         zoom_matrix = np.array([[self.zx, 0, 0],
                                 [0, self.zy, 0],
                                 [0, 0, 1]])
 
-        h, w = x.shape[self.row_index], x.shape[self.col_index]
+        h, w = x.shape[row_index], x.shape[col_index]
         transform_matrix = self.transform_matrix_offset_center(zoom_matrix, h, w)
-        x = self.apply_transform_mat(x, transform_matrix, self.channel_index, self.fill_mode, self.cval)
+        x = self.apply_transform_mat(x, transform_matrix, channel_index, self.fill_mode, self.cval)
         return x
 
 
 class RandomZoom(Transform):
-    def __init__(self, zxrg, zyrg, row_index=1, col_index=2, channel_index=0,
-                fill_mode='nearest', cval=0., **kwargs):
-        self.zoom_range = (zxrg, zyrg)
-        self.row_index = row_index
-        self.col_index = col_index
-        self.channel_index = channel_index
+    def __init__(self, high_z, low_z=None,
+                 fill_mode='nearest', cval=0., **kwargs):
+        low_z = -high_z if low_z is None else low_z
+        self.zoom_range = (1+low_z, 1+high_z)
         self.fill_mode = fill_mode
         self.cval = cval
 
-    def apply(self, x, **kwargs):
+    def apply(self, x, row_index=1, col_index=2, channel_index=0, **kwargs):
         zx, zy = np.random.uniform(self.zoom_range[0], self.zoom_range[1], 2)
-        return Zoom(zx, zy, **vars(self))
+        return Zoom(zx, zy, **vars(self)).apply(x, row_index=row_index, col_index=col_index,
+                                                channel_index=channel_index)
 
 
 class RandomChannelShift(Transform):
-    def __init__(self, intensity, channel_index=0, **kwargs):
+    def __init__(self, intensity, **kwargs):
         self.intensity = intensity
-        self.channel_index = channel_index
 
-    def apply(self, x, **kwargs):
-        x = np.rollaxis(x, self.channel_index, 0)
+    def apply(self, x, channel_index=0, **kwargs):
+        x = np.rollaxis(x, channel_index, 0)
         min_x, max_x = np.min(x), np.max(x)
         channel_images = [np.clip(x_channel + np.random.uniform(-self.intensity, self.intensity), min_x, max_x)
                           for x_channel in x]
-        return self._channel_shift(channel_images)
+        return self._channel_shift(channel_images, channel_index)
 
-    def _channel_shift(self, channel_images):
+    @staticmethod
+    def _channel_shift(channel_images, channel_index):
         x = np.stack(channel_images, axis=0)
-        x = np.rollaxis(x, 0, self.channel_index + 1)
+        x = np.rollaxis(x, 0, channel_index + 1)
         return x
 
 
 class Crop(Transform):
-    def __init__(self, y1, y2, x1, x2, row_index=1, col_index=2, **kwargs):
-        self.row_index = row_index
-        self.col_index = col_index
-        self.crop_box = [None, None, None]
-        self.crop_box[self.row_index] = (y1, y2)
-        self.crop_box[self.col_index] = (x1, x2)
-        self.crop_box = tuple(self.crop_box)
+    def __init__(self, y1, y2, x1, x2, **kwargs):
+        self.y = (y1, y2)
+        self.x = (x1, x2)
 
-    def apply(self, x, **kwargs):
-        a, b, c = self.crop_box
-        if a is None:
-            return x[:, b[0]:b[1], c[0]:c[1]]
-        elif b is None:
-            return x[a[0]:a[1], :, c[0]:c[1]]
-        elif c is None:
-            return x[a[0]:a[1], b[0]:b[1], :]
+    def apply(self, x, row_index=1, col_index=2, **kwargs):
+        x = np.rollaxis(x, row_index, 0)[self.y[0]:self.y[1]]
+        x = np.rollaxis(x, 0, row_index+1)
+        x = np.rollaxis(x, col_index, 0)[self.x[0]:self.x[1]]
+        return np.rollaxis(x, 0, col_index+1)
 
 
 class CenterCrop(Transform):
-    def __init__(self, crop_size, row_index=1, col_index=2, **kwargs):
+    def __init__(self, crop_size, **kwargs):
         self.crop_size = crop_size
-        self.row_index = row_index
-        self.col_index = col_index
 
-    def apply(self, x, **kwargs):
-        centerh, centerw = x.shape[self.row_index] // 2, x.shape[self.col_index] // 2
+    def apply(self, x, row_index=1, col_index=2, **kwargs):
+        centerh, centerw = x.shape[row_index] // 2, x.shape[col_index] // 2
         halfh, halfw = self.crop_size[0] // 2, self.crop_size[1] // 2
         return Crop(max(centerh-halfh, 0),
                     centerh+halfh,
                     max(centerw-halfw, 0),
                     centerw+halfw,
-                    **vars(self)).apply(x)
+                    **vars(self)).apply(x, row_index=row_index, col_index=col_index)
 
 
 class RandomCrop(Transform):
-    def __init__(self, crop_size, row_index=1, col_index=2, **kwargs):
+    def __init__(self, crop_size, **kwargs):
         self.crop_size = crop_size
-        self.row_index = row_index
-        self.col_index = col_index
 
-    def apply(self, x, **kwargs):
-        h, w = x.shape[self.row_index], x.shape[self.col_index]
+    def apply(self, x, row_index=1, col_index=2, **kwargs):
+        h, w = x.shape[row_index], x.shape[col_index]
         rangew = (w - self.crop_size[1]) // 2
         rangeh = (h - self.crop_size[0]) // 2
         offsetw = 0 if rangew == 0 else np.random.randint(rangew)
         offseth = 0 if rangeh == 0 else np.random.randint(rangeh)
-        return Crop(offseth, offseth+rangeh, offsetw, offsetw+rangew, **vars(self)).apply(x)
+        return Crop(offseth, offseth+rangeh, offsetw, offsetw+rangew, **vars(self)).apply(x, row_index=row_index,
+                                                                                          col_index=col_index)
 
 
 class ROI(Transform):
-    def __init__(self, bounding_boxes, from_dir=True, row_index=1, col_index=2,
+    def __init__(self, bounding_boxes, from_dir=True,
                fill_mode='nearest', cval=0, **kwargs):
         self.bounding_boxes = bounding_boxes
         self.from_dir = from_dir
-        self.row_index = row_index
-        self.col_index = col_index
         self.fill_mode = fill_mode
         self.cval = cval
 
-    def apply(self, x, **kwargs):
+    def apply(self, x, row_index=1, col_index=2, **kwargs):
         NotImplementedError
 
     def _load_bounding_box(self, filename=None, index=None):
@@ -315,18 +280,20 @@ class ROI(Transform):
 
 
 class ROICenter(ROI):
-    def apply(self, x, filename=None, index=None, **kwargs):
+    def apply(self, x, row_index=1, col_index=2, channel_index=0, filename=None, index=None, **kwargs):
         x_offset, y_offset, w, h = self._load_bounding_box(filename=filename, index=index)
-        centerh, centerw = x.shape[self.row_index] // 2, x.shape[self.col_index] // 2
+        centerh, centerw = x.shape[row_index] // 2, x.shape[col_index] // 2
         ty = (x_offset + w // 2) - centerw
         tx = (y_offset + h // 2) - centerh
-        return Shift(tx, ty, **vars(self)).apply(x)
+        return Shift(tx, ty, **vars(self)).apply(x, row_index=row_index, col_index=col_index,
+                                                 channel_index=channel_index)
 
 
 class ROICrop(ROI):
-    def apply(self, x, filename=None, index=None, **kwargs):
+    def apply(self, x, row_index=1, col_index=2, filename=None, index=None, **kwargs):
         x_offset, y_offset, w, h = self._load_bounding_box(filename=filename, index=index)
-        return Crop(y_offset, y_offset+h, x_offset, x_offset+w, **vars(self)).apply(x)
+        return Crop(y_offset, y_offset+h, x_offset, x_offset+w, **vars(self)).apply(x, row_index=row_index,
+                                                                                    col_index=col_index)
 
 
 class TestTransforms(tst.TestCase):
@@ -390,8 +357,8 @@ class TestTransforms(tst.TestCase):
         # Check if it still works when we change the channel index
         test_arr = np.linspace(0.0, 1.0, 64 * 128).reshape((64, 128, 1))
         for y1, y2, x1, x2 in crops:
-            cropper = Crop(y1, y2, x1, x2, row_index=0, col_index=1, channel_index=3)
-            np.testing.assert_array_almost_equal(cropper.apply(test_arr),
+            cropper = Crop(y1, y2, x1, x2)
+            np.testing.assert_array_almost_equal(cropper.apply(test_arr, row_index=0, col_index=1, channel_index=3),
                                                  test_arr[y1:y2, x1:x2])
 
     def testCenterCrop(self):

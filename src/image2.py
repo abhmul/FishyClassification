@@ -46,7 +46,9 @@ class ImageDataGenerator(object):
 
     def apply(self, x, **kwargs):
         for transform in self.pipeline:
-            x = transform.apply(x, **kwargs)
+            x = transform.apply(x, row_index=self.row_index-1,
+                                col_index=self.col_index-1,
+                                channel_index=self.channel_index-1, **kwargs)
         return x
 
     def flow(self, X, y=None, batch_size=32, shuffle=True, seed=None,
@@ -233,22 +235,17 @@ class DirectoryIterator(Iterator):
             dim_ordering = K.image_dim_ordering()
         self.directory = directory
         self.image_data_generator = image_data_generator
-        self.target_size = tuple(target_size)
+        self.target_size = (None, None) if target_size is None else tuple(target_size)
         if color_mode not in {'rgb', 'grayscale'}:
             raise ValueError('Invalid color mode:', color_mode,
                              '; expected "rgb" or "grayscale".')
         self.color_mode = color_mode
         self.dim_ordering = dim_ordering
-        if self.color_mode == 'rgb':
-            if self.dim_ordering == 'tf':
-                self.image_shape = self.target_size + (3,)
-            else:
-                self.image_shape = (3,) + self.target_size
+        channels = 3 if self.color_mode == 'rgb' else 1
+        if self.dim_ordering == 'tf':
+            self.image_shape = self.target_size + (channels,)
         else:
-            if self.dim_ordering == 'tf':
-                self.image_shape = self.target_size + (1,)
-            else:
-                self.image_shape = (1,) + self.target_size
+            self.image_shape = (channels,) + self.target_size
         self.classes = classes
         if class_mode not in {'categorical', 'binary', 'sparse', None}:
             raise ValueError('Invalid class_mode:', class_mode,
@@ -308,7 +305,7 @@ class DirectoryIterator(Iterator):
                         # add filename relative to directory
                         absolute_path = os.path.join(root, fname)
                         self.filenames.append(os.path.relpath(absolute_path, directory))
-                        self.imgnames.append(fname)
+                        self.imgnames.append(fname.split('/')[-1])
         super(DirectoryIterator, self).__init__(self.nb_sample, batch_size, shuffle, seed)
 
     def next(self):
@@ -320,10 +317,9 @@ class DirectoryIterator(Iterator):
         # build batch of image data
         for i, j in enumerate(index_array):
             fname = self.filenames[j]
-            imgname = self.filenames[j]
+            imgname = self.imgnames[j]
             img = load_img(os.path.join(self.directory, fname),
-                           grayscale=grayscale,
-                           target_size=self.target_size)
+                           grayscale=grayscale)
             x = img_to_array(img, dim_ordering=self.dim_ordering)
             x = self.image_data_generator.apply(x, filename=imgname)
             x = self.image_data_generator.standardize(x)

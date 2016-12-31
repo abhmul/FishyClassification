@@ -38,6 +38,13 @@ class Transform(object):
         return transform_matrix
 
 
+class Rescale(Transform):
+    def __init__(self, rescale, **kwargs):
+        self.rescale = rescale
+
+    def apply(self, x, **kwargs):
+        return x * self.rescale
+
 class ResizeRelative(Transform):
     def __init__(self, sx, sy, interp=3,
                  fill_mode='nearest', cval=0., **kwargs):

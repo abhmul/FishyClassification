@@ -4,9 +4,9 @@ import json
 import numpy as np
 
 from image2 import ImageDataGenerator
-from Transformations import ROICenter, RandomShift, CenterCrop, RandomRotation, RandomShear, RandomZoom, RandomCrop
+from Transformations import ROICenter, RandomShift, CenterCrop, RandomRotation, RandomShear, RandomZoom, RandomCrop, Rescale
 from kfold_fcn import KFoldFromDirFCN
-from train import inception_model
+from models import inception_model
 
 import keras.backend as K
 from keras.callbacks import ModelCheckpoint
@@ -58,44 +58,57 @@ def build_bb(class_lst):
     return bounding_boxes, no_boxes
 
 
-def train_fcn_gen(directory, pos_imgen, neg_imgen, nbr_pos, nbr_neg, nb_pos_classes, nb_neg_classes,
-                  target_size=(img_height, img_width),
-                  batch_size=32, color_mode='rgb'):
+class TrainFCNGen(object):
 
-    if color_mode not in {'rgb', 'grayscale'}:
-        raise ValueError('Invalid color mode:', color_mode,
-                         '; expected "rgb" or "grayscale".')
-    if pos_imgen.dim_ordering != neg_imgen.dim_ordering:
-        raise ValueError('Dim orderings of augmenters must match')
+    def __init__(self, directory, pos_imgen, neg_imgen, nbr_pos, nbr_neg, nb_pos_classes, nb_neg_classes,
+                 target_size=(img_height, img_width), batch_size=32, color_mode='rgb', seed=None):
 
-    channels = 3 if color_mode == 'rgb' else 1
-    samples = nbr_neg + nbr_pos
-    h = target_size[0]
-    w = target_size[1]
+        if color_mode not in {'rgb', 'grayscale'}:
+            raise ValueError('Invalid color mode:', color_mode,
+                             '; expected "rgb" or "grayscale".')
+        if pos_imgen.dim_ordering != neg_imgen.dim_ordering:
+            raise ValueError('Dim orderings of augmenters must match')
 
-    out_shape = [0, 0, 0]
-    out_shape[pos_imgen.row_index] = h
-    out_shape[pos_imgen.col_index] = w
-    out_shape[pos_imgen.channel_index] = channels
-    out_shape = tuple([samples,] + out_shape)
+        self.batch_size = batch_size
+        self.nbr_neg = nbr_neg
+        self.nbr_pos = nbr_pos
+        self.nb_pos_classes = nb_pos_classes
+        self.nb_neg_classes = nb_neg_classes
 
-    pos_dir = os.path.join(directory, 'POS')
-    neg_dir = os.path.join(directory, 'NEG')
-    pos_gen = pos_imgen.flow_from_directory(pos_dir, target_size, color_mode,  batch_size=batch_size, shuffle=False)
-    neg_gen = pos_imgen.flow_from_directory(neg_dir, target_size, color_mode, batch_size=batch_size, shuffle=False)
+        channels = 3 if color_mode == 'rgb' else 1
+        self.samples = nbr_neg + nbr_pos
+        h = target_size[0]
+        w = target_size[1]
 
-    while True:
-        X = np.empty(out_shape)
-        y = np.zeros((samples, nb_pos_classes+nb_neg_classes))
+        out_shape = [0, 0, 0]
+        out_shape[pos_imgen.row_index] = h
+        out_shape[pos_imgen.col_index] = w
+        out_shape[pos_imgen.channel_index] = channels
+        self.out_shape = tuple(out_shape)
 
-        for i in xrange(0, nbr_neg, batch_size):
-            X[i:i+batch_size], y[i:i+batch_size, nb_pos_classes:] = next(neg_gen)
-        for i in xrange(nbr_neg, samples, batch_size):
-            X[i:i+batch_size], y[i:i+batch_size, :nb_pos_classes] = next(pos_gen)
+        self.pos_dir = os.path.join(directory, 'POS')
+        self.neg_dir = os.path.join(directory, 'NEG')
+        self.pos_gen = pos_imgen.flow_from_directory(self.pos_dir, target_size, color_mode, batch_size=batch_size, shuffle=False)
+        self.neg_gen = pos_imgen.flow_from_directory(self.neg_dir, target_size, color_mode, batch_size=batch_size, shuffle=False)
 
-        np.random.shuffle(X)
-        for i in xrange(0, samples, batch_size):
-            yield X[i:i+batch_size], y[i:i+batch_size]
+        # Initialize the data containers
+        self.X = np.empty((self.samples,) + self.out_shape)
+        self.y = np.zeros((self.samples, nb_pos_classes + nb_neg_classes))
+        self.index_array = np.arange(len(self.X))
+
+    def _reset_data(self):
+        for i in xrange(0, self.nbr_neg, self.batch_size):
+            self.X[i:i + batch_size], self.y[i:i + self.batch_size, self.nb_pos_classes:] = next(self.neg_gen)
+        for i in xrange(self.nbr_neg, self.samples, self.batch_size):
+            self.X[i:i + batch_size], self.y[i:i + self.batch_size, :self.nb_pos_classes] = next(self.pos_gen)
+        np.random.shuffle(self.index_array)
+
+    def __iter__(self):
+        while True:
+            self._reset_data()
+            for i in xrange(0, self.samples, self.batch_size):
+                yield self.X[self.index_array[i:i + self.batch_size]], \
+                      self.y[self.index_array[i:i + self.batch_size]]
 
 
 json_bb_lst = load_json_bbs()
@@ -112,26 +125,28 @@ fish_imgen.add(RandomRotation(10))
 fish_imgen.add(RandomShift(0.05, 0.05))
 fish_imgen.add(RandomShear(.1))
 fish_imgen.add(CenterCrop((img_height, img_width)))
+fish_imgen.add(Rescale(1./255))
 
 # Generator for the NoF images
 nof_imgen = ImageDataGenerator()
 nof_imgen.add(RandomCrop((img_height, img_width)))
+nof_imgen.add(Rescale(1./255))
 
 
 kfold = KFoldFromDirFCN(PosFishNames, NegFishNames, root=PICS, total_data=TOTAL_DATA, train_data=TRAIN_DATA, val_data=VAL_DATA)
 for nbr_pos_train, nbr_pos_val, nbr_neg_train, nbr_neg_val in kfold.fit(nfolds):
-    train_gen = train_fcn_gen(kfold.train_data_dir, fish_imgen, nof_imgen, nbr_pos_train, nbr_neg_train,
-                              len(PosFishNames), len(NegFishNames))
-    val_gen = train_fcn_gen(kfold.val_data_dir, fish_imgen, nof_imgen, nbr_pos_val, nbr_neg_val,
-                              len(PosFishNames), len(NegFishNames))
+    train_gen = TrainFCNGen(kfold.train_data_dir, fish_imgen, nof_imgen, nbr_pos_train, nbr_neg_train,
+                            len(PosFishNames), len(NegFishNames))
+    val_gen = TrainFCNGen(kfold.val_data_dir, fish_imgen, nof_imgen, nbr_pos_val, nbr_neg_val,
+                          len(PosFishNames), len(NegFishNames))
 
     # autosave best Model
-    best_model_file = '../fishyInception_weights_fold{}.h5'
+    best_model_file = '../fishyFCNInception_weights_fold{}.h5'
     best_model = ModelCheckpoint(best_model_file, monitor='val_loss', verbose=1, save_best_only=True,
                                  save_weights_only=True)
 
-    model = inception_model(input_shape=input_shape, fcn=True, test=False)
+    model = inception_model(input_shape=train_gen.out_shape, fcn=True, test=False, learning_rate=learning_rate)
 
-    model.fit_generator(train_gen, samples_per_epoch=nbr_pos_train+nbr_neg_train, nbr_epochs=nbr_epochs,
+    model.fit_generator(train_gen, samples_per_epoch=train_gen.samples, nbr_epochs=nbr_epochs,
                         verbose=1, callbacks=[best_model], validation_data=val_gen,
-                        nb_val_samples=nbr_neg_val+nbr_pos_val)
+                        nb_val_samples=val_gen.samples)

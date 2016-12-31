@@ -61,11 +61,15 @@ class KFoldFromDirFCN(object):
         # Remove the train and val dirs if they already exist and create empty versions
         data_dirs = set(os.listdir(self.root))
         if self.train_data in data_dirs:
-            shutil.rmtree(self.train_data_dir)
+            shutil.rmtree(os.path.join(self.train_data_dir, self.pos_data))
+            shutil.rmtree(os.path.join(self.train_data_dir, self.neg_data))
         if self.val_data in data_dirs:
-            shutil.rmtree(self.val_data_dir)
-        os.mkdir(self.train_data_dir)
-        os.mkdir(self.val_data_dir)
+            shutil.rmtree(os.path.join(self.val_data_dir, self.pos_data))
+            shutil.rmtree(os.path.join(self.val_data_dir, self.neg_data))
+        os.mkdir(os.path.join(self.train_data_dir, self.pos_data))
+        os.mkdir(os.path.join(self.train_data_dir, self.neg_data))
+        os.mkdir(os.path.join(self.val_data_dir, self.pos_data))
+        os.mkdir(os.path.join(self.val_data_dir, self.neg_data))
 
     def test_train_split(self, class_label, total_images, inds, split_ind_begin, split_ind_end, is_pos):
 

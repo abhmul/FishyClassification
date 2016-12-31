@@ -1,15 +1,7 @@
-import logging
-
-import os
 import random
-import shutil
 
 import numpy as np
 
-from keras.applications.inception_v3 import InceptionV3
-from keras.layers import Flatten, Dense, MaxPooling2D, AveragePooling2D, Convolution2D
-from keras.models import Model
-from keras.optimizers import RMSprop, SGD
 from keras.preprocessing.image import ImageDataGenerator
 from keras.callbacks import ModelCheckpoint
 

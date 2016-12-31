@@ -69,8 +69,9 @@ class KFoldFromDir(object):
         os.mkdir(self.val_data_dir)
 
     def fit(self, train_datagen, val_datagen,
-            img_width=299, img_height=299, batch_size=32):
+            img_width=None, img_height=None, batch_size=32, save_dir=None):
 
+        ind_class_dict = {}
         for i in range(self.nfolds):
             # Clean the current split
             print('Removing past splits...')
@@ -85,9 +86,11 @@ class KFoldFromDir(object):
                 # List out all of the images of species fish
                 print('Performing split {} for species {}'.format(i, class_label))
                 total_images = np.array(os.listdir(os.path.join(self.total_data_dir, class_label)))
-                inds = np.arange(len(total_images))
-                # Shuffle them if this is our first fold
-                np.random.shuffle(inds) if not i else None
+                if not i:
+                    ind_class_dict[class_label] = np.arange(len(total_images))
+                    # Shuffle them if this is our first fold
+                    np.random.shuffle(ind_class_dict[class_label])
+                inds = ind_class_dict[class_label]
                 # get the validation start and end ind
                 split_ind_begin = int(1. / self.nfolds * i * len(inds))
                 split_ind_end = int(1. / self.nfolds * (i + 1) * len(inds))
@@ -113,7 +116,7 @@ class KFoldFromDir(object):
             if img_height is None and img_width is None:
                 target_size = None
             else:
-                target_size = (img_width, img_height)
+                target_size = (img_height, img_width)
 
             train_generator = train_datagen.flow_from_directory(
                 self.train_data_dir,
@@ -121,7 +124,8 @@ class KFoldFromDir(object):
                 batch_size=batch_size,
                 shuffle=True,
                 classes=self.class_labels,
-                class_mode='categorical')
+                class_mode='categorical',
+                save_to_dir=save_dir)
 
             validation_generator = val_datagen.flow_from_directory(
                 self.val_data_dir,
@@ -129,6 +133,7 @@ class KFoldFromDir(object):
                 batch_size=batch_size,
                 shuffle=True,
                 classes=self.class_labels,
+                save_to_dir=save_dir,
                 class_mode='categorical')
 
             yield (train_generator, validation_generator), (nbr_train_samples, nbr_validation_samples)

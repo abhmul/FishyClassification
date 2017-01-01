@@ -203,6 +203,7 @@ nof_imgen.add(Rescale(1./255))
 
 
 kfold = KFoldFromDirFCN(PosFishNames, NegFishNames, root=PICS, total_data=TOTAL_DATA, train_data=TRAIN_DATA, val_data=VAL_DATA)
+i = 0
 for nbr_pos_train, nbr_pos_val, nbr_neg_train, nbr_neg_val in kfold.fit(nfolds):
     train_gen = TrainFCNGen2(kfold.train_data_dir, fish_imgen, nof_imgen, nbr_pos_train, nbr_neg_train,
                             len(PosFishNames), len(NegFishNames))
@@ -215,7 +216,7 @@ for nbr_pos_train, nbr_pos_val, nbr_neg_train, nbr_neg_val in kfold.fit(nfolds):
     #     print 'Percentages of each class:\n{}'.format(np.sum(y, axis=0) / y.shape[0])
 
     # autosave best Model
-    best_model_file = '../fishyFCNInception_weights_fold{}.h5'
+    best_model_file = '../fishyFCNInception_weights_fold{}.h5'.format(i+1)
     best_model = ModelCheckpoint(best_model_file, monitor='val_loss', verbose=1, save_best_only=True,
                                  save_weights_only=True)
 
@@ -224,3 +225,4 @@ for nbr_pos_train, nbr_pos_val, nbr_neg_train, nbr_neg_val in kfold.fit(nfolds):
     model.fit_generator(iter(train_gen), samples_per_epoch=train_gen.samples, nb_epoch=nbr_epochs,
                         verbose=1, callbacks=[best_model], validation_data=iter(val_gen),
                         nb_val_samples=val_gen.samples)
+    i += 1

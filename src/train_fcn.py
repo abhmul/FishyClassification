@@ -153,8 +153,10 @@ class TrainFCNGen2(object):
 
         self.pos_dir = os.path.join(directory, 'POS')
         self.neg_dir = os.path.join(directory, 'NEG')
-        self.pos_gen = pos_imgen.flow_from_directory(self.pos_dir, target_size, color_mode, batch_size=1, shuffle=True)
-        self.neg_gen = neg_imgen.flow_from_directory(self.neg_dir, target_size, color_mode, batch_size=1, shuffle=True)
+        self.pos_gen = pos_imgen.flow_from_directory(self.pos_dir, target_size, color_mode, batch_size=1, shuffle=True,
+                                                     save_to_dir='../input/preview/')
+        self.neg_gen = neg_imgen.flow_from_directory(self.neg_dir, target_size, color_mode, batch_size=1, shuffle=True,
+                                                     save_to_dir='../input/preview/')
 
         # Initialize the data containers
         self.index_array = np.arange(self.samples)
@@ -165,8 +167,8 @@ class TrainFCNGen2(object):
             for i in xrange(0, self.samples, self.batch_size):
                 # a = time.time()
                 inds = self.index_array[i:i+self.batch_size]
-                x_batch = np.empty((self.batch_size,) + self.out_shape)
-                y_batch = np.zeros((self.batch_size, self.nb_pos_classes + self.nb_neg_classes))
+                x_batch = np.empty((len(inds),) + self.out_shape)
+                y_batch = np.zeros((len(inds), self.nb_pos_classes + self.nb_neg_classes))
                 for i, ind in enumerate(inds):
                     if ind >= self.nbr_neg:
                         x_batch[i:i+1], y_batch[i:i+1, :self.nb_pos_classes] = next(self.pos_gen)
@@ -206,6 +208,11 @@ for nbr_pos_train, nbr_pos_val, nbr_neg_train, nbr_neg_val in kfold.fit(nfolds):
                             len(PosFishNames), len(NegFishNames))
     val_gen = TrainFCNGen2(kfold.val_data_dir, fish_imgen, nof_imgen, nbr_pos_val, nbr_neg_val,
                           len(PosFishNames), len(NegFishNames))
+
+    # a = iter(val_gen)
+    # for i in xrange(val_gen.samples):
+    #     x, y = next(a)
+    #     print 'Percentages of each class:\n{}'.format(np.sum(y, axis=0) / y.shape[0])
 
     # autosave best Model
     best_model_file = '../fishyFCNInception_weights_fold{}.h5'

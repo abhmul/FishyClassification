@@ -1,4 +1,5 @@
 import random
+import time
 
 import numpy as np
 
@@ -12,7 +13,7 @@ random.seed(2016)
 np.random.seed(2016)
 
 root = '../input'
-total_data = 'train'
+total_data = 'train_bb/POS'
 train_data = 'train_split'
 val_data = 'val_split'
 
@@ -23,7 +24,7 @@ img_height = 299
 nbr_epochs = 25
 batch_size = 32
 nfolds = 10
-FishNames = ['ALB', 'BET', 'DOL', 'LAG', 'NoF', 'OTHER', 'SHARK', 'YFT']
+FishNames = ['ALB', 'BET', 'DOL', 'LAG', 'OTHER', 'SHARK', 'YFT']
 
 print('Initializing Augmenters')
 # this is the augmentation configuration we will use for training
@@ -47,6 +48,11 @@ for (train_generator, validation_generator), (nbr_train_samples, nbr_validation_
                                                                                                    val_datagen,
                                                                                                    img_width=img_width,
                                                                                                    img_height=img_height):
+
+    while True:
+        profile = time.time()
+        next(train_generator)
+        print 'Took {} s to get next image batch'.format(time.time() - profile)
 
     # autosave best Model
     best_model_file = '../fishyInception_weights_fold{}.h5'

@@ -153,10 +153,10 @@ class TrainFCNGen2(object):
 
         self.pos_dir = os.path.join(directory, 'POS')
         self.neg_dir = os.path.join(directory, 'NEG')
-        self.pos_gen = pos_imgen.flow_from_directory(self.pos_dir, target_size, color_mode, batch_size=1, shuffle=True,
-                                                     save_to_dir='../input/preview/')
-        self.neg_gen = neg_imgen.flow_from_directory(self.neg_dir, target_size, color_mode, batch_size=1, shuffle=True,
-                                                     save_to_dir='../input/preview/')
+        self.pos_gen = pos_imgen.flow_from_directory(self.pos_dir, target_size, color_mode, batch_size=1, shuffle=True)
+                                                     # save_to_dir='../input/preview/')
+        self.neg_gen = neg_imgen.flow_from_directory(self.neg_dir, target_size, color_mode, batch_size=1, shuffle=True)
+                                                     # save_to_dir='../input/preview/')
 
         # Initialize the data containers
         self.index_array = np.arange(self.samples)

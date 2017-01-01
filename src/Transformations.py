@@ -308,11 +308,13 @@ class CenterCrop(Transform):
     def apply(self, x, row_index=1, col_index=2, **kwargs):
         centerh, centerw = x.shape[row_index] // 2, x.shape[col_index] // 2
         halfh, halfw = self.crop_size[0] // 2, self.crop_size[1] // 2
-        crop_box = (max(centerh-halfh, 0),
-                    centerh+halfh,
-                    max(centerw - halfw, 0),
-                    centerw+halfw)
-        return Crop.crop(x, crop_box, row_index=row_index, col_index=col_index)
+        y1 = max(centerh-halfh, 0)
+        y2 = centerh+halfh
+        y2 = y2 + 1 if self.crop_size[0] % 2 == 1 else y2
+        x1 = max(centerw - halfw, 0)
+        x2 = centerw+halfw
+        x2 = x2 + 1 if self.crop_size[1] % 2 == 1 else x2
+        return Crop.crop(x, (y1, y2, x1, x2), row_index=row_index, col_index=col_index)
 
 
 class RandomCrop(Transform):

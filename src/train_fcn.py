@@ -21,10 +21,10 @@ VAL_DATA = 'val_split'
 
 
 learning_rate = 0.0001
-img_width = 256
-img_height = 256
+img_width = 299
+img_height = 299
 nbr_epochs = 25
-batch_size = 32
+batch_size = 64
 nfolds = 10
 PosFishNames = ['ALB', 'BET', 'DOL', 'LAG', 'OTHER', 'SHARK', 'YFT']
 NegFishNames = ['NoF']
@@ -153,10 +153,10 @@ class TrainFCNGen2(object):
 
         self.pos_dir = os.path.join(directory, 'POS')
         self.neg_dir = os.path.join(directory, 'NEG')
-        self.pos_gen = pos_imgen.flow_from_directory(self.pos_dir, target_size, color_mode, batch_size=1, shuffle=True)
-                                                     # save_to_dir='../input/preview/')
-        self.neg_gen = neg_imgen.flow_from_directory(self.neg_dir, target_size, color_mode, batch_size=1, shuffle=True)
-                                                     # save_to_dir='../input/preview/')
+        self.pos_gen = pos_imgen.flow_from_directory(self.pos_dir, target_size, color_mode, batch_size=1, shuffle=True,
+                                                     save_to_dir='../input/preview/')
+        self.neg_gen = neg_imgen.flow_from_directory(self.neg_dir, target_size, color_mode, batch_size=1, shuffle=True,
+                                                     save_to_dir='../input/preview/')
 
         # Initialize the data containers
         self.index_array = np.arange(self.samples)
@@ -188,10 +188,10 @@ box_names = set(bounding_boxes.keys())
 wrg, hrg = 0.05, 0.05
 fish_imgen = ImageDataGenerator()
 fish_imgen.add(ROICenter(bounding_boxes, fast=True))
-fish_imgen.add(CenterCrop((int(round((1+hrg)*img_height)), int(round((1+wrg)*img_width)))))
+fish_imgen.add(CenterCrop((int(round((1+.2)*img_height)), int(round((1+.2)*img_width)))))
 fish_imgen.add(RandomZoom(.05))
 fish_imgen.add(RandomRotation(10))
-fish_imgen.add(RandomShift(hrg, wrg, fast=True))
+# fish_imgen.add(RandomShift(hrg, wrg, fast=True))
 fish_imgen.add(RandomShear(.1))
 fish_imgen.add(CenterCrop((img_height, img_width)))
 fish_imgen.add(Rescale(1./255))

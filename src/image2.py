@@ -5,6 +5,7 @@ import numpy as np
 
 from keras.preprocessing.image import array_to_img, img_to_array, load_img
 import keras.backend as K
+import time
 
 class ImageDataGenerator(object):
     '''Generate minibatches with
@@ -315,15 +316,24 @@ class DirectoryIterator(Iterator):
         batch_x = np.zeros((current_batch_size,) + self.image_shape)
         grayscale = self.color_mode == 'grayscale'
         # build batch of image data
+        # d, e, f = 0, 0, 0
         for i, j in enumerate(index_array):
+            profile = time.time()
             fname = self.filenames[j]
             imgname = self.imgnames[j]
+            # a = time.time() - profile
             img = load_img(os.path.join(self.directory, fname),
                            grayscale=grayscale)
             x = img_to_array(img, dim_ordering=self.dim_ordering)
+            # b = time.time() - (a + profile)
             x = self.image_data_generator.apply(x, filename=imgname)
             x = self.image_data_generator.standardize(x)
+            # c = time.time() - (b + (a + profile))
             batch_x[i] = x
+            # d += a
+            # e += b
+            # f += c
+        # print 'PROFILE:\n\tTook {} s to get filenames\n\tTook {} s to load image\n\tTook {} s to apply pipeline'.format(d, e, f)
         # optionally save augmented images to disk for debugging purposes
         if self.save_to_dir:
             for i in range(current_batch_size):

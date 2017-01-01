@@ -1,5 +1,6 @@
 import os
 import json
+# import time
 
 import numpy as np
 
@@ -58,6 +59,7 @@ def build_bb(class_lst):
     return bounding_boxes, no_boxes
 
 
+# Generates entire epoch and passes it in batches (~130s to generate entire epoch)
 class TrainFCNGen(object):
 
     def __init__(self, directory, pos_imgen, neg_imgen, nbr_pos, nbr_neg, nb_pos_classes, nb_neg_classes,
@@ -88,8 +90,8 @@ class TrainFCNGen(object):
 
         self.pos_dir = os.path.join(directory, 'POS')
         self.neg_dir = os.path.join(directory, 'NEG')
-        self.pos_gen = pos_imgen.flow_from_directory(self.pos_dir, target_size, color_mode, batch_size=batch_size, shuffle=False)
-        self.neg_gen = pos_imgen.flow_from_directory(self.neg_dir, target_size, color_mode, batch_size=batch_size, shuffle=False)
+        self.pos_gen = pos_imgen.flow_from_directory(self.pos_dir, target_size, color_mode, batch_size=batch_size, shuffle=True)
+        self.neg_gen = neg_imgen.flow_from_directory(self.neg_dir, target_size, color_mode, batch_size=batch_size, shuffle=True)
 
         # Initialize the data containers
         self.X = np.empty((self.samples,) + self.out_shape)
@@ -97,10 +99,20 @@ class TrainFCNGen(object):
         self.index_array = np.arange(len(self.X))
 
     def _reset_data(self):
-        for i in xrange(0, self.nbr_neg, self.batch_size):
-            self.X[i:i + batch_size], self.y[i:i + self.batch_size, self.nb_pos_classes:] = next(self.neg_gen)
         for i in xrange(self.nbr_neg, self.samples, self.batch_size):
-            self.X[i:i + batch_size], self.y[i:i + self.batch_size, :self.nb_pos_classes] = next(self.pos_gen)
+            # profile = time.time()
+            a = next(self.pos_gen)
+            # print 'Took {} s to get next pos image'.format(time.time()-profile)
+            # print a[0].shape
+            # print a[1].shape
+            start, end = i, min(i + batch_size, self.samples)
+            self.X[start:end], self.y[start:end, :self.nb_pos_classes] = a
+        for i in xrange(0, self.nbr_neg, self.batch_size):
+            a = next(self.neg_gen)
+            # print a[0].shape
+            # print a[1].shape
+            start, end = i, min(i + batch_size, self.nbr_neg)
+            self.X[start:end], self.y[start:end, self.nb_pos_classes:] = a
         np.random.shuffle(self.index_array)
 
     def __iter__(self):
@@ -110,19 +122,74 @@ class TrainFCNGen(object):
                 yield self.X[self.index_array[i:i + self.batch_size]], \
                       self.y[self.index_array[i:i + self.batch_size]]
 
+# Generates on the fly (~1.5s per batch)
+class TrainFCNGen2(object):
+
+    def __init__(self, directory, pos_imgen, neg_imgen, nbr_pos, nbr_neg, nb_pos_classes, nb_neg_classes,
+                 target_size=(img_height, img_width), batch_size=32, color_mode='rgb', seed=None):
+
+        if color_mode not in {'rgb', 'grayscale'}:
+            raise ValueError('Invalid color mode:', color_mode,
+                             '; expected "rgb" or "grayscale".')
+        if pos_imgen.dim_ordering != neg_imgen.dim_ordering:
+            raise ValueError('Dim orderings of augmenters must match')
+
+        self.batch_size = batch_size
+        self.nbr_neg = nbr_neg
+        self.nbr_pos = nbr_pos
+        self.nb_pos_classes = nb_pos_classes
+        self.nb_neg_classes = nb_neg_classes
+
+        channels = 3 if color_mode == 'rgb' else 1
+        self.samples = nbr_neg + nbr_pos
+        h = target_size[0]
+        w = target_size[1]
+
+        out_shape = [0, 0, 0]
+        out_shape[pos_imgen.row_index-1] = h
+        out_shape[pos_imgen.col_index-1] = w
+        out_shape[pos_imgen.channel_index-1] = channels
+        self.out_shape = tuple(out_shape)
+
+        self.pos_dir = os.path.join(directory, 'POS')
+        self.neg_dir = os.path.join(directory, 'NEG')
+        self.pos_gen = pos_imgen.flow_from_directory(self.pos_dir, target_size, color_mode, batch_size=1, shuffle=True)
+        self.neg_gen = neg_imgen.flow_from_directory(self.neg_dir, target_size, color_mode, batch_size=1, shuffle=True)
+
+        # Initialize the data containers
+        self.index_array = np.arange(self.samples)
+
+    def __iter__(self):
+        while True:
+            np.random.shuffle(self.index_array)
+            for i in xrange(0, self.samples, self.batch_size):
+                # a = time.time()
+                inds = self.index_array[i:i+self.batch_size]
+                x_batch = np.empty((self.batch_size,) + self.out_shape)
+                y_batch = np.zeros((self.batch_size, self.nb_pos_classes + self.nb_neg_classes))
+                for i, ind in enumerate(inds):
+                    if ind >= self.nbr_neg:
+                        x_batch[i:i+1], y_batch[i:i+1, :self.nb_pos_classes] = next(self.pos_gen)
+                    else:
+                        x_batch[i:i+1], y_batch[i:i+1, self.nb_pos_classes:] = next(self.neg_gen)
+                # print('Took {} s to create batch'.format(time.time() - a))
+                yield x_batch, y_batch
+
 
 json_bb_lst = load_json_bbs()
 bounding_boxes, no_boxes = build_bb(json_bb_lst)
 
-print bounding_boxes.keys()[:10]
+# print bounding_boxes.keys()[:10]
 box_names = set(bounding_boxes.keys())
 
 # Generator for the fish images
+wrg, hrg = 0.05, 0.05
 fish_imgen = ImageDataGenerator()
-fish_imgen.add(ROICenter(bounding_boxes))
+fish_imgen.add(ROICenter(bounding_boxes, fast=True))
+fish_imgen.add(CenterCrop((int(round((1+hrg)*img_height)), int(round((1+wrg)*img_width)))))
 fish_imgen.add(RandomZoom(.05))
 fish_imgen.add(RandomRotation(10))
-fish_imgen.add(RandomShift(0.05, 0.05))
+fish_imgen.add(RandomShift(hrg, wrg, fast=True))
 fish_imgen.add(RandomShear(.1))
 fish_imgen.add(CenterCrop((img_height, img_width)))
 fish_imgen.add(Rescale(1./255))
@@ -135,9 +202,9 @@ nof_imgen.add(Rescale(1./255))
 
 kfold = KFoldFromDirFCN(PosFishNames, NegFishNames, root=PICS, total_data=TOTAL_DATA, train_data=TRAIN_DATA, val_data=VAL_DATA)
 for nbr_pos_train, nbr_pos_val, nbr_neg_train, nbr_neg_val in kfold.fit(nfolds):
-    train_gen = TrainFCNGen(kfold.train_data_dir, fish_imgen, nof_imgen, nbr_pos_train, nbr_neg_train,
+    train_gen = TrainFCNGen2(kfold.train_data_dir, fish_imgen, nof_imgen, nbr_pos_train, nbr_neg_train,
                             len(PosFishNames), len(NegFishNames))
-    val_gen = TrainFCNGen(kfold.val_data_dir, fish_imgen, nof_imgen, nbr_pos_val, nbr_neg_val,
+    val_gen = TrainFCNGen2(kfold.val_data_dir, fish_imgen, nof_imgen, nbr_pos_val, nbr_neg_val,
                           len(PosFishNames), len(NegFishNames))
 
     # autosave best Model
@@ -147,6 +214,6 @@ for nbr_pos_train, nbr_pos_val, nbr_neg_train, nbr_neg_val in kfold.fit(nfolds):
 
     model = inception_model(input_shape=train_gen.out_shape, fcn=True, test=False, learning_rate=learning_rate)
 
-    model.fit_generator(train_gen, samples_per_epoch=train_gen.samples, nb_epoch=nbr_epochs,
-                        verbose=1, callbacks=[best_model], validation_data=val_gen,
+    model.fit_generator(iter(train_gen), samples_per_epoch=train_gen.samples, nb_epoch=nbr_epochs,
+                        verbose=1, callbacks=[best_model], validation_data=iter(val_gen),
                         nb_val_samples=val_gen.samples)

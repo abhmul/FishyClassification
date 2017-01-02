@@ -38,31 +38,32 @@ test_datagen.add(Rescale(1./255))
 
 testgen = test_datagen.flow_from_directory(test_data_dir, target_size=(None, None),
                                      batch_size=1, shuffle=False)
-x = next(testgen)
 
 
 model = inception_model(test=True)
-for i in xrange(nfolds):
-    best_model_file = '../fishyFCNInception_weights_fold{}.h5'.format(i + 1)
-    model.load_weights(best_model_file)
-    prediction = model.predict(x[0], 1)
+for k in xrange(3):
+    x = next(testgen)
+    for i in xrange(nfolds):
+        best_model_file = '../fishyFCNInception_weights_fold{}.h5'.format(i + 1)
+        model.load_weights(best_model_file)
+        prediction = model.predict(x[0], 1)
 
-    probs = np.zeros((len(PosFishNames) + len(NegFishNames)))
-    for j, lbl in enumerate(PosFishNames + NegFishNames):
-        print 'Prediction for {}:'.format(lbl)
-        print prediction[0, :, :, j]
-        a = np.max(prediction[0, :, :, j])
-        b = np.min(prediction[0, :, :, j])
-        print 'Max Prob {}'.format(a)
-        print 'Min Prob {}'.format(b)
-        if j < 7:
-            probs[j] = a
-        else:
-            probs[j] = b
-    probs = probs / np.sum(probs)
-    print 'Probabilities:'
-    print probs
-    raw_input('Continue?')
+        probs = np.zeros((len(PosFishNames) + len(NegFishNames)))
+        for j, lbl in enumerate(PosFishNames + NegFishNames):
+            print 'Prediction for {}:'.format(lbl)
+            print prediction[0, :, :, j]
+            a = np.max(prediction[0, :, :, j])
+            b = np.min(prediction[0, :, :, j])
+            print 'Max Prob {}'.format(a)
+            print 'Min Prob {}'.format(b)
+            if j < 7:
+                probs[j] = a
+            else:
+                probs[j] = b
+        probs = probs / np.sum(probs)
+        print 'Probabilities:'
+        print probs
+        raw_input('Continue?')
 
 
 

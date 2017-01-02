@@ -29,8 +29,8 @@ nbr_test_samples = sum([len(files) for r, d, files in os.walk(test_data_dir)])
 nbr_aug = 10
 
 test_datagen = ImageDataGenerator()
-test_datagen.add(RandomShear(.1, fast=True))
-test_datagen.add(RandomZoom(.1, fast=True))
+# test_datagen.add(RandomShear(.1, fast=True))
+# test_datagen.add(RandomZoom(.1, fast=True))
 test_datagen.add(RandomShift(.1, .1, fast=True))
 test_datagen.add(Rescale(1./255))
 

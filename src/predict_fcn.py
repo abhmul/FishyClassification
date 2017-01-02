@@ -10,6 +10,8 @@ import logging
 
 from predict_utils import predict_augment, predict_kfold, predict_fcn
 
+from progress.bar import Bar
+
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 # img_width = 299
@@ -46,16 +48,16 @@ for i in xrange(nfolds):
     model.load_weights(best_model_file)
 
     print('Predicting w/ {} rounds of augmentation for fold {}'.format(nbr_aug, i+1))
-    for k in xrange(nbr_test_samples * nbr_aug):
-        if k % nbr_test_samples == 0:
-            print('Performing augmentation round {}'.format(k // nbr_test_samples))
-        x, y_batch = next(testgen)
-        prediction = model.predict(x, 1)
-        probs = np.concatenate((np.max(prediction[0, :, :, :len(PosFishNames)], axis=(0, 1)),
-                               np.min(prediction[0, :, :, len(PosFishNames):], axis=(0, 1))))
+    for j in xrange(nbr_aug):
+        print('Performing augmentation round {}'.format(j))
+        for k in Bar('Loading', max=nbr_test_samples, suffix='ETA: %(eta)ds  %(percent)d%%').iter(xrange(nbr_test_samples)):
+            x, y_batch = next(testgen)
+            prediction = model.predict(x, 1)
+            probs = np.concatenate((np.max(prediction[0, :, :, :len(PosFishNames)], axis=(0, 1)),
+                                   np.min(prediction[0, :, :, len(PosFishNames):], axis=(0, 1))))
 
-        predictions[k % nbr_test_samples] += probs
-        y[k % nbr_test_samples] = y_batch
+            predictions[k] += probs
+            y[k] = y_batch
 
 print('Normalizing the predictions')
 total = np.sum(predictions, axis=1).reshape(1, -1).T

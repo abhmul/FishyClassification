@@ -1,7 +1,7 @@
 from keras.models import load_model
 import os
 from image2 import ImageDataGenerator
-from Transformations import Rescale
+from Transformations import Rescale, RandomShift, RandomShear, RandomZoom
 from models import inception_model
 import numpy as np
 from functools import partial
@@ -34,6 +34,9 @@ test_data_dir = os.path.join(root_path, 'test2')
 # )
 
 test_datagen = ImageDataGenerator()
+test_datagen.add(RandomShear(.1))
+test_datagen.add(RandomZoom(.1))
+test_datagen.add(RandomShift(.1, .1, fast=True))
 test_datagen.add(Rescale(1./255))
 
 testgen = test_datagen.flow_from_directory(test_data_dir, target_size=(None, None),
@@ -41,14 +44,17 @@ testgen = test_datagen.flow_from_directory(test_data_dir, target_size=(None, Non
 
 
 model = inception_model(test=True)
-for k in xrange(3):
+predictions = np.zeros((3, 8))
+for k in xrange(3*10):
     x = next(testgen)
     for i in xrange(nfolds):
         best_model_file = '../fishyFCNInception_weights_fold{}.h5'.format(i + 1)
         model.load_weights(best_model_file)
         prediction = model.predict(x[0], 1)
+        predictions[k % 3] += prediction
 
         probs = np.zeros((len(PosFishNames) + len(NegFishNames)))
+        print 'Running fold {}'.format(i)
         for j, lbl in enumerate(PosFishNames + NegFishNames):
             print 'Prediction for {}:'.format(lbl)
             print prediction[0, :, :, j]
@@ -61,9 +67,15 @@ for k in xrange(3):
             else:
                 probs[j] = b
         probs = probs / np.sum(probs)
-        print 'Probabilities:'
+        print 'Probabilities fold {}:'.format(i)
         print probs
         raw_input('Continue?')
+
+total = np.sum(predictions, axis=1).reshape(1, -1).T
+predictions = predictions / np.tile(total, (1, 8))
+
+print 'Final Probabilities:'
+print predictions
 
 
 

@@ -3,6 +3,7 @@ import os
 from image2 import ImageDataGenerator
 from Transformations import Rescale
 from models import inception_model
+import numpy as np
 from functools import partial
 import logging
 
@@ -44,11 +45,13 @@ model = inception_model(test=True)
 for i in xrange(nfolds):
     best_model_file = '../fishyFCNInception_weights_fold{}.h5'.format(i + 1)
     model.load_weights(best_model_file)
-    prediction = model.predict(x, 1)
+    prediction = model.predict(x[0], 1)
 
-    for i, lbl in enumerate(PosFishNames + NegFishNames):
+    for j, lbl in enumerate(PosFishNames + NegFishNames):
         print 'Prediction for {}:'.format(lbl)
-        print prediction[0, i]
+        print prediction[0, :, :, j]
+        print 'Max Prob {}'.format(np.max(prediction[0, :, :, j]))
+        print 'Min Prob {}'.format(np.min(prediction[0, :, :, j]))
 
 
 

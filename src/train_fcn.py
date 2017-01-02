@@ -204,6 +204,7 @@ nof_imgen.add(Rescale(1./255))
 
 kfold = KFoldFromDirFCN(PosFishNames, NegFishNames, root=PICS, total_data=TOTAL_DATA, train_data=TRAIN_DATA, val_data=VAL_DATA)
 i = 0
+histories = []
 for nbr_pos_train, nbr_pos_val, nbr_neg_train, nbr_neg_val in kfold.fit(nfolds):
     train_gen = TrainFCNGen2(kfold.train_data_dir, fish_imgen, nof_imgen, nbr_pos_train, nbr_neg_train,
                             len(PosFishNames), len(NegFishNames))
@@ -222,7 +223,8 @@ for nbr_pos_train, nbr_pos_val, nbr_neg_train, nbr_neg_val in kfold.fit(nfolds):
 
     model = inception_model(input_shape=train_gen.out_shape, fcn=True, test=False, learning_rate=learning_rate)
 
-    model.fit_generator(iter(train_gen), samples_per_epoch=train_gen.samples, nb_epoch=nbr_epochs,
+    fit = model.fit_generator(iter(train_gen), samples_per_epoch=train_gen.samples, nb_epoch=nbr_epochs,
                         verbose=1, callbacks=[best_model], validation_data=iter(val_gen),
                         nb_val_samples=val_gen.samples)
+    histories.append(fit)
     i += 1

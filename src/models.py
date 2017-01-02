@@ -11,7 +11,7 @@ def inception_model(input_shape=None, fcn=True, test=False, learning_rate=0.0001
         dim_ordering = K.image_dim_ordering()
 
     if input_shape is None:
-        input_shape = (256, 256, 3) if dim_ordering == 'tf' else (3, 256, 256)
+        input_shape = (299, 299, 3) if dim_ordering == 'tf' else (3, 299, 299)
 
     print('Loading InceptionV3 Weights ...')
     InceptionV3_notop = InceptionV3(include_top=False, weights='imagenet',

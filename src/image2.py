@@ -313,7 +313,10 @@ class DirectoryIterator(Iterator):
         with self.lock:
             index_array, current_index, current_batch_size = next(self.index_generator)
         # The transformation of images is not under thread lock so it can be done in parallel
-        batch_x = np.zeros((current_batch_size,) + self.image_shape)
+        if None in self.image_shape:
+            current_batch_size = 1
+        else:
+            batch_x = np.zeros((current_batch_size,) + self.image_shape)
         grayscale = self.color_mode == 'grayscale'
         # build batch of image data
         # d, e, f = 0, 0, 0
@@ -329,7 +332,10 @@ class DirectoryIterator(Iterator):
             x = self.image_data_generator.apply(x, filename=imgname)
             x = self.image_data_generator.standardize(x)
             # c = time.time() - (b + (a + profile))
-            batch_x[i] = x
+            if None in self.image_shape:
+                batch_x = x.reshape((1,) + x.shape)
+            else:
+                batch_x[i] = x
             # d += a
             # e += b
             # f += c

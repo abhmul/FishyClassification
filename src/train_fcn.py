@@ -20,12 +20,12 @@ TRAIN_DATA = 'train_split'
 VAL_DATA = 'val_split'
 
 
-learning_rate = 0.0001
+learning_rate = 0.0005
 img_width = 299
 img_height = 299
-nbr_epochs = 25
+nbr_epochs = 35
 batch_size = 64
-nfolds = 10
+nfolds = 3
 PosFishNames = ['ALB', 'BET', 'DOL', 'LAG', 'OTHER', 'SHARK', 'YFT']
 NegFishNames = ['NoF']
 
@@ -153,10 +153,10 @@ class TrainFCNGen2(object):
 
         self.pos_dir = os.path.join(directory, 'POS')
         self.neg_dir = os.path.join(directory, 'NEG')
-        self.pos_gen = pos_imgen.flow_from_directory(self.pos_dir, target_size, color_mode, batch_size=1, shuffle=True,
-                                                     save_to_dir='../input/preview/')
-        self.neg_gen = neg_imgen.flow_from_directory(self.neg_dir, target_size, color_mode, batch_size=1, shuffle=True,
-                                                     save_to_dir='../input/preview/')
+        self.pos_gen = pos_imgen.flow_from_directory(self.pos_dir, target_size, color_mode, batch_size=1, shuffle=True)
+                                                     # save_to_dir='../input/preview/')
+        self.neg_gen = neg_imgen.flow_from_directory(self.neg_dir, target_size, color_mode, batch_size=1, shuffle=True)
+                                                     # save_to_dir='../input/preview/')
 
         # Initialize the data containers
         self.index_array = np.arange(self.samples)

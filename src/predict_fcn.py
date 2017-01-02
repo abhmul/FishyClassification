@@ -16,8 +16,11 @@ batch_size = 32
 nbr_test_samples = 1000
 nfolds = 3
 
+PosFishNames = ['ALB', 'BET', 'DOL', 'LAG', 'OTHER', 'SHARK', 'YFT']
+NegFishNames = ['NoF']
+
 root_path = '../input'
-test_data_dir = os.path.join(root_path, 'test')
+test_data_dir = os.path.join(root_path, 'test2')
 
 # test data generator for prediction
 # test_datagen = ImageDataGenerator(
@@ -33,7 +36,7 @@ test_datagen = ImageDataGenerator()
 test_datagen.add(Rescale(1./255))
 
 testgen = test_datagen.flow_from_directory(test_data_dir, target_size=(None, None),
-                                     batch_size=1, shuffle=False, save_to_dir='../input/preview/')
+                                     batch_size=1, shuffle=False)
 x = next(testgen)
 
 
@@ -41,10 +44,11 @@ model = inception_model(test=True)
 for i in xrange(nfolds):
     best_model_file = '../fishyFCNInception_weights_fold{}.h5'.format(i + 1)
     model.load_weights(best_model_file)
+    prediction = model.predict(x, 1)
 
-
-
-
+    for i, lbl in enumerate(PosFishNames + NegFishNames):
+        print 'Prediction for {}:'.format(lbl)
+        print prediction[0, i]
 
 
 

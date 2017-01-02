@@ -51,8 +51,8 @@ for i in xrange(nfolds):
             print('Performing augmentation round {}'.format(k // nbr_test_samples))
         x, y_batch = next(testgen)
         prediction = model.predict(x, 1)
-        probs = np.concatenate(np.max(prediction[0, :, :, :len(PosFishNames)], axis=(0, 1)),
-                               np.max(prediction[0, :, :, len(PosFishNames):], axis=(0, 1)))
+        probs = np.concatenate((np.max(prediction[0, :, :, :len(PosFishNames)], axis=(0, 1)),
+                               np.min(prediction[0, :, :, len(PosFishNames):], axis=(0, 1))))
 
         predictions[k % nbr_test_samples] += probs
         y[k % nbr_test_samples] = y_batch

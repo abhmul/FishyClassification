@@ -2,6 +2,8 @@ from abc import ABCMeta, abstractmethod
 import numpy as np
 import scipy.ndimage as ndi
 import unittest as tst
+from keras.preprocessing.image import array_to_img, img_to_array
+from PIL import Image
 
 
 class Transform(object):
@@ -84,14 +86,16 @@ class ResizeAbsolute(Transform):
 
 class Rotate(Transform):
     def __init__(self, theta,
-                    fill_mode='nearest', cval=0., **kwargs):
+                    fill_mode='nearest', cval=0., fast=False, **kwargs):
         self.theta = theta
         self.rad = np.pi / 180 * self.theta
         self.fill_mode = fill_mode
         self.cval = cval
+        self.fast = fast
 
     def apply(self, x, row_index=1, col_index=2, channel_index=0, **kwargs):
-        return self.rotate(x, self.rad, row_index, col_index, channel_index, self.fill_mode, self.cval)
+        return self.fast_rotate(x, self.theta, row_index) if self.fast else \
+            self.rotate(x, self.rad, row_index, col_index, channel_index, self.fill_mode, self.cval)
 
     @staticmethod
     def rotate(x, rad, row_index=1, col_index=2, channel_index=0, fill_mode='nearest', cval=0.):
@@ -103,6 +107,11 @@ class Rotate(Transform):
         transform_matrix = Transform.transform_matrix_offset_center(rotation_matrix, h, w)
         x = Transform.apply_transform_mat(x, transform_matrix, channel_index, fill_mode, cval)
         return x
+
+    @staticmethod
+    def fast_rotate(x, theta, row_index=1):
+        dim_ordering = 'tf' if row_index == 0 else 'th'
+        return img_to_array(array_to_img(x, dim_ordering).rotate(theta))
 
 
 class RandomRotation(Transform):
@@ -201,13 +210,15 @@ class RandomShift(Transform):
 
 class Shear(Transform):
     def __init__(self, shear,
-                 fill_mode='nearest', cval=0., **kwargs):
+                 fill_mode='nearest', cval=0., fast=False, **kwargs):
         self.shear_val = shear
         self.fill_mode = fill_mode
         self.cval = cval
+        self.fast = fast
 
     def apply(self, x, row_index=1, col_index=2, channel_index=0, **kwargs):
-        return self.shear(x, self.shear_val, row_index, col_index, channel_index, self.fill_mode, self.cval)
+        return self.fast_shear(x, self.shear_val, row_index, col_index) if self.fast else \
+            self.shear(x, self.shear_val, row_index, col_index, channel_index, self.fill_mode, self.cval)
 
     @staticmethod
     def shear(x, shear_val, row_index=1, col_index=2, channel_index=0, fill_mode='nearest', cval=0.):
@@ -220,29 +231,40 @@ class Shear(Transform):
         x = Transform.apply_transform_mat(x, transform_matrix, channel_index, fill_mode, cval)
         return x
 
+    @staticmethod
+    def fast_shear(x, shear_val, row_index=1, col_index=2):
+        affine_data = (1, -np.sin(shear_val), 0, 0, np.cos(shear_val), 0)
+        dim_ordering = 'tf' if row_index == 0 else 'th'
+        return img_to_array(array_to_img(x, dim_ordering).transform((x.shape[col_index], x.shape[row_index]),
+                                                                    Image.AFFINE, affine_data), dim_ordering)
+
 
 class RandomShear(Transform):
     def __init__(self, intensity,
-                 fill_mode='nearest', cval=0., **kwargs):
+                 fill_mode='nearest', cval=0., fast=False, **kwargs):
         self.intensity = intensity
         self.fill_mode = fill_mode
         self.cval = cval
+        self.fast = fast
 
     def apply(self, x, row_index=1, col_index=2, channel_index=0, **kwargs):
         shear = np.random.uniform(-self.intensity, self.intensity)
-        return Shear.shear(x, shear, row_index, col_index, channel_index, self.fill_mode, self.cval)
+        return Shear.fast_shear(x, shear, row_index, col_index) if self.fast else \
+            Shear.shear(x, shear, row_index, col_index, channel_index, self.fill_mode, self.cval)
 
 
 class Zoom(Transform):
     def __init__(self, zx, zy,
-                fill_mode='nearest', cval=0., **kwargs):
+                fill_mode='nearest', cval=0., fast=False, **kwargs):
         self.zx = zx
         self.zy = zy
         self.fill_mode = fill_mode
         self.cval = cval
+        self.fast = fast
 
     def apply(self, x, row_index=1, col_index=2, channel_index=0, **kwargs):
-        return self.zoom(x, self.zx, self.zy, row_index, col_index, channel_index, self.fill_mode, self.cval)
+        return self.fast_zoom(x, self.zx, self.zy, row_index, col_index) if self.fast else \
+            self.zoom(x, self.zx, self.zy, row_index, col_index, channel_index, self.fill_mode, self.cval)
 
     @staticmethod
     def zoom(x, zx, zy, row_index=1, col_index=2, channel_index=0, fill_mode='nearest', cval=0.):
@@ -255,18 +277,27 @@ class Zoom(Transform):
         x = Transform.apply_transform_mat(x, transform_matrix, channel_index, fill_mode, cval)
         return x
 
+    @staticmethod
+    def fast_zoom(x, zx, zy, row_index=1, col_index=2):
+        affine_data = (zx, 0, 0, 0, zy, 0)
+        dim_ordering = 'tf' if row_index == 0 else 'th'
+        return img_to_array(array_to_img(x, dim_ordering).transform((x.shape[col_index], x.shape[row_index]),
+                                                                    Image.AFFINE, affine_data), dim_ordering)
+
 
 class RandomZoom(Transform):
     def __init__(self, high_z, low_z=None,
-                 fill_mode='nearest', cval=0., **kwargs):
+                 fill_mode='nearest', cval=0., fast=False, **kwargs):
         low_z = -high_z if low_z is None else low_z
         self.zoom_range = (1+low_z, 1+high_z)
         self.fill_mode = fill_mode
         self.cval = cval
+        self.fast = fast
 
     def apply(self, x, row_index=1, col_index=2, channel_index=0, **kwargs):
         zx, zy = np.random.uniform(self.zoom_range[0], self.zoom_range[1], 2)
-        return Zoom.zoom(x, zx, zy, row_index, col_index, channel_index, self.fill_mode, self.cval)
+        return Zoom.fast_zoom(x, zx, zy, row_index, col_index) if self.fast else \
+            Zoom.zoom(x, zx, zy, row_index, col_index, channel_index, self.fill_mode, self.cval)
 
 class RandomChannelShift(Transform):
     def __init__(self, intensity, **kwargs):
@@ -403,14 +434,22 @@ class TestTransforms(tst.TestCase):
 
     def testRotate(self):
         # Check it doesn't change the shape
-        rotater = Rotate(20)
-        test_arr = np.linspace(0.0, 1.0, 64 * 128).reshape((1, 64, 128))
+        rotater = Rotate(20, fast=True)
+        test_arr = np.linspace(0.0, 1.0, 500 * 1000).reshape((1, 500, 1000))
         self.assertEqual(rotater.apply(test_arr).shape, test_arr.shape)
 
         # Check a 360 degree rotation doesn't change the matrix
-        rotater = Rotate(360)
+        rotater = Rotate(360, fast=False)
         test_arr = np.linspace(0.0, 1.0, 64 * 128).reshape((1, 64, 128))
         np.testing.assert_array_almost_equal(rotater.apply(test_arr), test_arr)
+
+    def testShear(self):
+        import time
+        a = time.time()
+        # Check it doesn't change the shape
+        shearer = Shear(.1, fast=False)
+        test_arr = np.linspace(0.0, 1.0, 500 * 1000).reshape((1, 500, 1000))
+        self.assertEqual(shearer.apply(test_arr).shape, test_arr.shape)
 
     def testShift(self):
         # Check it shifted properly

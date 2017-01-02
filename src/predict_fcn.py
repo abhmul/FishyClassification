@@ -27,8 +27,8 @@ nbr_test_samples = sum([len(files) for r, d, files in os.walk(test_data_dir)])
 nbr_aug = 10
 
 test_datagen = ImageDataGenerator()
-test_datagen.add(RandomShear(.1))
-test_datagen.add(RandomZoom(.1))
+test_datagen.add(RandomShear(.1, fast=True))
+test_datagen.add(RandomZoom(.1, fast=True))
 test_datagen.add(RandomShift(.1, .1, fast=True))
 test_datagen.add(Rescale(1./255))
 
@@ -45,7 +45,7 @@ for i in xrange(nfolds):
     best_model_file = '../fishyFCNInception_weights_fold{}.h5'.format(i + 1)
     model.load_weights(best_model_file)
 
-    print('Predicting w/ {} rounds of augmentation for fold {}'.format(nbr_aug, nfolds))
+    print('Predicting w/ {} rounds of augmentation for fold {}'.format(nbr_aug, i+1))
     for k in xrange(nbr_test_samples * nbr_aug):
         if k % nbr_test_samples == 0:
             print('Performing augmentation round {}'.format(k // nbr_test_samples))

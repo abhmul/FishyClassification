@@ -4,6 +4,7 @@ from image2 import ImageDataGenerator
 from Transformations import Rescale, RandomShift, RandomShear, RandomZoom
 from models import inception_model
 import numpy as np
+from sklearn.metrics import log_loss
 from functools import partial
 import logging
 
@@ -14,24 +15,16 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 # img_width = 299
 # img_height = 299
 batch_size = 32
-nbr_test_samples = 1000
 nfolds = 3
 
 PosFishNames = ['ALB', 'BET', 'DOL', 'LAG', 'OTHER', 'SHARK', 'YFT']
 NegFishNames = ['NoF']
+FishNames = PosFishNames + NegFishNames
 
 root_path = '../input'
-test_data_dir = os.path.join(root_path, 'test2')
-
-# test data generator for prediction
-# test_datagen = ImageDataGenerator(
-#         rescale=1./255
-        # shear_range=0.1,
-        # zoom_range=0.1,
-        # width_shift_range=0.1,
-        # height_shift_range=0.1,
-        # horizontal_flip=True
-# )
+test_data_dir = os.path.join(root_path, 'val_split')
+nbr_test_samples = sum([len(files) for r, d, files in os.walk(test_data_dir)])
+nbr_aug = 10
 
 test_datagen = ImageDataGenerator()
 test_datagen.add(RandomShear(.1))
@@ -44,42 +37,30 @@ testgen = test_datagen.flow_from_directory(test_data_dir, target_size=(None, Non
 
 
 model = inception_model(test=True)
-predictions = np.zeros((3, 8))
-for k in xrange(3*10):
-    x = next(testgen)
-    for i in xrange(nfolds):
-        best_model_file = '../fishyFCNInception_weights_fold{}.h5'.format(i + 1)
-        model.load_weights(best_model_file)
-        prediction = model.predict(x[0], 1)
-        predictions[k % 3] += prediction
+predictions = np.zeros((nbr_test_samples, 8))
+y = np.zeros((nbr_test_samples, 8))
 
-        probs = np.zeros((len(PosFishNames) + len(NegFishNames)))
-        print 'Running fold {}'.format(i)
-        for j, lbl in enumerate(PosFishNames + NegFishNames):
-            print 'Prediction for {}:'.format(lbl)
-            print prediction[0, :, :, j]
-            a = np.max(prediction[0, :, :, j])
-            b = np.min(prediction[0, :, :, j])
-            print 'Max Prob {}'.format(a)
-            print 'Min Prob {}'.format(b)
-            if j < 7:
-                probs[j] = a
-            else:
-                probs[j] = b
-        probs = probs / np.sum(probs)
-        print 'Probabilities fold {}:'.format(i)
-        print probs
-        raw_input('Continue?')
+for i in xrange(nfolds):
+    print('Loading weights for fold {}'.format(i+1))
+    best_model_file = '../fishyFCNInception_weights_fold{}.h5'.format(i + 1)
+    model.load_weights(best_model_file)
 
+    print('Predicting w/ {} rounds of augmentation for fold {}'.format(nbr_aug, nfolds))
+    for k in xrange(nbr_test_samples * nbr_aug):
+        if k % nbr_test_samples == 0:
+            print('Performing augmentation round {}'.format(k // nbr_test_samples))
+        x, y_batch = next(testgen)
+        prediction = model.predict(x, 1)
+        probs = np.concatenate(np.max(prediction[0, :, :, :len(PosFishNames)], axis=(0, 1)),
+                               np.max(prediction[0, :, :, len(PosFishNames):], axis=(0, 1)))
+
+        predictions[k % nbr_test_samples] += probs
+        y[k % nbr_test_samples] = y_batch
+
+print('Normalizing the predictions')
 total = np.sum(predictions, axis=1).reshape(1, -1).T
-predictions = predictions / np.tile(total, (1, 8))
-
-print 'Final Probabilities:'
-print predictions
+predictions = predictions / np.tile(total, (1, len(FishNames)))
 
 
-
-# Make the predictor
-# predict = partial(predict_normal, gen=test_datagen,
-#                   nbr_test_samples=nbr_test_samples, img_width=img_width,
-#                   img_height=img_height, data_dir=test_data_dir, batch_size=batch_size)
+print('Logloss of predctions:')
+print(log_loss(y, predictions, eps=1e-15))

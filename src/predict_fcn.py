@@ -47,11 +47,22 @@ for i in xrange(nfolds):
     model.load_weights(best_model_file)
     prediction = model.predict(x[0], 1)
 
+    probs = np.zeros((len(PosFishNames) + len(NegFishNames)))
     for j, lbl in enumerate(PosFishNames + NegFishNames):
         print 'Prediction for {}:'.format(lbl)
         print prediction[0, :, :, j]
-        print 'Max Prob {}'.format(np.max(prediction[0, :, :, j]))
-        print 'Min Prob {}'.format(np.min(prediction[0, :, :, j]))
+        a = np.max(prediction[0, :, :, j])
+        b = np.min(prediction[0, :, :, j])
+        print 'Max Prob {}'.format(a)
+        print 'Min Prob {}'.format(b)
+        if j < 7:
+            probs[j] = a
+        else:
+            probs[j] = b
+    probs = probs / np.sum(probs)
+    print 'Probabilities:'
+    print probs
+    raw_input('Continue?')
 
 
 

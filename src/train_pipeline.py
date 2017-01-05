@@ -14,8 +14,6 @@ BB_PATH = 'bounding_boxes'
 PICS = os.path.join(ROOT, 'input')
 img_height = 299
 img_width = 299
-nb_pos_train = sum([len(files) for r, d, files in os.walk(os.path.join(PICS, 'train_split', 'POS'))])
-nb_pos_val = sum([len(files) for r, d, files in os.walk(os.path.join(PICS, 'val_split', 'POS'))])
 
 learning_rate = 0.0001
 nbr_epochs = 20
@@ -110,7 +108,7 @@ NegFishNames = ['NoF']
 kfold = KFoldFromDirFCN(PosFishNames, NegFishNames, root=PICS, total_data='train_bb', train_data='train_split', val_data='val_split')
 i = 0
 min_vals = []
-for nbr_pos_train, nbr_pos_val, nbr_neg_train, nbr_neg_val in kfold.fit(4):
+for nb_pos_train, nb_pos_val, nbr_neg_train, nbr_neg_val in kfold.fit(4):
     train_gen = TrainFCNGen3(os.path.join(PICS, 'train_split'), fish_imgen, nof_imgen, nb_pos_train*2, batch_size=64)
     val_gen = TrainFCNGen3(os.path.join(PICS, 'val_split'), val_fish_imgen, nof_imgen, nb_pos_val*2, batch_size=64)
 
@@ -121,8 +119,8 @@ for nbr_pos_train, nbr_pos_val, nbr_neg_train, nbr_neg_val in kfold.fit(4):
     model = inception_model(input_shape=train_gen.out_shape, fcn=True, test=False, learning_rate=learning_rate)
 
     fit = model.fit_generator(iter(train_gen), samples_per_epoch=train_gen.samples, nb_epoch=nbr_epochs,
-                        verbose=1, callbacks=[best_model], validation_data=iter(val_gen),
-                        nb_val_samples=val_gen.samples)
+                              verbose=1, callbacks=[best_model], validation_data=iter(val_gen),
+                              nb_val_samples=val_gen.samples)
     i += 1
     min_vals.append(min(fit.history['val_loss']))
     print 'Min Val Loss: {}'.format(min_vals[-1])

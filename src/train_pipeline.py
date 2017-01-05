@@ -109,6 +109,7 @@ NegFishNames = ['NoF']
 
 kfold = KFoldFromDirFCN(PosFishNames, NegFishNames, root=PICS, total_data='train_bb', train_data='train_split', val_data='val_split')
 i = 0
+min_vals = []
 for nbr_pos_train, nbr_pos_val, nbr_neg_train, nbr_neg_val in kfold.fit(4):
     train_gen = TrainFCNGen3(os.path.join(PICS, 'train_split'), fish_imgen, nof_imgen, nb_pos_train*2, batch_size=64)
     val_gen = TrainFCNGen3(os.path.join(PICS, 'val_split'), val_fish_imgen, nof_imgen, nb_pos_val*2, batch_size=64)
@@ -123,3 +124,7 @@ for nbr_pos_train, nbr_pos_val, nbr_neg_train, nbr_neg_val in kfold.fit(4):
                         verbose=1, callbacks=[best_model], validation_data=iter(val_gen),
                         nb_val_samples=val_gen.samples)
     i += 1
+    min_vals.append(min(fit.history['val_loss']))
+    print 'Min Val Loss: {}'.format(min_vals[-1])
+
+print 'Val Losses for all folds: {}'.format(min_vals)

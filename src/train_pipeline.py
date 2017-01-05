@@ -17,7 +17,7 @@ img_width = 299
 nb_pos_train = sum([len(files) for r, d, files in os.walk(os.path.join(PICS, 'train_split', 'POS'))])
 nb_pos_val = sum([len(files) for r, d, files in os.walk(os.path.join(PICS, 'val_split', 'POS'))])
 
-learning_rate = 0.0005
+learning_rate = 0.0001
 nbr_epochs = 35
 batch_size = 64
 

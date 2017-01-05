@@ -1,5 +1,5 @@
 from keras.applications.inception_v3 import InceptionV3
-from keras.layers import AveragePooling2D, Convolution2D, Flatten, Dense
+from keras.layers import AveragePooling2D, Convolution2D, Flatten, Dense, Dropout
 from keras.models import Model
 from keras.optimizers import SGD
 import keras.backend as K
@@ -32,6 +32,7 @@ def inception_model(input_shape=None, fcn=True, test=False, learning_rate=0.0001
     print('Adding Average Pooling Layer and Softmax Output Layer ...')
     output = InceptionV3_notop.get_layer(index=-1).output  # Shape: (*, *, 2048)
     output = AveragePooling2D(global_pool, strides=global_pool, name='avg_pool')(output)  # Shape: (1, 1, 2048)
+    output = Dropout(.5)(output)
     if fcn:
         # activation = 'sigmoid' if test else 'softmax'
         output = Convolution2D(classes, 1, 1, activation='sigmoid')(output)

@@ -5,7 +5,7 @@ import unittest as tst
 from keras.preprocessing.image import array_to_img, img_to_array
 from PIL import Image
 
-
+#TODO - Make some PIL Transforms (faster)
 class Transform(object):
     __metaclass__ = ABCMeta
 
@@ -40,6 +40,22 @@ class Transform(object):
         return transform_matrix
 
 
+class Img2Array(Transform):
+    def __init__(self, dim_ordering='default', **kwargs):
+        self.dim_ordering = dim_ordering
+
+    def apply(self, x, **kwargs):
+        return img_to_array(x, self.dim_ordering)
+
+class Array2Img(Transform):
+    def __init__(self, dim_ordering='default', scale=True, **kwargs):
+        self.dim_ordering = dim_ordering
+        self.scale = scale
+
+    def apply(self, x, **kwargs):
+        return array_to_img(x, self.dim_ordering, self.scale)
+
+
 class Rescale(Transform):
     def __init__(self, rescale, **kwargs):
         self.rescale = rescale
@@ -70,7 +86,7 @@ class ResizeRelative(Transform):
 
 
 class ResizeAbsolute(Transform):
-    def __init__(self, w, h, interp=3,
+    def __init__(self, w, h, interp=1,
                     fill_mode='nearest', cval=0., **kwargs):
         self.w = float(w)
         self.h = float(h)
@@ -82,6 +98,48 @@ class ResizeAbsolute(Transform):
         sx = self.w / x.shape[col_index]
         sy = self.h / x.shape[row_index]
         return ResizeRelative.resize(x, sy, sx, channel_index, self.interp, self.fill_mode, self.cval)
+
+
+class ResizeAbsolutePIL(ResizeAbsolute):
+    def apply(self, x, **kwargs):
+        return x.resize((self.w, self.h))
+
+
+class ResizeRelativePIL(ResizeRelative):
+    def apply(self, x, **kwargs):
+        w, h = x.size
+        return x.resize((int(round(self.sx*w)), int(round(self.sy*h))))
+
+
+class FlipAxis(Transform):
+    def __init__(self, axis, **kwargs):
+        self.axis = axis
+
+    def apply(self, x, **kwargs):
+        return self.flip_axis(x, self.axis)
+
+    @staticmethod
+    def flip_axis(x, axis):
+        x = np.asarray(x).swapaxes(axis, 0)
+        x = x[::-1, ...]
+        x = x.swapaxes(0, axis)
+        return x
+
+
+class RandomFlip(Transform):
+    def __init__(self, horizontal=True, vertical=True, **kwargs):
+        self.horizontal = horizontal
+        self.vertical = vertical
+
+    def apply(self, x, row_index=1, col_index=2, **kwargs):
+        horizontal = bool(np.random.randint(0, 2)) and self.horizontal
+        vertical = bool(np.random.randint(0, 2)) and self.vertical
+        x_new = x
+        if vertical:
+            x_new = FlipAxis.flip_axis(x, row_index)
+        if horizontal:
+            x_new = FlipAxis.flip_axis(x, col_index)
+        return x_new
 
 
 class Rotate(Transform):
@@ -114,16 +172,34 @@ class Rotate(Transform):
         return img_to_array(array_to_img(x, dim_ordering).rotate(theta))
 
 
+class RotatePIL(Rotate):
+    def apply(self, x, **kwargs):
+        return self.rotate_pil(x, self.theta)
+
+    @staticmethod
+    def rotate_pil(x, theta):
+        return x.rotate(theta)
+
+
 class RandomRotation(Transform):
     def __init__(self, rg,
-                    fill_mode='nearest', cval=0., **kwargs):
+                    fill_mode='nearest', cval=0., fast=False, **kwargs):
         self.rg = rg
         self.fill_mode = fill_mode
         self.cval = cval
+        self.fast = fast
 
     def apply(self, x, row_index=1, col_index=2, channel_index=0, **kwargs):
-        rad = np.pi / 180 * np.random.uniform(-self.rg, self.rg)
-        return Rotate.rotate(x, rad, row_index, col_index, channel_index, self.fill_mode, self.cval)
+        theta = np.random.uniform(-self.rg, self.rg)
+        rad = np.pi * 180 / theta
+        return Rotate.fast_rotate(x, theta, row_index) if self.fast else \
+            Rotate.rotate(x, rad, row_index, col_index, channel_index, self.fill_mode, self.cval)
+
+
+class RandomRotationPIL(RandomRotation):
+    def apply(self, x, **kwargs):
+        theta = np.random.uniform(-self.rg, self.rg)
+        return RotatePIL.rotate_pil(x, theta)
 
 
 class Shift(Transform):
@@ -239,6 +315,16 @@ class Shear(Transform):
                                                                     Image.AFFINE, affine_data), dim_ordering)
 
 
+class ShearPIL(Shear):
+    def apply(self, x, **kwargs):
+        return self.shear_pil(x, self.shear_val)
+
+    @staticmethod
+    def shear_pil(x, shear_val):
+        affine_data = (1, -np.sin(shear_val), 0, 0, np.cos(shear_val), 0)
+        return x.transform(x.size, Image.AFFINE, affine_data)
+
+
 class RandomShear(Transform):
     def __init__(self, intensity,
                  fill_mode='nearest', cval=0., fast=False, **kwargs):
@@ -251,6 +337,12 @@ class RandomShear(Transform):
         shear = np.random.uniform(-self.intensity, self.intensity)
         return Shear.fast_shear(x, shear, row_index, col_index) if self.fast else \
             Shear.shear(x, shear, row_index, col_index, channel_index, self.fill_mode, self.cval)
+
+
+class RandomShearPIL(RandomShear):
+    def apply(self, x, **kwargs):
+        shear = np.random.uniform(-self.intensity, self.intensity)
+        return ShearPIL.shear_pil(x, shear)
 
 
 class Zoom(Transform):

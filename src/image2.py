@@ -325,9 +325,9 @@ class DirectoryIterator(Iterator):
             fname = self.filenames[j]
             imgname = self.imgnames[j]
             # a = time.time() - profile
-            img = load_img(os.path.join(self.directory, fname),
+            x = load_img(os.path.join(self.directory, fname),
                            grayscale=grayscale)
-            x = img_to_array(img, dim_ordering=self.dim_ordering)
+            # x = img_to_array(img, dim_ordering=self.dim_ordering)
             # b = time.time() - (a + profile)
             x = self.image_data_generator.apply(x, filename=imgname)
             x = self.image_data_generator.standardize(x)

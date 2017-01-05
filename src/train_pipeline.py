@@ -6,7 +6,7 @@ from keras.callbacks import ModelCheckpoint
 from Transformations import RandomRotationPIL, ROICenter, CenterCrop, RandomShearPIL, Img2Array, Array2Img, RandomShift, RandomFlip, Rescale, RandomCrop
 from image2 import ImageDataGenerator
 from bb_utils import load_json_bbs, build_bb, max_dim_scale, rescale_bb
-import time
+from kfold_fcn import KFoldFromDirFCN
 from models import inception_model
 
 ROOT = '../'
@@ -18,7 +18,7 @@ nb_pos_train = sum([len(files) for r, d, files in os.walk(os.path.join(PICS, 'tr
 nb_pos_val = sum([len(files) for r, d, files in os.walk(os.path.join(PICS, 'val_split', 'POS'))])
 
 learning_rate = 0.0001
-nbr_epochs = 35
+nbr_epochs = 20
 batch_size = 64
 
 
@@ -66,7 +66,6 @@ class TrainFCNGen3(object):
         while True:
             np.random.shuffle(self.index_array)
             for i in xrange(0, self.samples, self.batch_size):
-                a = time.time()
                 inds = self.index_array[i:i+self.batch_size]
                 x_batch = np.empty((len(inds),) + self.out_shape)
                 y_batch = np.zeros((len(inds),))
@@ -76,7 +75,6 @@ class TrainFCNGen3(object):
                         y_batch[i] = 1
                     else:
                         x_batch[i:i+1]= next(self.neg_gen)[0]
-                print('Took {} s to create batch'.format(time.time() - a))
                 yield x_batch, y_batch
 
 bounding_boxes, no_boxes = build_bb(load_json_bbs(ROOT, BB_PATH))
@@ -106,15 +104,22 @@ nof_imgen.add(Img2Array())
 nof_imgen.add(RandomCrop((img_height, img_width)))
 nof_imgen.add(Rescale(1./255))
 
-train_gen = TrainFCNGen3(os.path.join(PICS, 'train_split'), fish_imgen, nof_imgen, nb_pos_train*2, batch_size=64)
-val_gen = TrainFCNGen3(os.path.join(PICS, 'val_split'), val_fish_imgen, nof_imgen, nb_pos_val*2, batch_size=64)
+PosFishNames = ['ALB', 'BET', 'DOL', 'LAG', 'OTHER', 'SHARK', 'YFT']
+NegFishNames = ['NoF']
 
-best_model_file = '../fishNoFishFCNInception_weights.h5'
-best_model = ModelCheckpoint(best_model_file, monitor='val_loss', verbose=1, save_best_only=True,
-                             save_weights_only=True)
+kfold = KFoldFromDirFCN(PosFishNames, NegFishNames, root=PICS, total_data='train_bb', train_data='train_split', val_data='val_split')
+i = 0
+for nbr_pos_train, nbr_pos_val, nbr_neg_train, nbr_neg_val in kfold.fit(4):
+    train_gen = TrainFCNGen3(os.path.join(PICS, 'train_split'), fish_imgen, nof_imgen, nb_pos_train*2, batch_size=64)
+    val_gen = TrainFCNGen3(os.path.join(PICS, 'val_split'), val_fish_imgen, nof_imgen, nb_pos_val*2, batch_size=64)
 
-model = inception_model(input_shape=train_gen.out_shape, fcn=True, test=False, learning_rate=learning_rate)
+    best_model_file = '../fishNoFishFCNInception_weights_fold{}.h5'.format(i+1)
+    best_model = ModelCheckpoint(best_model_file, monitor='val_loss', verbose=1, save_best_only=True,
+                                 save_weights_only=True)
 
-fit = model.fit_generator(iter(train_gen), samples_per_epoch=train_gen.samples, nb_epoch=nbr_epochs,
-                    verbose=1, callbacks=[best_model], validation_data=iter(val_gen),
-                    nb_val_samples=val_gen.samples)
+    model = inception_model(input_shape=train_gen.out_shape, fcn=True, test=False, learning_rate=learning_rate)
+
+    fit = model.fit_generator(iter(train_gen), samples_per_epoch=train_gen.samples, nb_epoch=nbr_epochs,
+                        verbose=1, callbacks=[best_model], validation_data=iter(val_gen),
+                        nb_val_samples=val_gen.samples)
+    i += 1

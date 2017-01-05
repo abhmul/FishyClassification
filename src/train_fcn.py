@@ -1,5 +1,4 @@
 import os
-import json
 # import time
 
 import numpy as np
@@ -11,6 +10,8 @@ from models import inception_model
 
 import keras.backend as K
 from keras.callbacks import ModelCheckpoint
+
+from bb_utils import load_json_bbs, build_bb
 
 ROOT = '../'
 BB_PATH = 'bounding_boxes'
@@ -33,31 +34,6 @@ if K.image_dim_ordering() == 'tf':
     input_shape = (img_height, img_width, 3)
 else:
     input_shape = (3, img_height, img_width)
-
-
-def load_json_bbs():
-    class_lst = []
-    for fname in os.listdir(os.path.join(ROOT, BB_PATH)):
-        with open(os.path.join(ROOT, BB_PATH, fname), 'r') as bb:
-            class_lst.append(json.load(bb))
-    return class_lst
-
-
-def build_bb(class_lst):
-    bounding_boxes = {}
-    no_boxes = []
-    for i, label in enumerate(class_lst):
-        for rect in label:
-            if len(rect["annotations"]) > 0:
-                bounding_boxes[str(rect["filename"][-13:])] = (rect["annotations"][0]["x"],
-                                            rect["annotations"][0]["y"],
-                                            rect["annotations"][0]["width"],
-                                            rect["annotations"][0]["height"])
-            # If there are no pictures
-            else:
-                no_boxes.append(rect["filename"][-13:])
-    return bounding_boxes, no_boxes
-
 
 # Generates entire epoch and passes it in batches (~130s to generate entire epoch)
 class TrainFCNGen(object):
@@ -178,7 +154,7 @@ class TrainFCNGen2(object):
                 yield x_batch, y_batch
 
 
-json_bb_lst = load_json_bbs()
+json_bb_lst = load_json_bbs(ROOT, BB_PATH)
 bounding_boxes, no_boxes = build_bb(json_bb_lst)
 
 # print bounding_boxes.keys()[:10]

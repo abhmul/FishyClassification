@@ -5,7 +5,7 @@ from keras.optimizers import SGD
 import keras.backend as K
 
 
-def inception_model(input_shape=None, fcn=True, test=False, learning_rate=0.0001, dim_ordering='default'):
+def inception_model(input_shape=None, fcn=True, test=False, learning_rate=0.0001, dim_ordering='default', classes=1):
 
     if dim_ordering == 'default':
         dim_ordering = K.image_dim_ordering()
@@ -34,19 +34,20 @@ def inception_model(input_shape=None, fcn=True, test=False, learning_rate=0.0001
     output = AveragePooling2D(global_pool, strides=global_pool, name='avg_pool')(output)  # Shape: (1, 1, 2048)
     if fcn:
         # activation = 'sigmoid' if test else 'softmax'
-        output = Convolution2D(8, 1, 1, activation='sigmoid')(output)
+        output = Convolution2D(classes, 1, 1, activation='sigmoid')(output)
         if not test:
             output = Flatten(name='flatten')(output)
     else:
         output = Flatten(name='flatten')(output)
-        output = Dense(8, activation='softmax', name='predictions')(output)
+        output = Dense(classes, activation='softmax', name='predictions')(output)
 
     InceptionV3_model = Model(InceptionV3_notop.input, output)
     # InceptionV3_model.summary()
 
     print('Creating optimizer and compiling')
     optimizer = SGD(lr=learning_rate, momentum=0.9, decay=0.0, nesterov=True)
-    InceptionV3_model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=['accuracy'])
+    InceptionV3_model.compile(loss='categorical_crossentropy' if classes != 1 else 'binary_crossentropy',
+                              optimizer=optimizer, metrics=['accuracy'])
 
     return InceptionV3_model
 

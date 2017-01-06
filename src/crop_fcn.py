@@ -8,6 +8,7 @@ from models import inception_model
 
 logging.getLogger().setLevel(logging.INFO)
 
+
 def get_bb(activations, img, bb_size = (299, 299)):
     if len(activations.shape) != 2:
         ValueError('Input should be a 2d numpy array, given a {}d numpy array'.format(len(activations.shape)))
@@ -32,8 +33,9 @@ for i, img_name in enumerate(os.listdir(TEST_DIR)):
     img = load_img(os.path.join(TEST_DIR, img_name))
     x = img_to_array(img)
     x = x.reshape((1,) + x.shape)
-    activations = np.sum([model.predict_on_batch(x) for model in models])
-    activations.reshape(activations.shape[1:3])
+    activations = sum([model.predict_on_batch(x) for model in models])
+    print activations
+    activations = activations.reshape(activations.shape[1:3])
     bb = get_bb(activations, img)
     cropped = img.crop(bb)
     cropped.save(os.path.join(save_dir, 'cropped_' + img_name))

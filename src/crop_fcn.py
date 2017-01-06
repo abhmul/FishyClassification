@@ -6,7 +6,7 @@ from keras.preprocessing.image import load_img, img_to_array
 
 from models import inception_model
 
-
+logging.getLogger().setLevel(logging.INFO)
 
 def get_bb(activations, img, bb_size = (299, 299)):
     if len(activations.shape) != 2:
@@ -32,7 +32,8 @@ for i, img_name in enumerate(os.listdir(TEST_DIR)):
     img = load_img(os.path.join(TEST_DIR, img_name))
     x = img_to_array(img)
     x = x.reshape((1,) + x.shape)
-    activations = np.sum([model.predict_on_batch(x).reshape(x.shape[1:3]) for model in models])
+    activations = np.sum([model.predict_on_batch(x) for model in models])
+    activations.reshape(activations.shape[1:3])
     bb = get_bb(activations, img)
     cropped = img.crop(bb)
     cropped.save(os.path.join(save_dir, 'cropped_' + img_name))

@@ -10,7 +10,7 @@ from models import inception_model
 
 def get_bb(activations, img, bb_size = (299, 299)):
     if len(activations.shape) != 2:
-        TypeError('Input should be a 2d numpy array, given a {}d numpy array'.format(len(activations.shape)))
+        ValueError('Input should be a 2d numpy array, given a {}d numpy array'.format(len(activations.shape)))
     inds = np.argmax(activations)
     sy, sx = [(inds[i] + 1.) / (activations.shape[i] + 1.) for i in xrange(len(activations.shape))]
     px, py = sx * img.size[0], sy * img.size[1]
@@ -31,7 +31,8 @@ for i, img_name in enumerate(os.listdir(TEST_DIR)):
     logging.info('Running FCN Crop on {}'.format(img_name))
     img = load_img(os.path.join(TEST_DIR, img_name))
     x = img_to_array(img)
-    activations = np.sum([model.predict_on_batch(x) for model in models])
+    x = x.reshape((1,) + x.shape)
+    activations = np.sum([model.predict_on_batch(x).reshape(x.shape[1:3]) for model in models])
     bb = get_bb(activations, img)
     cropped = img.crop(bb)
     cropped.save(os.path.join(save_dir, 'cropped_' + img_name))

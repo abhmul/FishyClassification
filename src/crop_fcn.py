@@ -22,7 +22,10 @@ save_dir = '../input/preview/'
 nfolds = 4
 
 #Load the models
-models = [inception_model(test=True).load_weights('../fishNoFishFCNInception_weights_fold{}.h5'.format(i+1)) for i in xrange(nfolds)]
+models = [inception_model(test=True) for i in xrange(nfolds)]
+for i, model in enumerate(models):
+    logging.info('Loading weights form for fold {}'.format(i+1))
+    model.load_weights('../fishNoFishFCNInception_weights_fold{}.h5'.format(i + 1))
 
 for i, img_name in enumerate(os.listdir(TEST_DIR)):
     logging.info('Running FCN Crop on {}'.format(img_name))

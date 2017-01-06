@@ -12,15 +12,18 @@ logging.getLogger().setLevel(logging.INFO)
 def get_bb(activations, img, bb_size = (299, 299)):
     if len(activations.shape) != 2:
         ValueError('Input should be a 2d numpy array, given a {}d numpy array'.format(len(activations.shape)))
-    inds = np.argmax(activations)
+    inds = np.unravel_index(np.argmax(activations), activations.shape)
     sy, sx = [(inds[i] + 1.) / (activations.shape[i] + 1.) for i in xrange(len(activations.shape))]
-    px, py = sx * img.size[0], sy * img.size[1]
+    px, py = int(round(sx * img.size[0])), int(round(sy * img.size[1]))
     x, y = max(px - bb_size[0] // 2, 0), max(py - bb_size[1] // 2, 0)
-    return (x, y,) + bb_size
+    x, y = min(x, img.size[0] - bb_size[0]), min(y, img.size[1] - bb_size[1])
+    return x, y, x + bb_size[0], y + bb_size[1]
 
 TEST_DIR = '../input/test2/test_stg2/'
 save_dir = '../input/preview/'
 nfolds = 4
+
+
 
 #Load the models
 models = [inception_model(test=True) for i in xrange(nfolds)]

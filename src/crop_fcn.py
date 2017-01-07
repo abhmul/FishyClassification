@@ -37,7 +37,7 @@ for i, img_name in enumerate(os.listdir(TEST_DIR)):
     x = x.reshape((1,) + x.shape)
     activations = sum([model.predict_on_batch(x) for model in models]) / float(nfolds)
     print activations
-    activations = activations.reshape(activations.shape[1:3])
+    activations = activations.reshape(activations.shape[1:])
     sx, sy = float(img.size[0]) / activations.shape[1], float(img.size[1]) / activations.shape[0]
     activations = ndi.zoom(activations, (sy, sx), np.float32, mode='nearest')
     img_activations = array_to_img(activations)

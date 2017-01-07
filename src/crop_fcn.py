@@ -42,7 +42,7 @@ for i, img_name in enumerate(os.listdir(TEST_DIR)):
     activations = ndi.zoom(activations, (sy, sx), np.float32, mode='nearest')
     img_activations = array_to_img(activations)
     img_activations.save(os.path.join(save_dir, 'heatmap_' + img_name))
-
+    logging.info('Saved the heatmap for {}'.format(img_name))
     # bb = get_bb(activations, img)
     # cropped = img.crop(bb)
     # cropped.save(os.path.join(save_dir, 'cropped_' + img_name))

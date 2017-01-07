@@ -2,9 +2,10 @@ import numpy as np
 import os
 import logging
 
-from keras.preprocessing.image import load_img, img_to_array
+from keras.preprocessing.image import load_img, img_to_array, array_to_img
 
 from models import inception_model
+import scipy.ndimage as ndi
 
 logging.getLogger().setLevel(logging.INFO)
 
@@ -23,9 +24,7 @@ TEST_DIR = '../input/test2/test_stg2/'
 save_dir = '../input/preview/'
 nfolds = 4
 
-
-
-#Load the models
+# Load the models
 models = [inception_model(test=True) for i in xrange(nfolds)]
 for i, model in enumerate(models):
     logging.info('Loading weights form for fold {}'.format(i+1))
@@ -36,12 +35,17 @@ for i, img_name in enumerate(os.listdir(TEST_DIR)):
     img = load_img(os.path.join(TEST_DIR, img_name))
     x = img_to_array(img)
     x = x.reshape((1,) + x.shape)
-    activations = sum([model.predict_on_batch(x) for model in models])
+    activations = sum([model.predict_on_batch(x) for model in models]) / float(nfolds)
     print activations
     activations = activations.reshape(activations.shape[1:3])
-    bb = get_bb(activations, img)
-    cropped = img.crop(bb)
-    cropped.save(os.path.join(save_dir, 'cropped_' + img_name))
+    sx, sy = float(img.size[0]) / activations.shape[1], float(img.size[1]) / activations.shape[0]
+    activations = ndi.zoom(activations, (sy, sx), np.float32, mode='nearest')
+    img_activations = array_to_img(activations)
+    img_activations.save(os.path.join(save_dir, 'heatmap_' + img_name))
+
+    # bb = get_bb(activations, img)
+    # cropped = img.crop(bb)
+    # cropped.save(os.path.join(save_dir, 'cropped_' + img_name))
     if i == 100:
         break
 

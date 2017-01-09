@@ -1,5 +1,4 @@
 import random
-import time
 
 import numpy as np
 
@@ -7,7 +6,7 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.callbacks import ModelCheckpoint
 
 from kfold_utils import KFoldFromDir
-from models import inception_model
+from models import inception_model, resnet50_model
 
 random.seed(2016)
 np.random.seed(2016)
@@ -19,11 +18,11 @@ val_data = 'val_split'
 
 
 learning_rate = 0.0001
-img_width = 299
-img_height = 299
+img_width = 224
+img_height = 224
 nbr_epochs = 25
-batch_size = 32
-nfolds = 10
+batch_size = 128
+nfolds = 7
 FishNames = ['ALB', 'BET', 'DOL', 'LAG', 'OTHER', 'SHARK', 'YFT']
 
 print('Initializing Augmenters')
@@ -49,17 +48,13 @@ for (train_generator, validation_generator), (nbr_train_samples, nbr_validation_
                                                                                                    img_width=img_width,
                                                                                                    img_height=img_height):
 
-    while True:
-        profile = time.time()
-        next(train_generator)
-        print 'Took {} s to get next image batch'.format(time.time() - profile)
 
     # autosave best Model
-    best_model_file = '../fishyInception_weights_fold{}.h5'
+    best_model_file = '../fishyResNet50_weights_fold{}.h5'
     best_model = ModelCheckpoint(best_model_file, monitor='val_loss', verbose=1, save_best_only=True,
                                  save_weights_only=True)
 
-    model = inception_model((img_width, img_height, 3), learning_rate=learning_rate)
+    model = resnet50_model((img_width, img_height, 3), learning_rate=learning_rate)
     print('Training Model...')
     model.fit_generator(
         train_generator,

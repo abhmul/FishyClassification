@@ -34,13 +34,13 @@ for i, img_name in enumerate(os.listdir(TEST_DIR)):
     logging.info('Running FCN Crop on {}'.format(img_name))
     img = load_img(os.path.join(TEST_DIR, img_name))
     x = img_to_array(img)
-    x = x.reshape((1,) + x.shape)
+    x = x[np.newaxis]
     activations = sum([model.predict_on_batch(x) for model in models]) / float(nfolds)
     print activations
     activations = activations.reshape(activations.shape[1:3])
     sx, sy = float(img.size[0]) / activations.shape[1], float(img.size[1]) / activations.shape[0]
     activations = ndi.zoom(activations, (sy, sx), np.float32, mode='nearest')
-    img_activations = array_to_img(activations)
+    img_activations = array_to_img(activations[:, :, np.newaxis])
     img_activations.save(os.path.join(save_dir, 'heatmap_' + img_name))
     logging.info('Saved the heatmap for {}'.format(img_name))
     # bb = get_bb(activations, img)

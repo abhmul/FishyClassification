@@ -42,7 +42,7 @@ train_datagen = ImageDataGenerator(
 val_datagen = ImageDataGenerator(rescale=1. / 255)
 
 kf = KFoldFromDir(nfolds, FishNames, root=root, total_data=total_data, train_data=train_data, val_data=val_data)
-
+i = 0
 for (train_generator, validation_generator), (nbr_train_samples, nbr_validation_samples) in kf.fit(train_datagen,
                                                                                                    val_datagen,
                                                                                                    img_width=img_width,
@@ -50,7 +50,7 @@ for (train_generator, validation_generator), (nbr_train_samples, nbr_validation_
 
 
     # autosave best Model
-    best_model_file = '../fishyResNet50_weights_fold{}.h5'
+    best_model_file = '../fishyResNet50_weights_fold{}.h5'.format(i+1)
     best_model = ModelCheckpoint(best_model_file, monitor='val_loss', verbose=1, save_best_only=True,
                                  save_weights_only=True)
 
@@ -64,3 +64,4 @@ for (train_generator, validation_generator), (nbr_train_samples, nbr_validation_
         nb_val_samples=nbr_validation_samples,
         verbose=1,
         callbacks=[best_model])
+    i += 1

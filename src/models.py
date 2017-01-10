@@ -72,7 +72,7 @@ def resnet50_model(input_shape=None, fcn=True, test=False, learning_rate=0.0001,
 
     print('Adding Average Pooling Layer and Softmax Output Layer ...')
     output = ResNet50_notop.get_layer(index=-1).output  # Shape: (*, *, 2048)
-    output = AveragePooling2D(global_pool, strides=global_pool, name='avg_pool')(output)  # Shape: (1, 1, 2048)
+    output = AveragePooling2D(global_pool, strides=global_pool, name='avg_pool2')(output)  # Shape: (1, 1, 2048)
     # output = Dropout(.5)(output)
     if fcn:
         # activation = 'sigmoid' if test else 'softmax'
@@ -80,15 +80,15 @@ def resnet50_model(input_shape=None, fcn=True, test=False, learning_rate=0.0001,
         if not test:
             output = Flatten(name='flatten')(output)
             if classes == 1:
-                output = Activation('sigmoid')
+                output = Activation('sigmoid')(output)
             else:
-                output = Activation('softmax')
+                output = Activation('softmax')(output)
     else:
         output = Flatten(name='flatten')(output)
         output = Dense(classes, activation=('softmax' if classes != 1 else 'sigmoid'), name='predictions')(output)
 
     ResNet50_model = Model(ResNet50_notop.input, output)
-    ResNet50_model.summary()
+    # ResNet50_model.summary()
 
     print('Creating optimizer and compiling')
     optimizer = SGD(lr=learning_rate, momentum=0.9, decay=0.0, nesterov=True)

@@ -6,7 +6,7 @@ import numpy as np
 from keras.callbacks import ModelCheckpoint
 
 from image2 import ImageDataGenerator
-from Transformations import RandomFlip, RandomCrop, RandomShearPIL, RandomRotationPIL, Rescale, Img2Array, Array2Img
+from Transformations import RandomFlip, RandomCrop, RandomShearPIL, RandomRotationPIL, Rescale, Img2Array, Array2Img, ResizeRelativePIL
 
 from kfold_utils import KFoldFromDir
 from models import inception_model, resnet50_model
@@ -39,6 +39,7 @@ train_datagen = ImageDataGenerator()
     # height_shift_range=0.1,
     # horizontal_flip=True)
 train_datagen.add(Img2Array())
+train_datagen.add(ResizeRelativePIL(.5, .5))
 train_datagen.add(RandomCrop((img_width, img_height)))
 train_datagen.add(RandomFlip())
 train_datagen.add(Array2Img(scale=False))
@@ -50,7 +51,9 @@ train_datagen.add(Rescale(1./255))
 # this is the augmentation configuration we will use for validation:
 # only rescaling
 val_datagen = ImageDataGenerator()
-train_datagen.add(RandomCrop((img_width, img_height)))
+val_datagen.add(ResizeRelativePIL(.5, .5))
+val_datagen.add(Img2Array())
+val_datagen.add(RandomCrop((img_width, img_height)))
 val_datagen.add(Rescale(1./255))
 
 nbr_val_aug = 5
@@ -68,7 +71,7 @@ for (train_generator, validation_generator), (nbr_train_samples, nbr_validation_
     best_model = ModelCheckpoint(best_model_file, monitor='val_loss', verbose=1, save_best_only=True,
                                  save_weights_only=True)
 
-    model = inception_model((img_width, img_height, 3), learning_rate=learning_rate, fcn=False)
+    model = inception_model((img_width, img_height, 3), learning_rate=learning_rate, fcn=False, classes=8)
     print('Training Model...')
     model.fit_generator(
         train_generator,

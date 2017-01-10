@@ -12,7 +12,7 @@ random.seed(2016)
 np.random.seed(2016)
 
 root = '../input'
-total_data = 'train_bb/POS'
+total_data = 'train'
 train_data = 'train_split'
 val_data = 'val_split'
 
@@ -23,7 +23,7 @@ img_height = 224
 nbr_epochs = 25
 batch_size = 128
 nfolds = 7
-FishNames = ['ALB', 'BET', 'DOL', 'LAG', 'OTHER', 'SHARK', 'YFT']
+FishNames = ['ALB', 'BET', 'DOL', 'LAG', 'OTHER', 'SHARK', 'YFT', 'NoF']
 
 print('Initializing Augmenters')
 # this is the augmentation configuration we will use for training
@@ -54,7 +54,7 @@ for (train_generator, validation_generator), (nbr_train_samples, nbr_validation_
     best_model = ModelCheckpoint(best_model_file, monitor='val_loss', verbose=1, save_best_only=True,
                                  save_weights_only=True)
 
-    model = resnet50_model((img_width, img_height, 3), learning_rate=learning_rate)
+    model = resnet50_model((img_width, img_height, 3), learning_rate=learning_rate, fcn=False)
     print('Training Model...')
     model.fit_generator(
         train_generator,

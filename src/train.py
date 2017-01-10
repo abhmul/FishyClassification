@@ -38,8 +38,8 @@ train_datagen = ImageDataGenerator()
     # width_shift_range=0.1,
     # height_shift_range=0.1,
     # horizontal_flip=True)
-train_datagen.add(Img2Array())
 train_datagen.add(ResizeRelativePIL(.5, .5))
+train_datagen.add(Img2Array())
 train_datagen.add(RandomCrop((img_width, img_height)))
 train_datagen.add(RandomFlip())
 train_datagen.add(Array2Img(scale=False))

@@ -62,8 +62,8 @@ kf = KFoldFromDir(nfolds, FishNames, root=root, total_data=total_data, train_dat
 i = 0
 for (train_generator, validation_generator), (nbr_train_samples, nbr_validation_samples) in kf.fit(train_datagen,
                                                                                                    val_datagen,
-                                                                                                   img_width=None,
-                                                                                                   img_height=None):
+                                                                                                   img_width=img_width,
+                                                                                                   img_height=img_height):
 
 
     # autosave best Model

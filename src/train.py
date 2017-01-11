@@ -2,17 +2,20 @@ import random
 
 import numpy as np
 
-# from keras.preprocessing.image import ImageDataGenerator
+from keras.preprocessing.image import ImageDataGenerator
 from keras.callbacks import ModelCheckpoint
 
-from image2 import ImageDataGenerator
+# from image2 import ImageDataGenerator
 from Transformations import RandomFlip, RandomCrop, RandomShearPIL, RandomRotationPIL, Rescale, Img2Array, Array2Img, ResizeRelativePIL
 
 from kfold_utils import KFoldFromDir
 from models import inception_model, resnet50_model
 
-# random.seed(2016)
-# np.random.seed(2016)
+seed = np.random.randint(1, 10000)
+random.seed(seed)
+np.random.seed(seed)
+
+print 'SEED: %s' % seed
 
 root = '../input'
 total_data = 'train'
@@ -30,33 +33,35 @@ FishNames = ['ALB', 'BET', 'DOL', 'LAG', 'OTHER', 'SHARK', 'YFT', 'NoF']
 
 print('Initializing Augmenters')
 # this is the augmentation configuration we will use for training
-train_datagen = ImageDataGenerator()
-    # rescale=1. / 255,
-    # shear_range=0.1,
-    # zoom_range=0.1,
-    # rotation_range=10.,
-    # width_shift_range=0.1,
-    # height_shift_range=0.1,
-    # horizontal_flip=True)
-train_datagen.add(ResizeRelativePIL(.5, .5))
-train_datagen.add(Img2Array())
-train_datagen.add(RandomCrop((img_width, img_height)))
-train_datagen.add(RandomFlip())
-train_datagen.add(Array2Img(scale=False))
-train_datagen.add(RandomRotationPIL(10.))
-train_datagen.add(RandomShearPIL(.1))
-train_datagen.add(Img2Array())
-train_datagen.add(Rescale(1./255))
+train_datagen = ImageDataGenerator(
+    rescale=1. / 255,
+    shear_range=0.1,
+    zoom_range=0.1,
+    rotation_range=10.,
+    width_shift_range=0.1,
+    height_shift_range=0.1,
+    horizontal_flip=True)
+# train_datagen.add(ResizeRelativePIL(.5, .5))
+# train_datagen.add(Img2Array())
+# train_datagen.add(RandomCrop((img_width, img_height)))
+# train_datagen.add(RandomFlip())
+# train_datagen.add(Array2Img(scale=False))
+# train_datagen.add(RandomRotationPIL(10.))
+# train_datagen.add(RandomShearPIL(.1))
+# train_datagen.add(Img2Array())
+# train_datagen.add(Rescale(1./255))
 
 # this is the augmentation configuration we will use for validation:
 # only rescaling
-val_datagen = ImageDataGenerator()
-val_datagen.add(ResizeRelativePIL(.5, .5))
-val_datagen.add(Img2Array())
-val_datagen.add(RandomCrop((img_width, img_height)))
-val_datagen.add(Rescale(1./255))
+val_datagen = ImageDataGenerator(
+    rescale=1./255
+)
+# val_datagen.add(ResizeRelativePIL(.5, .5))
+# val_datagen.add(Img2Array())
+# val_datagen.add(RandomCrop((img_width, img_height)))
+# val_datagen.add(Rescale(1./255))
 
-nbr_val_aug = 5
+nbr_val_aug = 1
 
 kf = KFoldFromDir(nfolds, FishNames, root=root, total_data=total_data, train_data=train_data, val_data=val_data)
 i = 0
@@ -78,7 +83,9 @@ for (train_generator, validation_generator), (nbr_train_samples, nbr_validation_
         samples_per_epoch=nbr_train_samples,
         nb_epoch=nbr_epochs,
         validation_data=validation_generator,
-        nb_val_samples=nbr_validation_samples * 5,
+        nb_val_samples=nbr_validation_samples * nbr_val_aug,
         verbose=1,
         callbacks=[best_model])
+
+    print 'SEED: %s' % seed
     i += 1

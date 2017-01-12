@@ -15,6 +15,7 @@ batch_size = 32
 nbr_test_samples = 1000
 nbr_augmentation = 5
 nfolds = 7
+model_name = 'fishyInception_weights_fold{fold_i}.h5'
 
 root_path = '../input'
 test_data_dir = os.path.join(root_path, 'test')
@@ -40,7 +41,7 @@ logging.info('Running {} folds'.format(nfolds))
 InceptionV3_models = []
 for i in xrange(nfolds):
     logging.info('Loading model and weights from training process fold {}/{} ...'.format(i+1, nfolds))
-    weights_path = os.path.join('..', 'inception_weights_fold{}.h5'.format(i))
+    weights_path = os.path.join('..', model_name.format(fold_i=i+1, batch_size=batch_size))
     model = inception_model((img_width, img_height, 3), learning_rate=0.0001, fcn=False, classes=8)
     model.load_weights(weights_path)
     InceptionV3_models.append(model)

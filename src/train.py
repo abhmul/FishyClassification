@@ -23,7 +23,7 @@ train_data = 'train_split'
 val_data = 'val_split'
 
 
-learning_rate = 0.00001
+learning_rate = 0.0001
 img_width = 299
 img_height = 299
 nbr_epochs = 25
@@ -65,6 +65,7 @@ nbr_val_aug = 1
 
 kf = KFoldFromDir(nfolds, FishNames, root=root, total_data=total_data, train_data=train_data, val_data=val_data)
 i = 0
+histories = []
 for (train_generator, validation_generator), (nbr_train_samples, nbr_validation_samples) in kf.fit(train_datagen,
                                                                                                    val_datagen,
                                                                                                    img_width=img_width,
@@ -77,8 +78,9 @@ for (train_generator, validation_generator), (nbr_train_samples, nbr_validation_
                                  save_weights_only=True)
 
     model = inception_model((img_width, img_height, 3), learning_rate=learning_rate, fcn=False, classes=8)
+    print 'SEED: %s' % seed
     print('Training Model...')
-    model.fit_generator(
+    history = model.fit_generator(
         train_generator,
         samples_per_epoch=nbr_train_samples,
         nb_epoch=nbr_epochs,
@@ -87,5 +89,10 @@ for (train_generator, validation_generator), (nbr_train_samples, nbr_validation_
         verbose=1,
         callbacks=[best_model])
 
+    histories.append(history.history)
+
     print 'SEED: %s' % seed
     i += 1
+
+avg_loss = sum(min(history['val_loss']) for history in histories) / float(len(histories))
+print 'Val_loss: %s' % avg_loss

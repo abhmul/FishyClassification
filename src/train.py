@@ -27,7 +27,7 @@ learning_rate = 0.0001
 img_width = 299
 img_height = 299
 nbr_epochs = 25
-batch_size = 128
+batch_size = 32
 nfolds = 7
 FishNames = ['ALB', 'BET', 'DOL', 'LAG', 'OTHER', 'SHARK', 'YFT', 'NoF']
 
@@ -73,7 +73,7 @@ for (train_generator, validation_generator), (nbr_train_samples, nbr_validation_
 
 
     # autosave best Model
-    best_model_file = '../fishyInception_weights_fold{}.h5'.format(i+1)
+    best_model_file = '../fishyInception_weights_fold{}_batchsize{}.h5'.format(i+1, batch_size)
     best_model = ModelCheckpoint(best_model_file, monitor='val_loss', verbose=1, save_best_only=True,
                                  save_weights_only=True)
 

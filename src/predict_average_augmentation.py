@@ -5,6 +5,7 @@ from functools import partial
 import logging
 
 from predict_utils import predict_augment, predict_kfold, predict_normal
+from models import inception_model
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
@@ -13,19 +14,20 @@ img_height = 299
 batch_size = 32
 nbr_test_samples = 1000
 nbr_augmentation = 5
-nfolds = 5
+nfolds = 7
 
 root_path = '../input'
 test_data_dir = os.path.join(root_path, 'test')
 
 # test data generator for prediction
 test_datagen = ImageDataGenerator(
-        rescale=1./255,
-        shear_range=0.1,
-        zoom_range=0.1,
-        width_shift_range=0.1,
-        height_shift_range=0.1,
-        horizontal_flip=True)
+    rescale=1. / 255,
+    shear_range=0.1,
+    zoom_range=0.1,
+    rotation_range=10.,
+    width_shift_range=0.1,
+    height_shift_range=0.1,
+    horizontal_flip=True)
 
 # Make the predictor
 predict = partial(predict_normal, gen=test_datagen,
@@ -39,7 +41,9 @@ InceptionV3_models = []
 for i in xrange(nfolds):
     logging.info('Loading model and weights from training process fold {}/{} ...'.format(i+1, nfolds))
     weights_path = os.path.join(root_path, 'inception_weights_fold{}.h5'.format(i))
-    InceptionV3_models.append(load_model(weights_path))
+    model = inception_model((img_width, img_height, 3), learning_rate=0.0001, fcn=False, classes=8)
+    model.load_weights(weights_path)
+    InceptionV3_models.append(model)
 
 predictions, test_image_list = predict(InceptionV3_models)
 

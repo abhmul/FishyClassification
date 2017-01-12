@@ -29,7 +29,7 @@ img_height = 299
 nbr_epochs = 25
 batch_size = 32
 nfolds = 7
-FishNames = ['ALB', 'BET', 'DOL', 'LAG', 'OTHER', 'SHARK', 'YFT', 'NoF']
+FishNames = ['ALB', 'BET', 'DOL', 'LAG', 'NoF', 'OTHER', 'SHARK', 'YFT']
 
 print('Initializing Augmenters')
 # this is the augmentation configuration we will use for training
@@ -69,7 +69,8 @@ histories = []
 for (train_generator, validation_generator), (nbr_train_samples, nbr_validation_samples) in kf.fit(train_datagen,
                                                                                                    val_datagen,
                                                                                                    img_width=img_width,
-                                                                                                   img_height=img_height):
+                                                                                                   img_height=img_height,
+                                                                                                   seed=np.random.randint(1, 10000)):
 
 
     # autosave best Model

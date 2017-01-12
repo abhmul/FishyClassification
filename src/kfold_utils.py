@@ -13,7 +13,8 @@ class KFoldFromDir(object):
                  root='../input',
                  total_data='train',
                  train_data='train_split',
-                 val_data='val_split'):
+                 val_data='val_split',
+                 seed=None):
 
         self.nfolds = nfolds
         self.root = root
@@ -69,7 +70,9 @@ class KFoldFromDir(object):
         os.mkdir(self.val_data_dir)
 
     def fit(self, train_datagen, val_datagen,
-            img_width=None, img_height=None, batch_size=32, save_dir=None):
+            img_width=None, img_height=None, batch_size=32, save_dir=None, seed=None):
+
+        np.random.seed(seed) if seed is not None else None
 
         ind_class_dict = {}
         for i in range(self.nfolds):
@@ -125,7 +128,8 @@ class KFoldFromDir(object):
                 shuffle=True,
                 classes=self.class_labels,
                 class_mode='categorical',
-                save_to_dir=save_dir)
+                save_to_dir=save_dir,
+                seed=np.random.randint(1, 10000))
 
             validation_generator = val_datagen.flow_from_directory(
                 self.val_data_dir,
@@ -134,7 +138,8 @@ class KFoldFromDir(object):
                 shuffle=True,
                 classes=self.class_labels,
                 save_to_dir=save_dir,
-                class_mode='categorical')
+                class_mode='categorical',
+                seed=np.random.randint(1, 10000))
 
             yield (train_generator, validation_generator), (nbr_train_samples, nbr_validation_samples)
 

@@ -40,7 +40,7 @@ logging.info('Running {} folds'.format(nfolds))
 InceptionV3_models = []
 for i in xrange(nfolds):
     logging.info('Loading model and weights from training process fold {}/{} ...'.format(i+1, nfolds))
-    weights_path = os.path.join(root_path, 'inception_weights_fold{}.h5'.format(i))
+    weights_path = os.path.join('..', 'inception_weights_fold{}.h5'.format(i))
     model = inception_model((img_width, img_height, 3), learning_rate=0.0001, fcn=False, classes=8)
     model.load_weights(weights_path)
     InceptionV3_models.append(model)

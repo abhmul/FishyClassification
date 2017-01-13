@@ -30,6 +30,7 @@ test_datagen = ImageDataGenerator(
     rotation_range=10.,
     width_shift_range=0.1,
     height_shift_range=0.1,
+    channel_shift_range=1.0,
     horizontal_flip=True)
 
 # Make the predictor

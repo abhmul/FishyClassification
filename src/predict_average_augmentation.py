@@ -8,6 +8,7 @@ from predict_utils import predict_augment, predict_kfold, predict_normal
 from models import inception_model
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO)
 
 img_width = 299
 img_height = 299
@@ -49,7 +50,7 @@ for i in xrange(nfolds):
 predictions, test_image_list = predict(InceptionV3_models)
 
 logging.info('Begin to write submission file ..')
-f_submit = open(os.path.join(root_path, 'submit.csv'), 'w')
+f_submit = open(os.path.join('..', 'submit.csv'), 'w')
 f_submit.write('image,ALB,BET,DOL,LAG,OTHER,SHARK,YFT,NoF\n') #TODO Change this later for newer models
 for i, image_name in enumerate(test_image_list):
     pred = ['%.6f' % p for p in predictions[i, :]]

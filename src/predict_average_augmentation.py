@@ -16,7 +16,8 @@ batch_size = 32
 nbr_test_samples = 1000
 nbr_augmentation = 5
 nfolds = 7
-model_name = 'fishyInception_weights_fold{fold_i}.h5'
+chanshift=1.
+model_name = 'fishyInception_weights_fold{fold_i}_batchsize{batch_size}.h5'
 
 root_path = '../input'
 test_data_dir = os.path.join(root_path, 'test')

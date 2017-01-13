@@ -29,7 +29,7 @@ img_height = 299
 nbr_epochs = 25
 batch_size = 32
 nfolds = 7
-FishNames = ['ALB', 'BET', 'DOL', 'LAG', 'NoF', 'OTHER', 'SHARK', 'YFT']
+FishNames = ['ALB', 'BET', 'DOL', 'LAG', 'OTHER', 'SHARK', 'YFT', 'NoF']
 
 print('Initializing Augmenters')
 # this is the augmentation configuration we will use for training
@@ -40,6 +40,7 @@ train_datagen = ImageDataGenerator(
     rotation_range=10.,
     width_shift_range=0.1,
     height_shift_range=0.1,
+    channel_shift_range=1.0,
     horizontal_flip=True)
 # train_datagen.add(ResizeRelativePIL(.5, .5))
 # train_datagen.add(Img2Array())

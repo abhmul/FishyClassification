@@ -75,7 +75,7 @@ class TrainFCNGen3(object):
                         x_batch[i:i+1]= next(self.neg_gen)[0]
                 yield x_batch, y_batch
 
-bounding_boxes, no_boxes = build_bb(load_json_bbs(ROOT, BB_PATH))
+bounding_boxes, no_boxes = build_bb(load_json_bbs(os.path.join(ROOT, BB_PATH)))
 
 fish_imgen = ImageDataGenerator()
 fish_imgen.add(Img2Array())

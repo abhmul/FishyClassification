@@ -7,16 +7,16 @@ import logging
 import pandas as pd
 import numpy as np
 
-from PIL.Image import BILINEAR, open
+from PIL import Image
 
 from keras.preprocessing.image import img_to_array
 from keras.utils.np_utils import to_categorical
 
 
-def load_img(path, target_size=None, resampler=BILINEAR):
-    img = open(path)
+def load_img(path, target_size=None, resampler=Image.BILINEAR):
+    img = Image.open(path)
     if target_size is not None:
-        img = img.resize(reversed(target_size), resample=resampler)
+        img = img.resize((target_size[1], target_size[0]), resample=resampler)
     return img_to_array(img)
 
 
@@ -24,7 +24,7 @@ def infer_classes(directory):
     return [subdir for subdir in sorted(os.listdir(directory)) if os.path.isdir(os.path.join(directory, subdir))]
 
 
-def load_train_from_dir(classes, directory):
+def load_train_from_dir(classes, directory, target_size):
     """
     Function to load all the training images from the fish folders
     in the order of FOLDERS
@@ -47,7 +47,7 @@ def load_train_from_dir(classes, directory):
         files = glob.glob(path)
         for fl in files:
             flbase = os.path.basename(fl)
-            img = load_img(fl)
+            img = load_img(fl, target_size)
             X_train.append(img)
             train_id.append(flbase)
             y_train.append(index)
@@ -57,14 +57,14 @@ def load_train_from_dir(classes, directory):
     return np.array(X_train), to_categorical(np.array(y_train), 8), np.array(train_id)
 
 
-def load_test_from_dir(directory):
+def load_test_from_dir(directory, target_size):
     files = sorted(glob.glob(directory))
 
     X_test = []
     test_id = []
     for fl in files:
         flbase = os.path.basename(fl)
-        img = load_img(fl)
+        img = load_img(fl, target_size)
         X_test.append(img)
         test_id.append(flbase)
 
@@ -86,23 +86,23 @@ def normalize_data(X):
     train_data /= 255.
 
     print('Normalizing the data')
-    train_data -= np.mean(train_data, axis=0)
-    train_data /= (np.std(train_data, axis=0) + 1e-7)
+    # train_data -= np.mean(train_data, axis=0)
+    # train_data /= (np.std(train_data, axis=0) + 1e-7)
 
     print('Train shape:', train_data.shape)
     print(train_data.shape[0], 'train samples')
     return train_data
 
 
-def load_train_data(classes=None, directory='../input/train/'):
+def load_train_data(classes=None, directory='../input/train/', target_size=(256, 256)):
 
-    Xtr, ytr, trid = load_train_from_dir(classes, directory)
+    Xtr, ytr, trid = load_train_from_dir(classes, directory, target_size)
     Xtr = normalize_data(Xtr)
     return Xtr, ytr, trid
 
 
-def load_test_data(directory='../input/test/test_stg1'):
+def load_test_data(directory='../input/test/test_stg1', target_size=(256, 256)):
 
-    Xte, teid = load_test_from_dir(directory)
+    Xte, teid = load_test_from_dir(directory, target_size)
     Xte = normalize_data(Xte)
     return Xte, teid

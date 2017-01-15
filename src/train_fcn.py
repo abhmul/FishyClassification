@@ -154,7 +154,7 @@ class TrainFCNGen2(object):
                 yield x_batch, y_batch
 
 
-json_bb_lst = load_json_bbs(ROOT, BB_PATH)
+json_bb_lst = load_json_bbs(os.path.join(ROOT, BB_PATH))
 bounding_boxes, no_boxes = build_bb(json_bb_lst)
 
 # print bounding_boxes.keys()[:10]

@@ -23,6 +23,7 @@ plotting = False
 if plotting:
     import matplotlib.pyplot as plt
     import matplotlib.patches as patches
+
     def display_with_rect(im, rects):
         colors = ('r', 'b', 'g')
         # Create figure and axes

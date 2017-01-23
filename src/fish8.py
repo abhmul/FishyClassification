@@ -86,8 +86,8 @@ def normalize_data(X):
     train_data /= 255.
 
     print('Normalizing the data')
-    # train_data -= np.mean(train_data, axis=0)
-    # train_data /= (np.std(train_data, axis=0) + 1e-7)
+    # train_data -= np.mean(train_data, axis=(1,2))
+    # train_data /= (np.std(train_data, axis=(1,2)) + 1e-7)
 
     print('Train shape:', train_data.shape)
     print(train_data.shape[0], 'train samples')

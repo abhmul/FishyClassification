@@ -3,7 +3,7 @@ import pandas as pd
 import logging
 from functools import partial
 import os
-from sklearn.model_selection import StratifiedKFold
+from sklearn.model_selection import StratifiedKFold, KFold
 
 from keras.models import Sequential, Model
 from keras.layers import ZeroPadding2D, Convolution2D, MaxPooling2D, Dropout, Dense, Flatten, Reshape, Input
@@ -23,6 +23,7 @@ plotting = False
 if plotting:
     import matplotlib.pyplot as plt
     import matplotlib.patches as patches
+
     def display_with_rect(im, rects):
         colors = ('r', 'b', 'g')
         # Create figure and axes
@@ -198,23 +199,33 @@ def localizer_gen(X, ids, buckets, bounding_boxes, batch_size=32, transform_func
             y_left, y_right = build_labels(buckets, X.shape[1], X.shape[2], bounding_boxes, batch_ids, transforms=transforms)
             yield batch_x, [y_left, y_right]
 
+if __name__ == '__main__':
+    Xtr, ytr, train_id = fish8.load_train_data(directory=picture_dir, target_size=(256, 256))
+    bb_dict, bad_box_imgs = load_bb(directory='../bounding_boxes/')
+    train_bb_id = np.sort(bb_dict.keys())
 
-Xtr, ytr, train_id = fish8.load_train_data(directory=picture_dir, target_size=(256, 256))
-bb_dict, bad_box_imgs = load_bb(directory='../bounding_boxes/')
-train_bb_id = np.sort(bb_dict.keys())
+    Xtr = extract_id(Xtr, train_id, train_bb_id)
+    ytr = extract_id(ytr, train_id, train_bb_id)
+    print Xtr.shape
+    print ytr.shape
 
-Xtr = extract_id(Xtr, train_id, train_bb_id)
-ytr = extract_id(ytr, train_id, train_bb_id)
-print Xtr.shape
-print ytr.shape
+    transform_func = compile_affine(
+        [random_rotation(180.), random_shift(.2, .2), random_zoom((1 / 1.2, 1.2)), random_shear(.1)])
+    gen = partial(localizer_gen, transform_func=transform_func, shuffle=True)
 
-transform_func = compile_affine([random_rotation(180.), random_shift(.2, .2), random_zoom((1/1.2, 1.2)), random_shear(.1)])
-gen = partial(localizer_gen, transform_func=transform_func, shuffle=True)
+    for j, fish_name in enumerate(sorted(['ALB', 'BET', 'DOL', 'LAG', 'NoF', 'OTHER', 'SHARK', 'YFT'])):
 
+        if fish_name == 'NoF':
+            continue
+        print 'Running %s' % fish_name
+        inds = np.where(ytr[:, j]==1)[0]
 
-skf = StratifiedKFold(n_splits=5, shuffle=True)
-skf.get_n_splits(Xtr, ytr)
-for k, (train_index, test_index) in enumerate(skf.split(Xtr, np.where(ytr==1)[1])):
-    X_train, X_val = Xtr[train_index], Xtr[test_index]
-    tr_ids, val_ids = train_bb_id[train_index], train_bb_id[test_index]
-    train(20, X_train, X_val, bb_dict, tr_ids, val_ids, best_model_fname=None, generator=gen)
+        skf = KFold(n_splits=5, shuffle=True)
+        skf.get_n_splits()
+        for k, (ind_train_index, ind_test_index) in enumerate(skf.split(inds)):
+            print 'Running fold {}/{}'.format(k+1, 5)
+            train_index = inds[ind_train_index]
+            test_index = inds[ind_test_index]
+            X_train, X_val = Xtr[train_index], Xtr[test_index]
+            tr_ids, val_ids = train_bb_id[train_index], train_bb_id[test_index]
+            train(20, X_train, X_val, bb_dict, tr_ids, val_ids, best_model_fname=None, generator=gen)

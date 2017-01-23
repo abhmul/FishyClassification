@@ -58,7 +58,7 @@ def load_train_from_dir(classes, directory, target_size):
 
 
 def load_test_from_dir(directory, target_size):
-    files = sorted(glob.glob(directory))
+    files = sorted(glob.glob(os.path.join(directory, '*.jpg')))
 
     X_test = []
     test_id = []
@@ -79,7 +79,7 @@ def create_submission(predictions, test_id, info):
     result1.to_csv(sub_file, index=False)
 
 
-def normalize_data(X):
+def normalize_data(X, featurewise_center=False):
 
     print('Convert to float...')
     train_data = X.astype('float32')
@@ -88,8 +88,23 @@ def normalize_data(X):
     print('Normalizing the data')
     # train_data -= np.mean(train_data, axis=(1,2))
     # train_data /= (np.std(train_data, axis=(1,2)) + 1e-7)
+    row_axis = 1
+    col_axis = 2
+    channel_axis = 3
+    if featurewise_center:
+        mean = np.mean(X, axis=(0, row_axis, col_axis))
+        broadcast_shape = [1, 1, 1]
+        broadcast_shape[channel_axis - 1] = X.shape[channel_axis]
+        mean = np.reshape(mean, broadcast_shape)
+        X -= mean
 
-    print('Train shape:', train_data.shape)
+        std = np.std(X, axis=(0, row_axis, col_axis))
+        broadcast_shape = [1, 1, 1]
+        broadcast_shape[channel_axis - 1] = X.shape[channel_axis]
+        std = np.reshape(std, broadcast_shape)
+        X /= (std + 1e-7)
+
+    print('shape:', train_data.shape)
     print(train_data.shape[0], 'train samples')
     return train_data
 

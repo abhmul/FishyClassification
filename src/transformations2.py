@@ -15,6 +15,13 @@ def apply_transform_coord(coord, transform_matrix, h=float('inf'), w=float('inf'
     return int(np.clip(transformed[0, 0], 0., h)), transformed[1, 0]
 
 
+def standerdize(x_old, channel_axis):
+    x = x_old
+    x -= np.mean(x, axis=channel_axis, keepdims=True)
+    x /= (np.std(x, axis=channel_axis, keepdims=True) + 1e-7)
+    return x
+
+
 def compile_affine(funcs, dim_ordering='default', fill_mode='nearest', cval=0.):
     if dim_ordering == 'default':
         dim_ordering = K.image_dim_ordering()
@@ -31,13 +38,16 @@ def compile_affine(funcs, dim_ordering='default', fill_mode='nearest', cval=0.):
         row_axis = 0
         col_axis = 1
 
-    def transform_img(x):
+    def transform_img(x, samplewise_center=True):
         transform_matrix = None
         h = x.shape[row_axis]
         w = x.shape[col_axis]
         for func in funcs:
             transform_matrix = func(transform_matrix, h, w)
-        return apply_transform(x, transform_matrix, channel_axis, fill_mode, cval), transform_matrix
+        x_new = apply_transform(x, transform_matrix, channel_axis, fill_mode, cval)
+        if samplewise_center:
+            x_new = standerdize(x_new, channel_axis)
+        return x_new, transform_matrix
 
     def transform_coord(coord, h, w):
         transform_matrix = None

@@ -6,6 +6,15 @@ import unittest as tst
 import keras.backend as K
 
 
+def apply_transform_coord(coord, transform_matrix, h=float('inf'), w=float('inf')):
+
+    vector = np.array([[coord[0]],
+                       [coord[1]],
+                       [1]])
+    transformed = np.dot(np.linalg.inv(transform_matrix), vector)
+    return int(np.clip(transformed[0, 0], 0., h)), transformed[1, 0]
+
+
 def compile_affine(funcs, dim_ordering='default', fill_mode='nearest', cval=0.):
     if dim_ordering == 'default':
         dim_ordering = K.image_dim_ordering()
@@ -28,17 +37,14 @@ def compile_affine(funcs, dim_ordering='default', fill_mode='nearest', cval=0.):
         w = x.shape[col_axis]
         for func in funcs:
             transform_matrix = func(transform_matrix, h, w)
-        return apply_transform(x, transform_matrix, channel_axis, fill_mode, cval)
+        return apply_transform(x, transform_matrix, channel_axis, fill_mode, cval), transform_matrix
 
     def transform_coord(coord, h, w):
         transform_matrix = None
         for func in funcs:
             transform_matrix = func(transform_matrix, h, w)
-        vector = np.array([[coord[0]],
-                           [coord[1]],
-                           [1]])
-        transformed = np.dot(np.linalg.inv(transform_matrix), vector)
-        return transformed[0,0], transformed[1,0]
+        transformed = apply_transform_coord(coord, transform_matrix, h, w)
+        return transformed, transform_matrix
 
     def transform_func(*args):
         if len(args) == 3:
@@ -84,7 +90,7 @@ def random_rotation(rg):
     return rand_rot
 
 
-def shift(tx, ty, h=None, w=None, prev_transform=None):
+def apply_shift(tx, ty, h=None, w=None, prev_transform=None):
     #TODO figure out which shift changes which coordinate
     translation_matrix = np.array([[1, 0, ty],
                                    [0, 1, tx],
@@ -96,6 +102,17 @@ def shift(tx, ty, h=None, w=None, prev_transform=None):
     return transform_matrix
 
 
+def shift(tx_rel, ty_rel):
+    """
+    Returns a function that takes transform, height, and width of a picture
+    adding on rotation transform for theta
+    """
+    def move(transform, h, w):
+        return apply_shift(ty_rel*h, tx_rel*w, h, w, prev_transform=transform)
+
+    return move
+
+
 def random_shift(wrg, hrg):
     """
     Returns a function that takes transform, height, and width of a picture
@@ -104,12 +121,12 @@ def random_shift(wrg, hrg):
     def rand_shift(transform, h, w):
         ty = int(np.random.uniform(-hrg, hrg)*h)
         tx = int(np.random.uniform(-wrg, wrg)*w)
-        return shift(tx, ty, prev_transform=transform)
+        return apply_shift(tx, ty, prev_transform=transform)
 
     return rand_shift
 
 
-def shear(shear_val, h, w, prev_transform=None):
+def apply_shear(shear_val, h, w, prev_transform=None):
     shear_matrix = np.array([[1, -np.sin(shear_val), 0],
                              [0, np.cos(shear_val), 0],
                              [0, 0, 1]])
@@ -119,17 +136,29 @@ def shear(shear_val, h, w, prev_transform=None):
     return transform_matrix
 
 
+def shear(shear_val):
+    """
+        Returns a function that takes transform, height, and width of a picture
+        and applies a random shear to it
+        """
+
+    def make_shear(transform, h, w):
+        return apply_shear(shear_val, h, w, prev_transform=transform)
+
+    return make_shear
+
+
 def random_shear(intensity):
     """
     Returns a function that takes transform, height, and width of a picture
     and applies a random shear to it
     """
     def rand_shear(transform, h, w):
-        return shear(np.random.uniform(-intensity, intensity), h, w, prev_transform=transform)
+        return apply_shear(np.random.uniform(-intensity, intensity), h, w, prev_transform=transform)
     return rand_shear
 
 
-def zoom(zx, zy, h, w, prev_transform=None):
+def apply_zoom(zx, zy, h, w, prev_transform=None):
     # TODO see which order zx and zy should be in
     zoom_matrix = np.array([[zx, 0, 0],
                             [0, zy, 0],
@@ -140,6 +169,17 @@ def zoom(zx, zy, h, w, prev_transform=None):
         transform_matrix = np.dot(transform_matrix, prev_transform)
     return transform_matrix
 
+
+def zoom(zx, zy):
+    """
+        Returns a function that takes transform, height, and width of a picture
+        and applies a random zoom to it
+        """
+
+    def make_zoom(transform, h, w):
+        return apply_zoom(zx, zy, h, w, prev_transform=transform)
+
+    return make_zoom
 
 def random_zoom(zoom_range):
     """
@@ -155,7 +195,7 @@ def random_zoom(zoom_range):
             zx, zy = 1, 1
         else:
             zx, zy = np.random.uniform(zoom_range[0], zoom_range[1], 2)
-        return zoom(zx, zy, h, w, prev_transform=transform)
+        return apply_zoom(zx, zy, h, w, prev_transform=transform)
     return rand_zoom
 
 
@@ -196,34 +236,56 @@ class TestTransforms(tst.TestCase):
         transformer = compile_affine([rotation(45)])
 
         # Check it doesn't change the shape
-        shape = (100, 200)
-        loc = (int(shape[0] * .7), int(shape[1] * .4))
+        shape = (400, 200)
+        loc = (int(shape[0] * .89), int(shape[1] * .6))
         test_arr = np.zeros(shape + (1,))
         test_arr[loc] = 1
-        out = transformer(test_arr).reshape(shape)
+        out = transformer(test_arr)[0].reshape(shape)
+        # print test_arr.reshape(shape) - out
+        # print loc
+        # print transformer(loc, *shape)
+        rounded_coords = tuple(int(round(i)) for i in (transformer(loc, *shape)[0]))
+        # print rounded_coords
+        self.assertEqual(out.shape, shape)
+        # print out[rounded_coords]
+        # print np.where(out==1.)
+        self.assertEqual(out[rounded_coords], 1.)
+
+    def testShift(self):
+        transformer = compile_affine([shift(.2, .2)])
+
+        # Check it doesn't change the shape
+        shape = (8, 15)
+        loc = (int(shape[0] * .5), int(shape[1] * .5))
+        test_arr = np.zeros(shape + (1,))
+        test_arr[loc] = 1
+        out = transformer(test_arr)[0].reshape(shape)
+        # print test_arr.reshape(shape) - out
+        # print loc
+        # print transformer(loc, *shape)
+        rounded_coords = tuple(int(round(i)) for i in (transformer(loc, *shape)[0]))
+        # print rounded_coords
+        self.assertEqual(out.shape, shape)
+        # print out[rounded_coords]
+        # print np.where(out==1.)
+        self.assertEqual(out[rounded_coords], 1.)
+
+    def testRotateShift(self):
+        transformer = compile_affine([rotation(90), shift(.2, .4)])
+        shape = (8, 15)
+        loc = (int(shape[0] * .6), int(shape[1] * .6))
+        test_arr = np.zeros(shape + (1,))
+        test_arr[loc] = 1
+        out = transformer(test_arr)[0].reshape(shape)
         print test_arr.reshape(shape) - out
         print loc
-        print transformer(loc, *shape)
-        rounded_coords = tuple(int(round(i)) for i in (transformer(loc, *shape)))
+        # print transformer(loc, *shape)
+        rounded_coords = tuple(int(round(i)) for i in (transformer(loc, *shape)[0]))
         print rounded_coords
         self.assertEqual(out.shape, shape)
-        print out[rounded_coords]
-        print np.where(out==1.)
+        # print out[rounded_coords]
+        print np.where(out == 1.)
         self.assertEqual(out[rounded_coords], 1.)
-    #
-    # def testShift(self):
-    #     # Check it doesn't change the shape
-    #     img = input_img()
-    #     img = random_rotation(20.)(img)
-    #     img = random_shift(.1, .1)(img)
-    #     img = random_shear(.1)(img)
-    #     img = random_zoom((.8, 1.2))(img)
-    #     img = random_channel_shift(.1)(img)
-    #     transformer = compile_func(img)
-    #
-    #     test_arr = np.linspace(0.0, 1.0, 500 * 1000).reshape((500, 1000, 1))
-    #     print transformer(test_arr)[1]
-    #     self.assertEqual(transformer(test_arr)[0].shape, test_arr.shape)
 
 if __name__ == '__main__':
     tst.main()

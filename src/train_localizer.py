@@ -211,7 +211,6 @@ if __name__ == '__main__':
 
     transform_func = compile_affine(
         [random_rotation(180.), random_shift(.2, .2), random_zoom((1 / 1.2, 1.2)), random_shear(.1)])
-    gen = partial(localizer_gen, transform_func=transform_func, shuffle=True)
 
     for j, fish_name in enumerate(sorted(['ALB', 'BET', 'DOL', 'LAG', 'NoF', 'OTHER', 'SHARK', 'YFT'])):
 
@@ -223,9 +222,11 @@ if __name__ == '__main__':
         skf = KFold(n_splits=5, shuffle=True)
         skf.get_n_splits()
         for k, (ind_train_index, ind_test_index) in enumerate(skf.split(inds)):
+            gen = partial(localizer_gen, transform_func=transform_func, shuffle=True)
             print 'Running fold {}/{}'.format(k+1, 5)
             train_index = inds[ind_train_index]
             test_index = inds[ind_test_index]
             X_train, X_val = Xtr[train_index], Xtr[test_index]
             tr_ids, val_ids = train_bb_id[train_index], train_bb_id[test_index]
-            train(20, X_train, X_val, bb_dict, tr_ids, val_ids, best_model_fname=None, generator=gen)
+            train(20, X_train, X_val, bb_dict, tr_ids, val_ids, best_model_fname='../localizer_{}_fold{}.h5'.format(fish_name, k+1), generator=gen,
+                  nb_epoch=100)

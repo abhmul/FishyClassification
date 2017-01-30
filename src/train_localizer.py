@@ -197,6 +197,10 @@ def localizer_gen(X, ids, buckets, bounding_boxes, batch_size=32, transform_func
                         img = array_to_img(batch_x[j])
                         img.save(os.path.join(save_to_dir, '{}.jpg'.format(j)))
             y_left, y_right = build_labels(buckets, X.shape[1], X.shape[2], bounding_boxes, batch_ids, transforms=transforms)
+            for k in xrange(y_left.shape[0]):
+                print y_left[k]
+                print y_right[k]
+                print batch_ids[k]
             yield batch_x, [y_left, y_right]
 
 if __name__ == '__main__':

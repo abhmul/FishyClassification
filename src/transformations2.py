@@ -38,12 +38,12 @@ def compile_affine(funcs, dim_ordering='default', fill_mode='nearest', cval=0.):
         row_axis = 0
         col_axis = 1
 
-    def transform_img(x, samplewise_center=True):
+    def transform_img(x, samplewise_center=True, **kwargs):
         transform_matrix = None
         h = x.shape[row_axis]
         w = x.shape[col_axis]
         for func in funcs:
-            transform_matrix = func(transform_matrix, h, w)
+            transform_matrix = func(transform_matrix, h, w, **kwargs)
         x_new = apply_transform(x, transform_matrix, channel_axis, fill_mode, cval)
         if samplewise_center:
             x_new = standerdize(x_new, channel_axis)
@@ -56,11 +56,11 @@ def compile_affine(funcs, dim_ordering='default', fill_mode='nearest', cval=0.):
         transformed = apply_transform_coord(coord, transform_matrix, h, w)
         return transformed, transform_matrix
 
-    def transform_func(*args):
+    def transform_func(*args, **kwargs):
         if len(args) == 3:
             return transform_coord(*args)
         elif len(args) == 1:
-            return transform_img(*args)
+            return transform_img(*args, **kwargs)
         else:
             raise ValueError('Input should be an ndimage or coordinate, height, width.')
 
@@ -83,7 +83,7 @@ def rotation(theta):
     Returns a function that takes transform, height, and width of a picture
     adding on rotation transform for theta
     """
-    def rot(transform, h, w):
+    def rot(transform, h, w, **kwargs):
         return apply_rotation(theta, h, w, prev_transform=transform)
 
     return rot
@@ -94,7 +94,7 @@ def random_rotation(rg):
     Returns a function that takes transform, height, and width of a picture
     """
 
-    def rand_rot(transform, h, w):
+    def rand_rot(transform, h, w, **kwargs):
         return apply_rotation(np.random.uniform(-rg, rg), h, w, prev_transform=transform)
 
     return rand_rot
@@ -117,7 +117,7 @@ def shift(tx_rel, ty_rel):
     Returns a function that takes transform, height, and width of a picture
     adding on rotation transform for theta
     """
-    def move(transform, h, w):
+    def move(transform, h, w, **kwargs):
         return apply_shift(ty_rel*h, tx_rel*w, h, w, prev_transform=transform)
 
     return move
@@ -128,12 +128,32 @@ def random_shift(wrg, hrg):
     Returns a function that takes transform, height, and width of a picture
     and applies a random shift to it
     """
-    def rand_shift(transform, h, w):
+    def rand_shift(transform, h, w, **kwargs):
         ty = int(np.random.uniform(-hrg, hrg)*h)
         tx = int(np.random.uniform(-wrg, wrg)*w)
         return apply_shift(tx, ty, prev_transform=transform)
 
     return rand_shift
+
+
+def roi_center():
+    """
+    :return: a function that takes transform, height, width, and an roi of a picture
+    and applies a centers it on that roi
+    """
+    def roi_move(transform, h, w, roi=None, **kwargs):
+        if roi is None or len(roi) != 4:
+            raise ValueError('Invalid input {}'.format(roi))
+        if roi[0] < 0 or roi[1] < 0 or roi[2] > w or roi[3] > h:
+            raise ValueError('ROI is out of bounds {}'.format(roi))
+
+        xmin, ymin, xmax, ymax = roi
+        centerh, centerw = h // 2, w // 2
+        tx = ((xmin + xmax) // 2) - centerw
+        ty = ((ymin + ymax) // 2) - centerh
+        return apply_shift(tx, ty, prev_transform=transform)
+
+    return roi_move
 
 
 def apply_shear(shear_val, h, w, prev_transform=None):
@@ -152,7 +172,7 @@ def shear(shear_val):
         and applies a random shear to it
         """
 
-    def make_shear(transform, h, w):
+    def make_shear(transform, h, w, **kwargs):
         return apply_shear(shear_val, h, w, prev_transform=transform)
 
     return make_shear
@@ -163,15 +183,15 @@ def random_shear(intensity):
     Returns a function that takes transform, height, and width of a picture
     and applies a random shear to it
     """
-    def rand_shear(transform, h, w):
+    def rand_shear(transform, h, w, **kwargs):
         return apply_shear(np.random.uniform(-intensity, intensity), h, w, prev_transform=transform)
     return rand_shear
 
 
 def apply_zoom(zx, zy, h, w, prev_transform=None):
     # TODO see which order zx and zy should be in
-    zoom_matrix = np.array([[zx, 0, 0],
-                            [0, zy, 0],
+    zoom_matrix = np.array([[zy, 0, 0],
+                            [0, zx, 0],
                             [0, 0, 1]])
 
     transform_matrix = transform_matrix_offset_center(zoom_matrix, h, w)
@@ -186,10 +206,11 @@ def zoom(zx, zy):
         and applies a random zoom to it
         """
 
-    def make_zoom(transform, h, w):
+    def make_zoom(transform, h, w, **kwargs):
         return apply_zoom(zx, zy, h, w, prev_transform=transform)
 
     return make_zoom
+
 
 def random_zoom(zoom_range):
     """
@@ -200,13 +221,34 @@ def random_zoom(zoom_range):
         raise ValueError('zoom_range should be a tuple or list of two floats. '
                          'Received arg: ', zoom_range)
 
-    def rand_zoom(transform, h, w):
+    def rand_zoom(transform, h, w, **kwargs):
         if zoom_range[0] == 1 and zoom_range[1] == 1:
             zx, zy = 1, 1
         else:
             zx, zy = np.random.uniform(zoom_range[0], zoom_range[1], 2)
         return apply_zoom(zx, zy, h, w, prev_transform=transform)
     return rand_zoom
+
+
+def max_dim_zoom(max_dim):
+    """
+    Returns a function that takes transform, height, width, and roi of a picture
+    and zooms it so the biggest dimension of the roi is to it
+    """
+    def max_resize(transform, h, w, roi=None, **kwargs):
+        if roi is None or len(roi) != 4:
+            raise ValueError('Invalid input {}'.format(roi))
+        if roi[0] < 0 or roi[1] < 0 or roi[2] > w or roi[3] > h:
+            raise ValueError('ROI is out of bounds {}'.format(roi))
+        wdim = roi[2] - roi[0]
+        hdim = roi[3] - roi[1]
+        max_side = max((hdim, wdim))
+        zdim = float(max_dim) / max_side
+        return apply_zoom(zdim, zdim, h, w, prev_transform=transform)
+
+    return max_resize
+
+
 
 
 # Not an Affine Transform

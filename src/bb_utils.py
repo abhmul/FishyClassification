@@ -63,6 +63,30 @@ def build_bb_scale(class_dct, scale=False, classes=None, picture_directory='../i
     return bounding_boxes, no_boxes
 
 
+def build_bb_all(class_dct, classes=None, failures=False):
+    bounding_boxes = {}
+    no_boxes = set([])
+    if classes is None:
+        classes = class_dct.keys()
+
+    for i, label in enumerate(classes):
+        json_bb = class_dct[label]
+        for rect in json_bb:
+            img_name = str(os.path.basename(rect["filename"]))
+            if len(rect["annotations"]) >= 1:
+
+                bb = [(ann["x"], ann["y"],
+                        ann["x"] + ann["width"],
+                        ann["y"] + ann["height"]) for ann in rect["annotations"]]
+
+                
+                bounding_boxes[img_name] = bb
+            else:
+                no_boxes.add(img_name)
+
+    return bounding_boxes, no_boxes
+
+
 def max_dim_scale(bounding_boxes, target_size):
     max_dim = max(max(bounding_boxes[img][2:]) for img in bounding_boxes)
     return float(target_size) / max_dim
@@ -71,3 +95,4 @@ def max_dim_scale(bounding_boxes, target_size):
 def rescale_bb(bounding_boxes, scale):
     return {img: tuple([val * scale for val in bounding_boxes[img]])
             for img in bounding_boxes}
+

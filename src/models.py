@@ -33,18 +33,19 @@ def inception_model(input_shape=None, fcn=True, test=False, learning_rate=0.0001
     print('Adding Average Pooling Layer and Softmax Output Layer ...')
     output = InceptionV3_notop.get_layer(index=-1).output  # Shape: (*, *, 2048)
     output = AveragePooling2D(global_pool, strides=global_pool, name='avg_pool')(output)  # Shape: (1, 1, 2048)
-    output = Dropout(.5)(output)
     if fcn:
         # activation = 'sigmoid' if test else 'softmax'
+        output = Dropout(.5)(output)
         output = Convolution2D(classes, 1, 1, activation='sigmoid')(output)
         if not test:
             output = Flatten(name='flatten')(output)
     else:
         output = Flatten(name='flatten')(output)
+        output = Dropout(.5)(output)
         output = Dense(classes, activation='softmax', name='predictions')(output)
 
     InceptionV3_model = Model(InceptionV3_notop.input, output)
-    # InceptionV3_model.summary()
+    InceptionV3_model.summary()
 
     print('Creating optimizer and compiling')
     optimizer = SGD(lr=learning_rate, momentum=0.9, decay=0.0, nesterov=True)
@@ -96,6 +97,27 @@ def resnet50_model(input_shape=None, fcn=True, test=False, learning_rate=0.0001,
                            optimizer=optimizer, metrics=['accuracy'])
 
     return ResNet50_model
+
+def inception_barebones(learning_rate=0.0001):
+    print('Loading InceptionV3 Weights ...')
+    InceptionV3_notop = InceptionV3(include_top=False, weights='imagenet',
+                                    input_tensor=None, input_shape=(299, 299, 3))
+    # Note that the preprocessing of InceptionV3 is:
+    # (x / 255 - 0.5) x 2
+
+    print('Adding Average Pooling Layer and Softmax Output Layer ...')
+    output = InceptionV3_notop.get_layer(index=-1).output  # Shape: (8, 8, 2048)
+    output = AveragePooling2D((8, 8), strides=(8, 8), name='avg_pool')(output)
+    output = Flatten(name='flatten')(output)
+    output = Dense(8, activation='softmax', name='predictions')(output)
+
+    InceptionV3_model = Model(InceptionV3_notop.input, output)
+    # InceptionV3_model.summary()
+
+    optimizer = SGD(lr=learning_rate, momentum=0.9, decay=0.0, nesterov=True)
+    InceptionV3_model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=['accuracy'])
+
+    return InceptionV3_model
 
 
 

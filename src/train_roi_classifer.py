@@ -187,6 +187,7 @@ def roi_gen(inds, X_lst, y, augmentor, batch_size=32, shuffle=True, save_dir=Non
         batch_x = np.zeros(tuple([batch_size] + [299, 299, 3]))
         for i in xrange(0, len(inds_of_inds), batch_size):
             batch_inds = inds[inds_of_inds[i:i+batch_size]]
+            batch_count = batch_inds.shape[0]
             for i, j in enumerate(batch_inds):
                 x = X_lst[j]
                 if x.shape != (299, 299, 3):
@@ -199,7 +200,7 @@ def roi_gen(inds, X_lst, y, augmentor, batch_size=32, shuffle=True, save_dir=Non
             batch_y = y[batch_inds]
             if save_dir:
                 save_to_dir(batch_x, save_dir=save_dir)
-            yield batch_x, batch_y
+            yield batch_x[:batch_count], batch_y
 
 
 best_model_file = '../fishNoFishFCNInception_weights.h5'

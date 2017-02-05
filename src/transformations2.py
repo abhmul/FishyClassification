@@ -249,8 +249,6 @@ def max_dim_zoom(max_dim):
     return max_resize
 
 
-
-
 # Not an Affine Transform
 def rand_channel_shift(x, transform_mat, intensity, channel_axis=0, **kwargs):
     x = np.rollaxis(x, channel_axis, 0)

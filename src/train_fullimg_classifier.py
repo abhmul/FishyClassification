@@ -20,7 +20,7 @@ def pipeline1():
     X, y, trid = fish8.load_train_data(CLASSES, TRAIN_DIR, target_size=(299, 299))
     trid = None
     print("Creating Splitter")
-    sss = StratifiedShuffleSplit(n_splits=1, test_size=0.15, random_state=42)
+    sss = StratifiedShuffleSplit(n_splits=1, test_size=0.2, random_state=42)
     sss.get_n_splits()
     print("Splitting")
     train_ind, val_ind = next(sss.split(X, to_uncategorical(y)))

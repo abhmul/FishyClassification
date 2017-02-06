@@ -4,13 +4,15 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.callbacks import ModelCheckpoint
 from sklearn.model_selection import StratifiedShuffleSplit
 from models import inception_barebones
+from keras.utils.np_utils import categorical_probas_to_classes
 
 CLASSES = ['ALB', 'BET', 'DOL', 'LAG', 'NoF', 'OTHER', 'SHARK', 'YFT']
 TRAIN_DIR = '../input/train/'
-BATCH_SIZE = 64
+BATCH_SIZE = 32
 
 def to_uncategorical(y):
-    return np.where(y == 1.)[1]
+    return categorical_probas_to_classes(y)
+
 
 def pipeline1():
     best_model_file = '../fishyFullception_weights.h5'
@@ -25,26 +27,14 @@ def pipeline1():
     print("Splitting")
     train_ind, val_ind = next(sss.split(X, to_uncategorical(y)))
     print("Initializing Augmentors")
-    train_aug = ImageDataGenerator(featurewise_center=False,
-                                   samplewise_center=False,
-                                   featurewise_std_normalization=False,
-                                   samplewise_std_normalization=False,
-                                   zca_whitening=False,
+    train_aug = ImageDataGenerator(rescale=1. / 255,
                                    shear_range=0.1,
                                    zoom_range=0.1,
                                    rotation_range=10.,
                                    width_shift_range=0.1,
                                    height_shift_range=0.1,
-                                   channel_shift_range=0.,
-                                   horizontal_flip=True,
-                                   vertical_flip=True,
-                                   rescale=1. / 255)
-    val_aug = ImageDataGenerator(featurewise_center=False,
-                                 samplewise_center=False,
-                                 featurewise_std_normalization=False,
-                                 samplewise_std_normalization=False,
-                                 zca_whitening=False,
-                                 rescale=1. / 255)
+                                   horizontal_flip=True)
+    val_aug = ImageDataGenerator(rescale=1. / 255)
 
     print("Instantiating model")
     inception_nn = inception_barebones()

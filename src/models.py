@@ -98,7 +98,7 @@ def resnet50_model(input_shape=None, fcn=True, test=False, learning_rate=0.0001,
 
     return ResNet50_model
 
-def inception_barebones(learning_rate=0.0001):
+def inception_barebones(learning_rate=0.0001, dropout=True):
     print('Loading InceptionV3 Weights ...')
     InceptionV3_notop = InceptionV3(include_top=False, weights='imagenet',
                                     input_tensor=None, input_shape=(299, 299, 3))
@@ -109,6 +109,7 @@ def inception_barebones(learning_rate=0.0001):
     output = InceptionV3_notop.get_layer(index=-1).output  # Shape: (8, 8, 2048)
     output = AveragePooling2D((8, 8), strides=(8, 8), name='avg_pool')(output)
     output = Flatten(name='flatten')(output)
+    output = Dropout(.5)(output) if dropout else output
     output = Dense(8, activation='softmax', name='predictions')(output)
 
     InceptionV3_model = Model(InceptionV3_notop.input, output)

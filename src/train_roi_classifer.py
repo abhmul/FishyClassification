@@ -203,7 +203,7 @@ def roi_gen(inds, X_lst, y, augmentor, batch_size=32, shuffle=True, save_dir=Non
             yield batch_x[:batch_count], batch_y
 
 
-best_model_file = '../fishyROIception_32batch_weights.h5'
+best_model_file = '../fishyROIception_32batch_run2_weights.h5'
 best_model = ModelCheckpoint(best_model_file, monitor='val_loss', verbose=1, save_best_only=True,
                              save_weights_only=True)
 
@@ -242,6 +242,7 @@ def pipeline1():
 
     print("Instantiating model")
     inception_nn = inception_barebones()
+    inception_nn.load_weights('../fishyROIception_32batch_weights.h5')
     print("Creating train gen")
     train_gen = roi_gen(train_ind, X, y_cat, train_aug, batch_size=BATCH_SIZE)
     print("Creating val gen")
@@ -254,6 +255,7 @@ def pipeline1():
                                nb_epoch=25, callbacks=[best_model],
                                validation_data=val_gen,
                                nb_val_samples=val_ind.shape[0],
-                               max_q_size=1)
+                               max_q_size=1,
+                               initial_epoch=25)
 
 pipeline1()

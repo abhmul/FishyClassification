@@ -20,7 +20,7 @@ def pipeline1():
     X, y, trid = fish8.load_train_data(CLASSES, TRAIN_DIR, target_size=(299, 299))
     trid = None
     print("Creating Splitter")
-    sss = StratifiedShuffleSplit(n_splits=1, test_size=0.2, random_state=42)
+    sss = StratifiedShuffleSplit(n_splits=1, test_size=0.15)
     sss.get_n_splits()
     print("Splitting")
     train_ind, val_ind = next(sss.split(X, to_uncategorical(y)))
@@ -30,11 +30,11 @@ def pipeline1():
                                    featurewise_std_normalization=False,
                                    samplewise_std_normalization=False,
                                    zca_whitening=False,
-                                   rotation_range=180.,
-                                   width_shift_range=0.2,
-                                   height_shift_range=0.2,
-                                   shear_range=0.2,
-                                   zoom_range=(1 / 1.2, 1.2),
+                                   shear_range=0.1,
+                                   zoom_range=0.1,
+                                   rotation_range=10.,
+                                   width_shift_range=0.1,
+                                   height_shift_range=0.1,
                                    channel_shift_range=0.,
                                    horizontal_flip=True,
                                    vertical_flip=True,
@@ -52,8 +52,6 @@ def pipeline1():
     train_gen = train_aug.flow(X[train_ind], y[train_ind], batch_size=BATCH_SIZE)
     print("Creating val gen")
     val_gen = val_aug.flow(X[val_ind], y[val_ind], batch_size=BATCH_SIZE)
-    X = None
-    y = None
 
     inception_nn.fit_generator(train_gen, samples_per_epoch=train_ind.shape[0],
                                nb_epoch=25, callbacks=[best_model],

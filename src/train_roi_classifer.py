@@ -15,7 +15,7 @@ CLASSES = ['ALB', 'BET', 'DOL', 'LAG', 'NoF', 'OTHER', 'SHARK', 'YFT']
 TRAIN_DIR = '../input/train/'
 BB_PATH = '../bounding_boxes/'
 TARGET_SIZE = (299, 299)
-BATCH_SIZE = 64
+BATCH_SIZE = 32
 
 
 def crop(x, crop_box, row_index=0, col_index=1):
@@ -203,7 +203,7 @@ def roi_gen(inds, X_lst, y, augmentor, batch_size=32, shuffle=True, save_dir=Non
             yield batch_x[:batch_count], batch_y
 
 
-best_model_file = '../fishyROIception_weights.h5'
+best_model_file = '../fishyROIception_32batch_weights.h5'
 best_model = ModelCheckpoint(best_model_file, monitor='val_loss', verbose=1, save_best_only=True,
                              save_weights_only=True)
 

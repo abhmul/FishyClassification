@@ -65,12 +65,12 @@ def fish_process_json(json_bb):
     The reformated json_bb as:
         {
             "filename": Image Filename (sometimes w/ path): [
-                {
-                    "height": y-height of bb (float),
-                    "width": x-width of bb (float),
-                    "x": top left bb corner x dist (float),
-                    "y": top left bb corner y dist (float)
-                },
+                (
+                    top left bb corner x dist (float),
+                    top left bb corner y dist (float),
+                    bottom right bb corner x dist (float),
+                    bottom right bb corner y dist (float)
+                ),
                 ...
             ],
             ...
@@ -80,9 +80,46 @@ def fish_process_json(json_bb):
     reform_json = {}
     for img in json_bb:
         img_name = str(os.path.basename(img["filename"]))
-        annotations = [{"height": annot["height"],
-                            "width": annot["width"],
-                            "x": max(0, annot["x"]),
-                            "y": max(0, annot["y"])} for annot in img["annotations"]]
+        annotations = [(max(0, annot["x"]),
+                        max(0, annot["y"]),
+                        annot["width"] + annot["x"],
+                        annot["height"] + annot["y"]) for annot in img["annotations"]]
         reform_json[img_name] = annotations
     return reform_json
+
+
+def scale_bb(bb, img_size):
+    """
+    Rescales the bounding to 0 to 1 coordinates
+
+    Arguments:
+    bb -- The bounding box to rescale
+    img_size -- The size of the image as (width, height)
+
+    Returns:
+    The bounding box rescaled to 0 to 1 coordinates
+    """
+    return (bb[0] / img_size[0],
+            bb[1] / img_size[1],
+            bb[2] / img_size[2],
+            bb[3] / img_size[3])
+
+def rescale_bbs(bb_dict, imgpaths):
+    """
+    Rescales a dictionary of bounding boxes for many labels
+
+    Arguments:
+    bb_dict -- A dictionary of labels mapped to a dictionary of bounding_boxes
+    """
+    new_bb_dict = {}
+    for label, bbs in bb_dict.iteritems():
+        new_bbs = {}
+
+        for imgpath in imgpaths[label]:
+            img_name = str(os.path.basename(imgpath))
+            if img_name in bbs:
+
+                new_bb =
+                new_bbs[img_name] = [scale_bb(bb, bb_Image.open(imgpath).size) for bb in bbs[img_name]]
+
+        new_bb_dict[label] = new_bbs

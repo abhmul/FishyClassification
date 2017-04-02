@@ -16,8 +16,6 @@ def vgg16_bb(input_shape, target_shape):
     # let's add some fully-connected layers
     x = Dense(1024, activation='relu')(x)
     x = Dropout(0.5)(x)
-    x = Dense(1024, activation='relu')(x)
-    x = Dropout(0.5)(x)
     x = Dense(target_shape[0] * target_shape[1] * target_shape[2], activation='sigmoid')(x)
     predictions = Reshape(target_shape)(x)
 

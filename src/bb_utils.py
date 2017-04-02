@@ -101,8 +101,8 @@ def scale_bb(bb, img_size):
     """
     return (bb[0] / img_size[0],
             bb[1] / img_size[1],
-            bb[2] / img_size[2],
-            bb[3] / img_size[3])
+            bb[2] / img_size[0],
+            bb[3] / img_size[1])
 
 def rescale_bbs(bb_dict, imgpaths):
     """
@@ -112,14 +112,14 @@ def rescale_bbs(bb_dict, imgpaths):
     bb_dict -- A dictionary of labels mapped to a dictionary of bounding_boxes
     """
     new_bb_dict = {}
-    for label, bbs in bb_dict.iteritems():
+    for label, bbs in bb_dict.items():
         new_bbs = {}
 
         for imgpath in imgpaths[label]:
             img_name = str(os.path.basename(imgpath))
             if img_name in bbs:
 
-                new_bb =
-                new_bbs[img_name] = [scale_bb(bb, bb_Image.open(imgpath).size) for bb in bbs[img_name]]
+                new_bbs[img_name] = [scale_bb(bb, Image.open(imgpath).size) for bb in bbs[img_name]]
 
         new_bb_dict[label] = new_bbs
+    return new_bb_dict

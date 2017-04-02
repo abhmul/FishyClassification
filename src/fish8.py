@@ -13,7 +13,7 @@ from keras.preprocessing.image import img_to_array
 from keras.utils.np_utils import to_categorical
 
 
-def load_img(path, target_size=None, resampler=Image.BILINEAR):
+def load_img(path, target_size=None, resampler=Image.BICUBIC):
     img = Image.open(path)
     if target_size is not None:
         img = img.resize((target_size[1], target_size[0]), resample=resampler)
@@ -40,7 +40,7 @@ def read_imgs(directory, classes=None):
     if classes is None:
         classes = infer_classes(directory)
 
-    return {label: glob.glob(os.path.join(directory, label, "*.jpg")) in classes}
+    return {label: glob.glob(os.path.join(directory, label, "*.jpg")) for label in classes}
 
 
 def load_train_from_dir(classes, directory, target_size):

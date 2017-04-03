@@ -9,7 +9,7 @@ from fish8 import read_imgs, load_img
 
 BB_PATH = "../bounding_boxes/"
 TRAIN_DIR = "../input/train/"
-TARGET_SIZE = (448, 448)
+TARGET_SIZE = (224, 224)
 VERIFY = False
 
 # Some debugging stuff

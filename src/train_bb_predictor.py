@@ -62,6 +62,7 @@ def img_mask_generator(datagen):
         mask = zoom(mask,
         (1, TARGET_SHAPE[0] /  mask.shape[1], TARGET_SHAPE[1] /  mask.shape[2], 1),
         order=0)
+
         if DEBUG:
             ax[0, 0].imshow(img[0])
             ax[0, 1].imshow(mask[0, :, :, 0], cmap="gray")

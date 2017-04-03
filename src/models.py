@@ -1,7 +1,7 @@
 from keras.applications.vgg16 import VGG16
 from keras.applications.resnet50 import ResNet50
 from keras.layers import GlobalAveragePooling2D, Reshape, Dropout, Dense, Input, Conv2D, MaxPooling2D, Flatten
-from keras.models import Model, Sequential
+from keras.models import Model, Sequential, load_model
 from keras.optimizers import SGD
 
 from custom_metrics import dice_coef, dice_coef_loss, hard_iou, soft_iou
@@ -76,4 +76,26 @@ def conv_bb(input_shape, target_shape):
 
     model.compile(optimizer='rmsprop', loss='binary_crossentropy',
                   metrics=[dice_coef, hard_iou, soft_iou])
+    return model
+
+def yolo_fish(path_to_yolo, num_classes, optimizer=None, learning_rate=0.0001):
+
+    # Load the yolo model
+    base_model = load_model(path_to_yolo)
+    # Flatten the output
+    x = base_model.output
+    x = Flatten()(x)
+
+    # let's add a fully-connected layer
+    x = Dropout(0.5)(x)
+    predictions = Dense(num_classes, activation='softmax')
+
+    model = Model(inputs=base_model.input, outputs=predictions)
+
+    if optimizer is None:
+        optimizer = SGD(lr=learning_rate, momentum=0.9, decay=0.0, nesterov=True)
+
+    model.compile(loss='categorical_crossentropy' if num_classes != 1 else 'binary_crossentropy',
+                              optimizer=optimizer, metrics=['accuracy'])
+
     return model
